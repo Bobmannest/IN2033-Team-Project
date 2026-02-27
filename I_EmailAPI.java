@@ -1,4 +1,4 @@
-public interface I_EmailService {
+public interface I_EmailAPI {
 
 	public boolean sendEmail(String to, String subject, String body);
 

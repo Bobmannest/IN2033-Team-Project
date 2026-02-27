@@ -1,6 +1,6 @@
 package PU_DetailedDesign;
 
-public class Email_ImplClass implements I_EmailService {
+public class EmailAPI_ImplClass implements I_EmailAPI {
 
 	public boolean sendEmail(String to, String subject, String body) {
 		throw new UnsupportedOperationException();
@@ -10,7 +10,7 @@ public class Email_ImplClass implements I_EmailService {
 		throw new UnsupportedOperationException();
 	}
 
-	public Email_ImplClass() {
+	public EmailAPI_ImplClass() {
 		throw new UnsupportedOperationException();
 	}
 }

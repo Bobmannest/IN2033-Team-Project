@@ -1,6 +1,6 @@
 package PU_DetailedDesign;
 
-public class Payment_ImplClass {
+public class PaymentAPI_ImplClass {
 
 	public boolean processPayment(int amount, String orderId) {
 		throw new UnsupportedOperationException();
@@ -14,7 +14,7 @@ public class Payment_ImplClass {
 		throw new UnsupportedOperationException();
 	}
 
-	public Payment_ImplClass() {
+	public PaymentAPI_ImplClass() {
 		throw new UnsupportedOperationException();
 	}
 }

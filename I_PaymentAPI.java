@@ -1,4 +1,4 @@
-public interface I_PaymentService {
+public interface I_PaymentAPI {
 
 	public boolean processPayment(int amount, String orderId);
 
