@@ -2,7 +2,7 @@ package PU_DetailedDesign;
 
 public class Email_ImplClass implements I_EmailService {
 
-	public boolean sendEmail(String to__subject__body, String subject, String body) {
+	public boolean sendEmail(String to, String subject, String body) {
 		throw new UnsupportedOperationException();
 	}
 
