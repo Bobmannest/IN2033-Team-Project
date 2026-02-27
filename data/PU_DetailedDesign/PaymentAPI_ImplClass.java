@@ -1,4 +1,4 @@
-package PU_DetailedDesign;
+package data.PU_DetailedDesign;
 
 /**
  *
@@ -28,7 +28,7 @@ public class PaymentAPI_ImplClass {
 	 * @param paymentId
 	 * @return
 	 */
-	public PaymentStatus getPaymentStatus(String paymentId) {
+	public String getPaymentStatus(String paymentId) {
 		throw new UnsupportedOperationException();
 	}
 
