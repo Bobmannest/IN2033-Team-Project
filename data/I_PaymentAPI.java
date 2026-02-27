@@ -1,3 +1,5 @@
+package data;
+
 /**
  *
  */
@@ -22,5 +24,5 @@ public interface I_PaymentAPI {
 	 * @param paymentId
 	 * @return
 	 */
-	public PaymentStatus getPaymentStatus(String paymentId);
+	public String getPaymentStatus(String paymentId);
 }
