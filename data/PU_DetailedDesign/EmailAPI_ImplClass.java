@@ -1,39 +1,18 @@
-package data.PU_DetailedDesign;
-import data.I_EmailAPI;
-
+package PU_DetailedDesign;
 import java.io.File;
 
-/**
- * 
- */
-public class EmailAPI_ImplClass implements I_EmailAPI {
-	/**
-	 *
-	 * @param to
-	 * @param subject
-	 * @param body
-	 * @return
-	 */
-	public boolean sendEmail(String to, String subject, String body) {
+public class EmailAPI_ImplClass {
+
+	public boolean sendEmail(String aTo, String aSubject, String aBody) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 * @param to
-	 * @param subject
-	 * @param body
-	 * @param attachment
-	 * @return
-	 */
-	public boolean sendAttachment(String to, String subject, String body, File attachment) {
+	public boolean sendAttachment(String aTo, String aSubject, String aBody, File aAttachment) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 */
 	public EmailAPI_ImplClass() {
 		throw new UnsupportedOperationException();
 	}
 }
+

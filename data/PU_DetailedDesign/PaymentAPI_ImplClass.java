@@ -1,40 +1,19 @@
-package data.PU_DetailedDesign;
+package PU_DetailedDesign;
 
-/**
- *
- */
-public class PaymentAPI_ImplClass {
-	/**
-	 *
-	 * @param amount
-	 * @param orderId
-	 * @return
-	 */
-	public boolean processPayment(int amount, String orderId) {
+public class PaymentAPI_ImplClass implements I_PaymentAPI {
+
+	public boolean processPayment(int aAmount, String aOrderId) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 * @param paymentId
-	 * @return
-	 */
-	public boolean refundPayment(int paymentId) {
+	public boolean refundPayment(int aPaymentId) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 * @param paymentId
-	 * @return
-	 */
-	public String getPaymentStatus(String paymentId) {
+	public String getPaymentStatus(String aPaymentId) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 */
 	public PaymentAPI_ImplClass() {
 		throw new UnsupportedOperationException();
 	}

@@ -1,32 +1,15 @@
-package data.PU_DetailedDesign;
+package PU_DetailedDesign;
 
-import data.I_OnlineOrderAPI;
-
-/**
- *
- */
 public class OnlineOrderAPI_ImplClass implements I_OnlineOrderAPI {
-	/**
-	 *
-	 * @param orderId
-	 * @return
-	 */
-	public String getOrderDetails(String orderId) {
+
+	public String getOrderDetails(String aOrderId) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 * @param orderId
-	 * @param status
-	 */
-	public void updateOrderStatus(String orderId, String status) {
+	public void updateOrderStatus(String aOrderId, String aStatus) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 */
 	public OnlineOrderAPI_ImplClass() {
 		throw new UnsupportedOperationException();
 	}
