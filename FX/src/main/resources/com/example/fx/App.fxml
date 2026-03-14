@@ -5,12 +5,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="600.0" prefWidth="338.0" BorderPane.alignment="CENTER">
          <children>
-            <ButtonBar prefHeight="220.0" prefWidth="338.0">
+            <ButtonBar prefHeight="226.0" prefWidth="338.0">
               <buttons>
                 <Button mnemonicParsing="false" text="Button" />
               </buttons>
