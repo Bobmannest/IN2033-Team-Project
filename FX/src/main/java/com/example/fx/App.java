@@ -13,8 +13,8 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("App.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("App");
-        stage.setMinWidth(600);
-        stage.setMinHeight(400);
+        stage.setMinWidth(620);
+        stage.setMinHeight(440);
         stage.setScene(scene);
         stage.show();
     }
