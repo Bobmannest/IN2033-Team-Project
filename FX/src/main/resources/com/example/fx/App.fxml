@@ -49,7 +49,7 @@
                         </Text>
                      </children>
                   </TextFlow>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Username" style="-fx-background-radius: 20;" VBox.vgrow="NEVER">
+                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Username" style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;" VBox.vgrow="NEVER">
                      <font>
                         <Font name="MS Reference Sans Serif" size="12.0" />
                      </font>
@@ -66,7 +66,7 @@
                         </Text>
                      </children>
                   </TextFlow>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Password" style="-fx-background-radius: 20;" VBox.vgrow="NEVER">
+                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Password" style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;">
                      <font>
                         <Font name="MS Reference Sans Serif" size="12.0" />
                      </font>
