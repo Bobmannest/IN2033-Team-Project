@@ -1,0 +1,9 @@
+.signin{
+    -fx-background-color: #beffd9; /*Why doesn't this work?!*/
+}
+
+.signin:hover{
+    -fx-background-color: #a4ddbc; /*Why doesn't this work?!*/
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
