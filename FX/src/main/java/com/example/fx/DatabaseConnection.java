@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:mysql://localhost:3306/Test";
     private static final String USER = "root";
-    private static final String PASS = ""; // MySQL password
+    private static final String PASS = "Ipos2026@"; // MySQL password
 
     // This method opens and returns a connection to the MySQL database
     public static Connection getConnection() throws SQLException {
