@@ -3,10 +3,12 @@ package com.example.email;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.stereotype.Service;
 import java.util.Properties;
 
+@Service
 public class EmailService {
-    public static void SendEmail(String recipient_email) {
+    public void sendEmail(String recipient_email) {
         final String username = "ipospu33@gmail.com";
         final String password = "ljom jqat cjay eeqd";
 
@@ -24,27 +26,21 @@ public class EmailService {
                     }
                 });
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("ipospu33@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(recipient_email) //Recipient of Email
+                    InternetAddress.parse(recipient_email)
             );
             message.setSubject("Testing IPOS-PU Email Service");
             message.setText("[This is an automatically generated email],"
                     + "\n\n [Test Successful]");
 
             Transport.send(message);
-
             System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        SendEmail("kalincheto56@gmail.com");
     }
 }
