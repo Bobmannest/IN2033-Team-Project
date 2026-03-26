@@ -6,9 +6,7 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailService {
-
-    public static void main(String[] args) {
-
+    public static void SendEmail(String recipient_email) {
         final String username = "ipospu33@gmail.com";
         final String password = "ljom jqat cjay eeqd";
 
@@ -25,14 +23,13 @@ public class EmailService {
                         return new PasswordAuthentication(username, password);
                     }
                 });
-
         try {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("ipospu33@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("kalincheto56@gmail.com") //Recipient of Email
+                    InternetAddress.parse(recipient_email) //Recipient of Email
             );
             message.setSubject("Testing IPOS-PU Email Service");
             message.setText("[This is an automatically generated email],"
@@ -47,4 +44,7 @@ public class EmailService {
         }
     }
 
+    public static void main(String[] args) {
+        SendEmail("kalincheto56@gmail.com");
+    }
 }
