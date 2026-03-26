@@ -3,8 +3,13 @@ module com.example.fx {
     requires javafx.fxml;
     requires java.sql;
     requires jakarta.mail;
+    requires spring.web;
+    requires spring.boot;
+    requires spring.boot.autoconfigure;
 
 
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
+    exports com.example.email;
+    opens com.example.email to javafx.fxml;
 }

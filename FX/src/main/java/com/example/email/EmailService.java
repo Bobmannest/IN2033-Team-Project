@@ -1,4 +1,4 @@
-package com.example.fx;
+package com.example.email;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
