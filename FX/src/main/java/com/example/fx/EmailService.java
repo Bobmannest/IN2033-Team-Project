@@ -9,8 +9,8 @@ public class EmailService {
 
     public static void main(String[] args) {
 
-        final String username = "ipos33@gmail.com";
-        final String password = "password";
+        final String username = "ipospu33@gmail.com";
+        final String password = "ljom jqat cjay eeqd";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -29,14 +29,14 @@ public class EmailService {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("from@gmail.com"));
+            message.setFrom(new InternetAddress("ipospu33@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("to_username_a@gmail.com, to_username_b@yahoo.com")
+                    InternetAddress.parse("kalincheto56@gmail.com") //Recipient of Email
             );
-            message.setSubject("Testing Gmail SSL");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            message.setSubject("Testing IPOS-PU Email Service");
+            message.setText("[This is an automatically generated email],"
+                    + "\n\n [Test Successful]");
 
             Transport.send(message);
 
