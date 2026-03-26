@@ -1,6 +1,5 @@
 package com.example.email;
 
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
