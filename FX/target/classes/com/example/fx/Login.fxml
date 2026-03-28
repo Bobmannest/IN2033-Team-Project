@@ -14,13 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            style="-fx-background-color: #000000;"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.fx.Controller"
-            stylesheets="@style.css">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.Controller">
    <center>
       <HBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -55,12 +49,7 @@
                               </Text>
                            </children>
                         </TextFlow>
-                        <TextField fx:id="emailField"
-                                   maxHeight="-Infinity" maxWidth="-Infinity"
-                                   prefHeight="23.0" prefWidth="322.0"
-                                   promptText="Email address"
-                                   style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;"
-                                   VBox.vgrow="ALWAYS">
+                        <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Email address" style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="MS Reference Sans Serif" size="12.0" />
                            </font>
@@ -77,11 +66,7 @@
                               </Text>
                            </children>
                         </TextFlow>
-                        <PasswordField fx:id="passwordField"
-                                       maxHeight="-Infinity" maxWidth="-Infinity"
-                                       prefHeight="23.0" prefWidth="322.0"
-                                       promptText="Password"
-                                       style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;">
+                        <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="322.0" promptText="Password" style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;">
                            <font>
                               <Font name="MS Reference Sans Serif" size="12.0" />
                            </font>
@@ -89,21 +74,12 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Label fx:id="errorLabel"
-                               wrapText="true"
-                               maxWidth="322.0">
+                        <Label fx:id="errorLabel" maxWidth="322.0" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="6.0" />
                            </VBox.margin>
                         </Label>
-                        <Button styleClass="signin"
-                                alignment="CENTER"
-                                maxHeight="-Infinity" maxWidth="-Infinity"
-                                mnemonicParsing="false"
-                                prefHeight="35.0" prefWidth="322.0"
-                                style="-fx-background-radius: 20;"
-                                text="Login"
-                                onAction="#handleLogin">
+                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="322.0" style="-fx-background-radius: 20;" styleClass="signin" text="Login">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -111,15 +87,7 @@
                               <Insets bottom="8.0" />
                            </VBox.margin>
                         </Button>
-                        <Button styleClass="signin"
-                                alignment="CENTER"
-                                maxHeight="-Infinity" maxWidth="-Infinity"
-                                mnemonicParsing="false"
-                                prefHeight="35.0" prefWidth="322.0"
-                                style="-fx-background-radius: 20;"
-                                text="Register"
-                                textAlignment="CENTER"
-                                onAction="#handleRegister">
+                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="322.0" style="-fx-background-radius: 20;" styleClass="signin" text="Register" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -128,20 +96,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                  prefHeight="396.0" prefWidth="208.0"
-                  style="-fx-background-color: #c0ffc0; -fx-background-radius: 20 0 0 20;"
-                  HBox.hgrow="ALWAYS">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="396.0" prefWidth="208.0" style="-fx-background-color: #c0ffc0; -fx-background-radius: 20 0 0 20;" HBox.hgrow="ALWAYS">
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <center>
                         <ImageView fitHeight="33.0" fitWidth="199.0" BorderPane.alignment="CENTER">
                            <image>
-                              <Image url="https://image2url.com/r2/default/images/1773619027097-13fa6bc0-af86-4527-840b-9c1e8965cf5c.png" />
+                              <Image url="@../../../images/curatech.png" />
                            </image>
-                           <BorderPane.margin>
-                              <Insets left="5.0" right="5.0" top="10.0" />
-                           </BorderPane.margin>
                         </ImageView>
                      </center>
                   </BorderPane>
