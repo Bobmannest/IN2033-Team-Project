@@ -94,7 +94,7 @@
           <execution>
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.fx.App</mainClass>
+              <mainClass>com.example.fx.Login</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
