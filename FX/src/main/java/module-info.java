@@ -14,4 +14,6 @@ module com.example.fx {
     exports com.example.fx;
     exports com.example.email;
     opens com.example.email to spring.core, spring.beans, spring.context;
+    exports com.example.catalogue;
+    opens com.example.catalogue to javafx.fxml;
 }

@@ -1,5 +1,6 @@
-package com.example.fx;
+package com.example.catalogue;
 
+import com.example.fx.Login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ public class Catalogue extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Catalogue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 633);
         stage.setTitle("App");
         stage.setMinWidth(620);
         stage.setMinHeight(440);
