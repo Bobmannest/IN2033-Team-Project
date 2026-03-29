@@ -9,6 +9,8 @@ module com.example.fx {
     requires spring.context;
     requires spring.beans;
     requires spring.core;
+    requires java.net.http;
+    requires com.fasterxml.jackson.annotation;
 
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
@@ -16,4 +18,8 @@ module com.example.fx {
     opens com.example.email to spring.core, spring.beans, spring.context;
     exports com.example.catalogue;
     opens com.example.catalogue to javafx.fxml;
+    exports com.example;
+    opens com.example to spring.beans, spring.context, spring.core;
+    exports com.example.payment;
+    opens com.example.payment to spring.beans, spring.context, spring.core;
 }
