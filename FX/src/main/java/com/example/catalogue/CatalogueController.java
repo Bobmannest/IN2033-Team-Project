@@ -43,7 +43,7 @@ public class CatalogueController {
     public void initialize() {
         List<CatalogueProduct> testProducts = new ArrayList<>();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             CatalogueProduct p = new CatalogueProduct();
             p.unit = "Unit " + i;
             p.quantity_available = i * 10;

@@ -1,3 +1,4 @@
+/* Login Page */
 .signin{
     -fx-background-color: #beffd9;
 }
@@ -6,4 +7,10 @@
     -fx-background-color: #a4ddbc;
     -fx-text-fill:black;
     -fx-font-weight:bold;
+}
+
+/* Catalogue Page */
+.checkbox{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
 }
