@@ -16,23 +16,17 @@ public class CatalogueController {
     public void displayProducts(List<CatalogueProduct> products) {
         catalogueVBox.getChildren().clear();
 
-        HBox currentRow = null;
-
-        for (int i = 0; i < products.size(); i++) {
-            if (i % 3 == 0) {
-                currentRow = new HBox(10);
-                catalogueVBox.getChildren().add(currentRow);
-            }
-
+        for (CatalogueProduct product : products) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItem.fxml"));
-                VBox itemCard = loader.load();
+                HBox itemCard = loader.load();
 
                 CatalogueItemController itemCtrl = loader.getController();
-                itemCtrl.setProduct(products.get(i));
+                itemCtrl.setProduct(product);
 
-                currentRow.getChildren().add(itemCard);
-            } catch(IOException e) {
+                catalogueVBox.getChildren().add(itemCard);
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -43,7 +37,7 @@ public class CatalogueController {
     public void initialize() {
         List<CatalogueProduct> testProducts = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 18; i++) {
             CatalogueProduct p = new CatalogueProduct();
             p.unit = "Unit " + i;
             p.quantity_available = i * 10;

@@ -74,16 +74,16 @@
                   <Line endX="678.0" startX="-100.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+                        <BorderPane prefHeight="450.0" prefWidth="152.0" style="-fx-border-color: #000000;">
                            <center>
-                              <VBox prefHeight="409.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="438.0" prefWidth="170.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Filters">
                                        <font>
                                           <Font name="Microsoft Sans Serif" size="20.0" />
                                        </font>
                                     </Text>
-                                    <Line endX="125.5" startX="-100.0" />
+                                    <Line endX="35.5" startX="-100.0" />
                                     <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="234.0" VBox.vgrow="NEVER">
                                       <items>
                                           <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
@@ -94,7 +94,7 @@
                                                 <Rectangle2D />
                                              </viewport>
                                           </ImageView>
-                                          <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="180.0" promptText="Search">
+                                          <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="99.0" promptText="Search">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
@@ -110,7 +110,7 @@
                                              <HBox.margin>
                                                 <Insets left="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <Label prefHeight="19.0" prefWidth="208.0" style="-fx-border-color: #000000; -fx-border-radius: 3; -fx-font-weight: bold;" text="In Stock" HBox.hgrow="ALWAYS">
+                                          <Label prefHeight="19.0" prefWidth="121.0" style="-fx-border-color: #000000; -fx-border-radius: 3; -fx-font-weight: bold;" text="In Stock" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -164,7 +164,7 @@
                            <center>
                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
                                    <content>
-                                       <VBox fx:id="catalogueVBox" fillWidth="true" maxWidth="Infinity" spacing="10">
+                                       <VBox fx:id="catalogueVBox" fillWidth="true" maxWidth="Infinity" spacing="5">
                                            <padding>
                                                <Insets bottom="10" left="10" right="10" top="10" />
                                            </padding>
