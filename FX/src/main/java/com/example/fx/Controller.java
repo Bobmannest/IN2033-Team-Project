@@ -78,10 +78,19 @@ public class Controller {
         }
     }
 
-    // opens the main dashboard up (not implemented properly yet)
+    // opens the main dashboard up
     private void openDashboard(Member member) {
-        // need to replace the login dashboard with the real one
-        showError("Login successful! Welcome " + member.getEmail());
+        try {
+            // stores the logged in member
+            Session.setMember(member);
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showError("Could not open dashboard.");
+        }
     }
 
     private void showError(String message) {
