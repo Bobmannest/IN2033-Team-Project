@@ -1,6 +1,4 @@
-package com.example.payment;
-
-import com.example.catalogue.CatalogueTester;
+package com.example.catalogue;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -8,12 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
-public class PaymentTester {
+public class CatalogueTester {
     public static void main(String[] args) throws Exception {
-        InputStream inputStream = CatalogueTester.class.getResourceAsStream("/com/example/fx/test_payment.json");
+        InputStream inputStream = CatalogueTester.class.getResourceAsStream("/com/example/fx/test_sales.json");
         if (inputStream == null) {
             throw new RuntimeException("Resource not found: test_sales.json");
         }
@@ -21,7 +17,7 @@ public class PaymentTester {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/payments/accept"))
+                .uri(URI.create("http://localhost:8080/api/catalogue/accept"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();

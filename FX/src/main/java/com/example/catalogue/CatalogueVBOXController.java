@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -12,19 +11,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogueController {
+public class CatalogueVBOXController {
     @FXML private VBox catalogueVBox;
 
-    public void displayProducts(List<CatalogueProduct> products) {
+    public void displayItems() {
         catalogueVBox.getChildren().clear();
 
-        for (CatalogueProduct product : products) {
+        List<CatalogueItem> items = CatalogueDatabase.getCatalogueItems();
+        for (CatalogueItem item : items) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItem.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
                 HBox itemCard = loader.load();
 
                 CatalogueItemController itemCtrl = loader.getController();
-                itemCtrl.setProduct(product);
+                itemCtrl.setItem(item);
 
                 catalogueVBox.getChildren().add(itemCard);
 
@@ -34,20 +34,10 @@ public class CatalogueController {
         }
     }
 
-    //testing method
     @FXML
     public void initialize() {
-        List<CatalogueProduct> testProducts = new ArrayList<>();
-
-        for (int i = 0; i < 18; i++) {
-            CatalogueProduct p = new CatalogueProduct();
-            p.unit = "Unit " + i;
-            p.quantity_available = i * 10;
-            p.bulk_cost = i * 9.99;
-            testProducts.add(p);
-        }
-
-        displayProducts(testProducts);
+        CatalogueDatabase.setListener(this);
+        displayItems();
     }
 
     // navigates to the account screen when the account button is clicked

@@ -1,39 +1,32 @@
 package com.example.payment;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Payment {
-    @JsonProperty("payment_id")
-    private int payment_id;
-    @JsonProperty("holder_id")
-    private int holder_id;
-    @JsonProperty("amount")
-    private double amount;
-    @JsonProperty("payment_date")
-    private String payment_date;
-    @JsonProperty("notes")
-    private String notes;
-
+    @JsonProperty("first_digits")
+    private int first_digits;
+    @JsonProperty("last_digits")
+    private int last_digits;
+    @JsonProperty("expiry_date")
+    private String expiry_date;
+    @JsonProperty("card_type")
+    private String card_type;
 
     public Payment() {}
 
     //Getters
-    @JsonProperty("payment_id")
-    public int getPaymentID() {return payment_id;}
-    @JsonProperty("holder_id")
-    public int getHolderID() {return holder_id;}
-    @JsonProperty("amount")
-    public double getAmount() {return amount;}
-    @JsonProperty("payment_date")
-    public String getPaymentDate() {return payment_date;}
-    @JsonProperty("notes")
-    public String getNotes() {return notes;}
+    @JsonProperty("first_digits")
+    public int getFirstDigits() {return first_digits;}
+    @JsonProperty("last_digits")
+    public int getLastDigits() {return last_digits;}
+    @JsonProperty("expiry_date")
+    public String getExpiryDate() {return expiry_date;}
+    @JsonProperty("card_type")
+    public String getCardType() {return card_type;}
 
     //Setters
-    public void setPaymentID(int payment_id) {this.payment_id = payment_id;}
-    public void setHolderID(int holder_id) {this.holder_id = holder_id;}
-    public void setAmount(double amount) {this.amount = amount;}
-    public void setPaymentDate(String payment_date) {this.payment_date = payment_date;}
-    public void setNotes(String notes) {this.notes = notes;}
+    public void setFirstDigits(int first_digits) {this.first_digits = first_digits;}
+    public void setLastDigits(int last_digits) {this.last_digits = last_digits;}
+    public void setExpiryDate(String expiry_date) {this.expiry_date = expiry_date;}
+    public void setCardType(String card_type) {this.card_type = card_type;}
 }

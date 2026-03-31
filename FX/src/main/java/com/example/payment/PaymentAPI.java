@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/payments")
-public class PaymentController {
+public class PaymentAPI {
 
     private final PaymentService paymentService;
 
-    public PaymentController(PaymentService paymentService) {
+    public PaymentAPI(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
     @PostMapping("/accept")
     public ResponseEntity<String> acceptPayment(@RequestBody Payment payment) {
-        paymentService.processPayment(payment);
+        paymentService.printPayment(payment);
         return ResponseEntity.ok("Payment Accepted");
     }
 }
