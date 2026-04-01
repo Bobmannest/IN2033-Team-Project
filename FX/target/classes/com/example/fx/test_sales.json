@@ -1,6 +1,6 @@
 [
   {
-    "item_id": 1,
+    "item_id": 1738,
     "description": "Paracetamol 500mg",
     "package_type": "Box",
     "unit": "Tablet",
@@ -12,7 +12,7 @@
     "order_percentage": 0.15
   },
   {
-    "item_id": 2,
+    "item_id": 2250,
     "description": "Ibuprofen 200mg",
     "package_type": "Bottle",
     "unit": "Capsule",
@@ -20,7 +20,7 @@
     "package_cost": 7.49,
     "availability": 1,
     "stock_limit": 300,
-    "status": "In Stock",
+    "status": "Out Of Stock",
     "order_percentage": 0.10
   }
 ]
