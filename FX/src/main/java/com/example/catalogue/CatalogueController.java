@@ -8,10 +8,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogueVBOXController {
+public class CatalogueController {
     @FXML private VBox catalogueVBox;
 
     public void displayItems() {
@@ -27,7 +26,6 @@ public class CatalogueVBOXController {
                 itemCtrl.setItem(item);
 
                 catalogueVBox.getChildren().add(itemCard);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

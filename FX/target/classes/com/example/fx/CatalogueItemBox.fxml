@@ -47,7 +47,7 @@
          </font>
       </Label>
       <Pane prefHeight="33.0" prefWidth="25.0" />
-      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="119.0" text="Add To Basket">
+      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="119.0" text="Add To Basket" onAction="#handleAddToBasket">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>

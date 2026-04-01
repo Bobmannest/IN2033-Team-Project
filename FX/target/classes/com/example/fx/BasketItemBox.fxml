@@ -47,7 +47,7 @@
          </font>
       </Label>
       <Pane prefHeight="33.0" prefWidth="19.0" />
-      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" text="Remove Item">
+      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" text="Remove Item" onAction="#handleRemoveFromBasket">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="15.0">
                <image>
