@@ -34,7 +34,7 @@
                      </image>
                   </ImageView>
                   <Pane prefHeight="38.0" prefWidth="488.0" />
-                <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket">
+                <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
                      <font>
                         <Font name="MS Reference Sans Serif" size="12.0" />
                      </font>

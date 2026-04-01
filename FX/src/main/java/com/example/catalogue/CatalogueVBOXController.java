@@ -53,4 +53,17 @@ public class CatalogueVBOXController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleBasket() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Basket.fxml"));
+            Scene scene = new Scene(loader.load(), 820, 633);
+            Stage stage = (Stage) catalogueVBox.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
