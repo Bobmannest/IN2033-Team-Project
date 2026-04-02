@@ -54,7 +54,7 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions" onAction="#" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions"/>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Account"
                           style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />

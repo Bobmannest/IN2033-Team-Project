@@ -59,7 +59,7 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions" onAction="#handlePromotion" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Account" onAction="#handleAccount" />
               </items>
