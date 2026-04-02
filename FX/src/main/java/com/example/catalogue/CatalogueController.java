@@ -53,11 +53,19 @@ public class CatalogueController {
     }
 
     @FXML
+<<<<<<< Updated upstream:FX/src/main/java/com/example/catalogue/CatalogueController.java
     private void handleBasket() {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Basket.fxml"));
             Scene scene = new Scene(loader.load(), 820, 633);
+=======
+    private void handlePromotion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Promotion.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+>>>>>>> Stashed changes:FX/src/main/java/com/example/catalogue/CatalogueVBOXController.java
             Stage stage = (Stage) catalogueVBox.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
