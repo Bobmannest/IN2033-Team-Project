@@ -11,6 +11,8 @@ module com.example.fx {
     requires spring.core;
     requires java.net.http;
     requires com.fasterxml.jackson.annotation;
+    //requires javafx.graphics;
+    //requires javafx.swt;
 
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
