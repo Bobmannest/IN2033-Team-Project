@@ -64,4 +64,36 @@ public class CatalogueController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleHome() {
+        // if home just returns to catalogue for now
+    }
+
+    @FXML
+    private void handleCreatePromotion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Promotion.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) catalogueVBox.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleManagePromotions() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/CampaignItem.fxml"));
+            Scene scene = new Scene(loader.load(), 750, 500);
+            Stage stage = (Stage) catalogueVBox.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
