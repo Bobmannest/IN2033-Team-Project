@@ -10,7 +10,7 @@ public class TestPromotionUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/example/fx/CampaignItem.fxml")
+                getClass().getResource("/com/example/fx/Promotion.fxml")
         );
 
         Scene scene = new Scene(loader.load());

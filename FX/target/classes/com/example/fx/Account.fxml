@@ -32,7 +32,7 @@
                   <ImageView fitHeight="33.0" fitWidth="199.0">
                      <image><Image url="@../../../images/curatech.png" /></image>
                   </ImageView>
-                  <Pane prefHeight="38.0" prefWidth="488.0" />
+                  <Pane HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket">
                      <font><Font name="MS Reference Sans Serif" size="12.0" /></font>
                      <graphic>

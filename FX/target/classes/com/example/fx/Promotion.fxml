@@ -7,30 +7,76 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.PromotionController">
 
     <top>
-        <HBox spacing="15.0" style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;" alignment="CENTER_LEFT">
-            <padding>
-                <Insets top="15.0" right="20.0" bottom="15.0" left="20.0"/>
-            </padding>
+        <VBox>
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="900.0">
+                    <items>
+                        <ImageView fitHeight="33.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/curatech.png"/>
+                            </image>
+                        </ImageView>
 
-            <ImageView fitHeight="33.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../../images/curatech.png"/>
-                </image>
-            </ImageView>
+                        <Pane HBox.hgrow="ALWAYS" />
 
-            <VBox spacing="4.0">
-                <Label text="Promotions Manager" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1f2937;"/>
-            </VBox>
-        </HBox>
+                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0">
+                                    <image>
+                                        <Image url="@../../../images/cart.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </items>
+                </ToolBar>
+
+                <ToolBar prefHeight="40.0" prefWidth="900.0">
+                    <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="25.0">
+                                    <image>
+                                        <Image url="@../../../images/home.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
+
+                        <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" />
+
+                        <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
+
+                        <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
+
+                        <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                    </items>
+                </ToolBar>
+
+                <HBox spacing="15.0" style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="15.0" right="20.0" bottom="15.0" left="20.0"/>
+                    </padding>
+
+                    <VBox spacing="4.0">
+                        <Label text="Promotions Manager" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1f2937;"/>
+                    </VBox>
+                </HBox>
+            </children>
+        </VBox>
     </top>
 
     <center>

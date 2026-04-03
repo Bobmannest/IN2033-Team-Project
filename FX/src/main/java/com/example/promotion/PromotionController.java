@@ -1,8 +1,13 @@
 package com.example.promotion;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -121,5 +126,59 @@ public class PromotionController {
     private void showStatus(String message, boolean success) {
         statusLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
         statusLabel.setText(message);
+    }
+
+    @FXML
+    private void handleHome() {
+        handleCatalogue();
+    }
+
+    @FXML
+    private void handleCatalogue() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open catalogue.", false);
+        }
+    }
+
+    @FXML
+    private void handleManagePromotions() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/CampaignItem.fxml"));
+            Scene scene = new Scene(loader.load(), 750, 500);
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open manage promotions screen.", false);
+        }
+    }
+
+    @FXML
+    private void handleOrders() {
+        showStatus("Orders screen not implemented yet.", false);
+    }
+
+    @FXML
+    private void handleAccount() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Account.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open account screen.", false);
+        }
+    }
+
+    @FXML
+    private void handleBasket() {
+        showStatus("Basket screen not implemented yet.", false);
     }
 }
