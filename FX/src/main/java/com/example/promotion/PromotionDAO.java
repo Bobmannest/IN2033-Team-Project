@@ -332,4 +332,54 @@ public class PromotionDAO {
                 rs.getString("created_by")
         );
     }
+
+    public static void deleteItemFromCampaign(String campaignId, int itemId) throws SQLException {
+        String sql = "DELETE FROM PromotionCampaignItem WHERE campaign_id = ? AND item_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, campaignId);
+            ps.setInt(2, itemId);
+            ps.executeUpdate();
+        }
+    }
+
+    public static List<String> getCampaignItemLines(String campaignId) throws SQLException {
+        String sql = """
+            SELECT pci.item_id, p.product_name, pci.item_discount_pct
+            FROM PromotionCampaignItem pci
+            LEFT JOIN Product p ON pci.item_id = p.item_id
+            WHERE pci.campaign_id = ?
+            ORDER BY pci.item_id
+            """;
+
+        List<String> lines = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, campaignId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int itemId = rs.getInt("item_id");
+                    String productName = rs.getString("product_name");
+                    Double discount = rs.getDouble("item_discount_pct");
+                    if (rs.wasNull()) {
+                        discount = null;
+                    }
+
+                    String line = itemId + " - "
+                            + (productName != null ? productName : "Unknown Item")
+                            + " | Discount: "
+                            + (discount != null ? discount + "%" : "Campaign Default");
+
+                    lines.add(line);
+                }
+            }
+        }
+
+        return lines;
+    }
 }
