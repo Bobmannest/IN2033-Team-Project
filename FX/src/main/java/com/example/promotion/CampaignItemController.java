@@ -258,14 +258,6 @@ public class CampaignItemController {
 
     @FXML
     private void handleBasket() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Basket.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 650);
-            Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        showStatus("Basket screen not implemented yet.", false);
     }
 }
