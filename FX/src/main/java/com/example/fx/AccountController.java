@@ -17,8 +17,10 @@ public class AccountController {
     @FXML private Label accountNoLabel2;
     @FXML private Label memberTypeLabel2;
 
+    // this runs automatically when the screen loads
     @FXML
     public void initialize() {
+        // gets the currently logged in member
         Member member = Session.getMember();
 
         if (member != null) {
@@ -31,9 +33,11 @@ public class AccountController {
         }
     }
 
+    // when the logout button is clicked -> goes back to login screen
     @FXML
     private void handleLogout() {
         try {
+            // clears the session
             Session.setMember(null);
 
             FXMLLoader loader = new FXMLLoader(
@@ -46,6 +50,7 @@ public class AccountController {
         }
     }
 
+    // goes back to the catalogue screen
     @FXML
     private void handleCatalogue() {
         try {
@@ -61,55 +66,14 @@ public class AccountController {
 
     @FXML
     private void handleHome() {
-        handleCatalogue();
-    }
-
-    @FXML
-    private void handleCreatePromotion() {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Promotion.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
+                    getClass().getResource("/com/example/fx/Home.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
             Stage stage = (Stage) accountNoLabel.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void handleManagePromotions() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/CampaignItem.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 650);
-            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleOrders() {
-        System.out.println("Orders screen not implemented yet.");
-    }
-
-    @FXML
-    private void handleBasket() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Basket.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 650);
-            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleAccount() {
-        // already on account page
     }
 }

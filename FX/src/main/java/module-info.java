@@ -28,4 +28,6 @@ module com.example.fx {
     opens com.example.payment to spring.beans, spring.context, spring.core;
     opens com.example.promotion to javafx.fxml;
     exports com.example.promotion;
+    exports com.example.home;
+    opens com.example.home to javafx.fxml;
 }
