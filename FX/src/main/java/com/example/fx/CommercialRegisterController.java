@@ -84,7 +84,7 @@ public class CommercialRegisterController {
     private void handleBack() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Login.fxml"));
-            Scene scene = new Scene(loader.load(), 600, 400);
+            Scene scene = new Scene(loader.load(), 850, 520);
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

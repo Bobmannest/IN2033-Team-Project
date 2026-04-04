@@ -10,77 +10,102 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.RegisterController">
+<BorderPane prefHeight="520.0" prefWidth="850.0"
+            style="-fx-background-color: #1a3a2a;"
+            xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.fx.RegisterController"
+            stylesheets="@style.css">
    <center>
-      <HBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="520.0" prefWidth="850.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </BorderPane.margin>
          <children>
-            <VBox prefHeight="384.0" prefWidth="370.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="6.0" left="25.0" right="25.0" top="6.0" />
-               </HBox.margin>
+
+            <VBox prefHeight="516.0" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #ffffff; -fx-background-radius: 12 0 0 12;"
+                  alignment="CENTER_LEFT">
+               <padding>
+                  <Insets bottom="40.0" left="44.0" right="44.0" top="40.0" />
+               </padding>
                <children>
-                  <TextFlow prefHeight="63.0" prefWidth="337.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
-                           <font>
-                              <Font name="MS Reference Sans Serif" size="30.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="3.0" />
-                     </VBox.margin>
-                  </TextFlow>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <TextFlow prefHeight="28.0" prefWidth="276.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email address">
-                                 <font><Font name="MS Reference Sans Serif" size="15.0" /></font>
-                              </Text>
-                           </children>
-                        </TextFlow>
-                        <TextField fx:id="emailField" prefHeight="23.0" prefWidth="322.0" promptText="Enter your email" style="-fx-background-radius: 20; -fx-background-color: #f1fff1; -fx-border-radius: 20; -fx-border-color: #808080;">
-                           <VBox.margin><Insets bottom="10.0" /></VBox.margin>
-                        </TextField>
-                        <Label fx:id="statusLabel" maxWidth="322.0" wrapText="true">
-                           <VBox.margin><Insets bottom="8.0" /></VBox.margin>
-                        </Label>
-                        <Button onAction="#handleRegister" prefHeight="35.0" prefWidth="322.0" style="-fx-background-radius: 20;" styleClass="signin" text="Register">
-                           <font><Font size="16.0" /></font>
-                           <VBox.margin><Insets bottom="8.0" /></VBox.margin>
-                        </Button>
-                        <Button onAction="#handleCommercialRegister" prefHeight="35.0" prefWidth="322.0"
-                                style="-fx-background-radius: 20;" styleClass="signin"
-                                text="Apply for Commercial Account">
-                           <font><Font size="16.0" /></font>
-                           <VBox.margin><Insets bottom="8.0" /></VBox.margin>
-                        </Button>
-                        <Button onAction="#handleBack" prefHeight="35.0" prefWidth="322.0" style="-fx-background-radius: 20;" styleClass="signin" text="Back to Sign In">
-                           <font><Font size="16.0" /></font>
-                        </Button>
-                     </children>
-                  </VBox>
+
+                  <Label text="Create account"
+                         style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-font-family: 'System'; -fx-text-fill: #1a1a1a;">
+                     <VBox.margin><Insets bottom="4.0" /></VBox.margin>
+                  </Label>
+
+                  <Label text="Personal accounts are free and instant"
+                         style="-fx-font-size: 13px; -fx-text-fill: #888888; -fx-font-family: 'System';">
+                     <VBox.margin><Insets bottom="28.0" /></VBox.margin>
+                  </Label>
+
+                  <Label text="Email address"
+                         style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                     <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                  </Label>
+                  <TextField fx:id="emailField"
+                             prefHeight="40.0" prefWidth="420.0"
+                             promptText="you@example.com"
+                             style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                     <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+                  </TextField>
+
+                  <Label fx:id="statusLabel" maxWidth="420.0" wrapText="true"
+                         style="-fx-font-size: 11px; -fx-font-family: 'System';">
+                     <VBox.margin><Insets bottom="8.0" /></VBox.margin>
+                  </Label>
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleRegister"
+                          prefHeight="42.0" prefWidth="420.0"
+                          text="Create account"
+                          style="-fx-background-color: #1a3a2a; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'System'; -fx-cursor: hand;">
+                     <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                  </Button>
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleCommercialRegister"
+                          prefHeight="42.0" prefWidth="420.0"
+                          text="Apply for commercial account"
+                          style="-fx-background-color: #ffffff; -fx-text-fill: #1a3a2a; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #c8dfc8; -fx-border-width: 1; -fx-font-size: 14px; -fx-font-family: 'System'; -fx-cursor: hand;">
+                     <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                  </Button>
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleBack"
+                          prefHeight="42.0" prefWidth="420.0"
+                          text="Back to sign in"
+                          style="-fx-background-color: transparent; -fx-text-fill: #888888; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-cursor: hand;">
+                  </Button>
+
                </children>
             </VBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="396.0" prefWidth="208.0" style="-fx-background-color: #c0ffc0; -fx-background-radius: 20 0 0 20;" HBox.hgrow="ALWAYS">
+
+            <VBox prefWidth="300.0" prefHeight="516.0"
+                  style="-fx-background-color: #1a3a2a;"
+                  alignment="CENTER">
+               <padding>
+                  <Insets bottom="60.0" left="20.0" right="20.0" top="0.0" />
+               </padding>
                <children>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <center>
-                        <ImageView fitHeight="33.0" fitWidth="199.0" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../../../images/curatech.png" />
-                           </image>
-                        </ImageView>
-                     </center>
-                  </BorderPane>
-               </children></VBox>
+                  <ImageView fitHeight="44.0" fitWidth="199.0">
+                     <image><Image url="@../../../images/curatech.png" /></image>
+                  </ImageView>
+                  <Label text="Pharmacy Portal" alignment="CENTER" prefWidth="260.0"
+                         style="-fx-text-fill: #5a8a6a; -fx-font-size: 11px; -fx-font-family: 'System';">
+                     <VBox.margin><Insets top="6.0" /></VBox.margin>
+                  </Label>
+                  <Label text="Your trusted platform&#10;for pharmaceutical ordering"
+                         wrapText="true" alignment="CENTER" textAlignment="CENTER" prefWidth="260.0"
+                         style="-fx-text-fill: #3d6b52; -fx-font-size: 10px; -fx-font-family: 'System';">
+                     <VBox.margin><Insets top="16.0" /></VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+
          </children>
       </HBox>
    </center>
