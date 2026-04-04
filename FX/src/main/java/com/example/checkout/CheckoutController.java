@@ -13,87 +13,43 @@ public class CheckoutController {
 
     @FXML
     private void handleOrders() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderHistory.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/OrderHistory.fxml", 800, 600);
     }
 
     @FXML
     private void handleCatalogue() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/Catalogue.fxml", 800, 600);
     }
 
     @FXML
     private void handleAccount() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Account.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/Account.fxml", 800, 600);
     }
 
     @FXML
     private void handleBasket() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Basket.fxml"));
-            Scene scene = new Scene(loader.load(), 820, 633);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/Basket.fxml", 820, 633);
     }
 
     @FXML
     private void handleHome() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Home.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/Home.fxml", 900, 650);
     }
 
     @FXML
     private void handleCreatePromotion() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Promotion.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        navigate("/com/example/fx/Promotion.fxml", 900, 650);
     }
 
     @FXML
     private void handleManagePromotions() {
+        navigate("/com/example/fx/CampaignItem.fxml", 750, 500);
+    }
+
+    private void navigate(String fxml, int width, int height) {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/CampaignItem.fxml"));
-            Scene scene = new Scene(loader.load(), 750, 500);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Scene scene = new Scene(loader.load(), width, height);
             Stage stage = (Stage) checkoutPane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

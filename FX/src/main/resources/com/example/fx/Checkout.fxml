@@ -47,7 +47,7 @@
             </ToolBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button mnemonicParsing="false">
+                <Button mnemonicParsing="false" onAction="#handleHome">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0">
                            <image>
