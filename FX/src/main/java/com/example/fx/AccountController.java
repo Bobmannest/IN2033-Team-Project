@@ -66,6 +66,14 @@ public class AccountController {
 
     @FXML
     private void handleHome() {
-        handleCatalogue();
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Home.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

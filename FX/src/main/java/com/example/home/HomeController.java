@@ -12,7 +12,20 @@ import java.io.IOException;
 import java.util.List;
 
 public class HomeController {
-    @FXML private BorderPane homepane;
+    @FXML private BorderPane homePane;
+
+    @FXML
+    private void handleCatalogue() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) homePane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void handleAccount() {
@@ -20,7 +33,7 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Account.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) homepane.getScene().getWindow();
+            Stage stage = (Stage) homePane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,7 +46,7 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Basket.fxml"));
             Scene scene = new Scene(loader.load(), 820, 633);
-            Stage stage = (Stage) homepane.getScene().getWindow();
+            Stage stage = (Stage) homePane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +59,7 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Promotion.fxml"));
             Scene scene = new Scene(loader.load(), 900, 650);
-            Stage stage = (Stage) homepane.getScene().getWindow();
+            Stage stage = (Stage) homePane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +72,7 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/CampaignItem.fxml"));
             Scene scene = new Scene(loader.load(), 750, 500);
-            Stage stage = (Stage) homepane.getScene().getWindow();
+            Stage stage = (Stage) homePane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
