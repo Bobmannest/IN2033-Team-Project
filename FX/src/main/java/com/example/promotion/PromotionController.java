@@ -130,15 +130,7 @@ public class PromotionController {
 
     @FXML
     private void handleHome() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Home.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
-            Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            showStatus("Could not open Home.", false);
-        }
+        handleCatalogue();
     }
 
     @FXML
@@ -187,6 +179,14 @@ public class PromotionController {
 
     @FXML
     private void handleBasket() {
-        showStatus("Basket screen not implemented yet.", false);
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Basket.fxml"));
+            Scene scene = new Scene(loader.load(), 1000, 650);
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

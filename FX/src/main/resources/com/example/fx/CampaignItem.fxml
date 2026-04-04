@@ -94,7 +94,7 @@
                 <HBox spacing="10.0">
                     <Button text="Refresh"
                             onAction="#handleRefreshCampaigns"
-                            style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+                            style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
                     <Button text="Delete Campaign"
                             onAction="#handleDeleteCampaign"
                             style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
