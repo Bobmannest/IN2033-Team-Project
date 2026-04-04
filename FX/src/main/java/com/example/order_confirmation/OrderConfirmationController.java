@@ -1,4 +1,4 @@
-package com.example.checkout;
+package com.example.order_confirmation;
 
 
 import javafx.fxml.FXML;
@@ -8,8 +8,9 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
-public class CheckoutController {
-    @FXML private BorderPane checkoutPane;
+public class OrderConfirmationController {
+    @FXML
+    private BorderPane orderConfirmationPane;
 
     @FXML
     private void handleOrders() {
@@ -48,14 +49,14 @@ public class CheckoutController {
 
     @FXML
     private void handleOrderConfirmation() {
-        navigate("/com/example/fx/OrderConfirmation.fxml", 800, 650);
+        navigate("/com/example/fx/OrderConfirmation.fxml", 750, 500);
     }
 
     private void navigate(String fxml, int width, int height) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Scene scene = new Scene(loader.load(), width, height);
-            Stage stage = (Stage) checkoutPane.getScene().getWindow();
+            Stage stage = (Stage) orderConfirmationPane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

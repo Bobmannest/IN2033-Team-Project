@@ -30,4 +30,6 @@ module com.example.fx {
     exports com.example.home;
     opens com.example.checkout to javafx.fxml;
     exports com.example.checkout;
+    opens com.example.order_confirmation to javafx.fxml;
+    exports com.example.order_confirmation;
 }

@@ -110,7 +110,7 @@
                                                 <Insets bottom="3.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <TextField promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                          <TextField fx:id="nameField" promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
@@ -120,7 +120,7 @@
                                                 <Font name="MS Reference Sans Serif" size="14.0" />
                                              </font>
                                           </Text>
-                                          <TextField promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                          <TextField fx:id="emailField" promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
@@ -130,12 +130,12 @@
                                                 <Font name="MS Reference Sans Serif" size="14.0" />
                                              </font>
                                           </Text>
-                                          <TextField promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                          <TextField fx:id="addressField" promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <CheckBox mnemonicParsing="false" text="Checkout as Guest">
+                                          <CheckBox fx:id="guestCheckbox" mnemonicParsing="false" text="Checkout as Guest">
                                              <font>
                                                 <Font name="MS Reference Sans Serif" size="12.0" />
                                              </font>
@@ -176,7 +176,7 @@
                                                             <Insets bottom="3.0" />
                                                          </VBox.margin>
                                                       </Text>
-                                                      <TextField promptText="XXXX-XXXX-XXXX-XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                      <TextField fx:id="cardNumField" promptText="XXXX-XXXX-XXXX-XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>
@@ -190,7 +190,7 @@
                                                                         <Font name="MS Reference Sans Serif" size="14.0" />
                                                                      </font>
                                                                   </Text>
-                                                                  <TextField promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                  <TextField fx:id="expiryField" promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
                                                                </children>
                                                                <HBox.margin>
                                                                   <Insets right="10.0" />
@@ -203,7 +203,7 @@
                                                                         <Font name="MS Reference Sans Serif" size="14.0" />
                                                                      </font>
                                                                   </Text>
-                                                                  <TextField promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                  <TextField fx:id="cvvField" promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
                                                                </children>
                                                             </VBox>
                                                          </children>
@@ -222,7 +222,7 @@
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </VBox>
-                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="482.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Place Order">
+                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="482.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Place Order" onAction="#handleOrderConfirmation">
                                  <font>
                                     <Font name="MS Reference Sans Serif" size="16.0" />
                                  </font>
