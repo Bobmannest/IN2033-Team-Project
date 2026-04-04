@@ -7,8 +7,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -30,14 +28,25 @@
             <ToolBar prefHeight="40.0" prefWidth="800.0">
                <items>
                   <ImageView fitHeight="33.0" fitWidth="199.0">
-                     <image><Image url="@../../../images/curatech.png" /></image>
+                     <image>
+                        <Image url="@../../../images/curatech.png" />
+                     </image>
                   </ImageView>
+
                   <Pane HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket">
-                     <font><Font name="MS Reference Sans Serif" size="12.0" /></font>
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleBasket"
+                          style="-fx-font-weight: bold;"
+                          text="Basket">
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="12.0" />
+                     </font>
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
-                           <image><Image url="@../../../images/cart.png" /></image>
+                           <image>
+                              <Image url="@../../../images/cart.png" />
+                           </image>
                         </ImageView>
                      </graphic>
                   </Button>
@@ -49,26 +58,55 @@
                   <Button mnemonicParsing="false" onAction="#handleHome">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0">
-                           <image><Image url="@../../../images/home.png" /></image>
+                           <image>
+                              <Image url="@../../../images/home.png" />
+                           </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions"/>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Account"
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleCatalogue"
+                          prefHeight="33.0"
+                          text="Catalogue" />
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleCreatePromotion"
+                          prefHeight="33.0"
+                          text="Create Promotion" />
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleManagePromotions"
+                          prefHeight="33.0"
+                          text="Manage Promotions" />
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleOrders"
+                          prefHeight="33.0"
+                          text="Orders" />
+
+                  <Button mnemonicParsing="false"
+                          onAction="#handleAccount"
+                          prefHeight="33.0"
+                          text="Account"
                           style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
                </items>
             </ToolBar>
 
             <VBox prefWidth="800.0" spacing="16">
-               <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
-               <children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
 
+               <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                        style="-fx-font-weight: bold;" text="MY ACCOUNT">
-                     <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
+                        style="-fx-font-weight: bold;"
+                        text="MY ACCOUNT">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="24.0" />
+                     </font>
                   </Text>
+
                   <Line endX="740.0" startX="-100.0" />
 
                   <HBox spacing="12" prefWidth="760.0">
@@ -76,43 +114,57 @@
 
                         <VBox prefWidth="243.0" prefHeight="80.0"
                               style="-fx-background-color: #f0f0f0; -fx-background-radius: 8;">
-                           <padding><Insets bottom="12.0" left="16.0" right="16.0" top="12.0" /></padding>
+                           <padding>
+                              <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                           </padding>
                            <children>
-                              <Label text="Account No" style="-fx-text-fill: #666666;" >
-                                 <font><Font size="12.0" /></font>
+                              <Label text="Account No" style="-fx-text-fill: #666666;">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="accountNoLabel" text="-"
-                                     style="-fx-font-weight: bold;">
-                                 <font><Font size="22.0" /></font>
+                              <Label fx:id="accountNoLabel" text="-" style="-fx-font-weight: bold;">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
                               </Label>
                            </children>
                         </VBox>
 
-
                         <VBox prefWidth="243.0" prefHeight="80.0"
                               style="-fx-background-color: #f0f0f0; -fx-background-radius: 8;">
-                           <padding><Insets bottom="12.0" left="16.0" right="16.0" top="12.0" /></padding>
+                           <padding>
+                              <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                           </padding>
                            <children>
                               <Label text="Member Type" style="-fx-text-fill: #666666;">
-                                 <font><Font size="12.0" /></font>
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="memberTypeLabel" text="-"
-                                     style="-fx-font-weight: bold;">
-                                 <font><Font size="22.0" /></font>
+                              <Label fx:id="memberTypeLabel" text="-" style="-fx-font-weight: bold;">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
                               </Label>
                            </children>
                         </VBox>
 
                         <VBox prefWidth="243.0" prefHeight="80.0"
                               style="-fx-background-color: #f0f0f0; -fx-background-radius: 8;">
-                           <padding><Insets bottom="12.0" left="16.0" right="16.0" top="12.0" /></padding>
+                           <padding>
+                              <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                           </padding>
                            <children>
                               <Label text="Total Orders" style="-fx-text-fill: #666666;">
-                                 <font><Font size="12.0" /></font>
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="orderCountLabel" text="-"
-                                     style="-fx-font-weight: bold;">
-                                 <font><Font size="22.0" /></font>
+                              <Label fx:id="orderCountLabel" text="-" style="-fx-font-weight: bold;">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
                               </Label>
                            </children>
                         </VBox>
@@ -121,59 +173,87 @@
 
                   <VBox spacing="0"
                         style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-color: #fafafa; -fx-background-radius: 8;">
-                     <padding><Insets bottom="16.0" left="16.0" right="16.0" top="16.0" /></padding>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
                      <children>
                         <Label text="Account details" style="-fx-font-weight: bold;">
-                           <font><Font name="Microsoft Sans Serif" size="14.0" /></font>
-                           <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="12.0" />
+                           </VBox.margin>
                         </Label>
 
                         <HBox prefWidth="720.0" style="-fx-border-color: transparent transparent #dddddd transparent;">
-                           <padding><Insets bottom="10.0" top="10.0" /></padding>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                            <children>
                               <Label text="Email address" style="-fx-text-fill: #666666;" prefWidth="360.0">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="emailLabel" text="-">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
 
                         <HBox prefWidth="720.0" style="-fx-border-color: transparent transparent #dddddd transparent;">
-                           <padding><Insets bottom="10.0" top="10.0" /></padding>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                            <children>
                               <Label text="Account number" style="-fx-text-fill: #666666;" prefWidth="360.0">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="accountNoLabel2" text="-">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
 
                         <HBox prefWidth="720.0">
-                           <padding><Insets bottom="10.0" top="10.0" /></padding>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                            <children>
                               <Label text="Member type" style="-fx-text-fill: #666666;" prefWidth="360.0">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="memberTypeLabel2" text="-">
-                                 <font><Font size="15.0" /></font>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
-
                      </children>
                   </VBox>
 
                   <Button mnemonicParsing="false"
                           onAction="#handleLogout"
-                          prefHeight="40.0" prefWidth="200.0"
+                          prefHeight="40.0"
+                          prefWidth="200.0"
                           style="-fx-background-color: #ffcccc; -fx-background-radius: 20; -fx-border-radius: 20;"
                           text="Logout">
-                     <font><Font name="MS Reference Sans Serif" size="15.0" /></font>
-                     <VBox.margin><Insets top="4.0" /></VBox.margin>
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin>
                   </Button>
 
                </children>
