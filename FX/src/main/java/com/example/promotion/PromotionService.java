@@ -5,6 +5,7 @@ import com.example.catalogue.CatalogueItem;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionService {
@@ -31,49 +32,62 @@ public class PromotionService {
         PromotionDAO.addItemToCampaign(campaignId, itemId, itemDiscountPct);
     }
 
+    public List<PromotionCampaign> getAllCampaigns() throws SQLException {
+        return PromotionDAO.getAllCampaigns();
+    }
+
     public List<PromotionCampaign> getActiveCampaigns() throws SQLException {
-        return PromotionDAO.getActiveCampaigns();
-    }
+        List<PromotionCampaign> allCampaigns = PromotionDAO.getAllCampaigns();
+        List<PromotionCampaign> activeCampaigns = new ArrayList<>();
 
-    public List<CatalogueItem> getCampaignCatalogueItems(String campaignId) throws SQLException {
-        return PromotionDAO.getCampaignCatalogueItems(campaignId);
-    }
-
-    public void recordCampaignClick(String campaignId) throws SQLException {
-        PromotionDAO.incrementCampaignHits(campaignId);
-    }
-
-    public void recordIncludedInOrder(String campaignId, int itemId, int quantity) throws SQLException {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0.");
+        for (PromotionCampaign campaign : allCampaigns) {
+            if (isCampaignCurrentlyActive(campaign)) {
+                activeCampaigns.add(campaign);
+            }
         }
 
-        PromotionDAO.incrementIncludedInOrder(campaignId, itemId, quantity);
+        return activeCampaigns;
     }
 
-    public void recordPurchased(String campaignId, int itemId, int quantity) throws SQLException {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0.");
+    public boolean isCampaignCurrentlyActive(PromotionCampaign campaign) {
+        if (campaign == null) {
+            return false;
         }
 
-        PromotionDAO.incrementPurchased(campaignId, itemId, quantity);
+        if (campaign.getStatus() == null || !campaign.getStatus().equalsIgnoreCase("active")) {
+            return false;
+        }
+
+        if (campaign.getStartDateTime() == null || campaign.getEndDateTime() == null) {
+            return false;
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+
+        return !now.isBefore(campaign.getStartDateTime())
+                && !now.isAfter(campaign.getEndDateTime());
     }
 
-    public double calculateDiscountedPrice(String campaignId, int itemId, double originalPrice) throws SQLException {
-        Double discountPct = PromotionDAO.getDiscountForItem(campaignId, itemId);
+    public Double getDiscountForItem(String campaignId, int itemId) throws SQLException {
+        return PromotionDAO.getDiscountForItem(campaignId, itemId);
+    }
+
+    public double getDiscountedPrice(String campaignId, int itemId, double originalPrice) throws SQLException {
+        Double discountPct = getDiscountForItem(campaignId, itemId);
 
         if (discountPct == null || discountPct <= 0) {
             return originalPrice;
         }
 
-        return originalPrice - (originalPrice * (discountPct / 100.0));
+        return originalPrice - (originalPrice * discountPct / 100.0);
     }
 
     public String getActiveCampaignIdForItem(int itemId) throws SQLException {
-        List<PromotionCampaign> campaigns = PromotionDAO.getActiveCampaigns();
+        List<PromotionCampaign> activeCampaigns = getActiveCampaigns();
 
-        for (PromotionCampaign campaign : campaigns) {
+        for (PromotionCampaign campaign : activeCampaigns) {
             List<CatalogueItem> items = PromotionDAO.getCampaignCatalogueItems(campaign.getCampaignId());
+
             for (CatalogueItem item : items) {
                 if (item.getItem_id() == itemId) {
                     return campaign.getCampaignId();
@@ -84,6 +98,46 @@ public class PromotionService {
         return null;
     }
 
+    public void recordCampaignClick(String campaignId) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        PromotionDAO.incrementCampaignHits(campaignId);
+    }
+
+    public void recordIncludedInOrder(String campaignId, int itemId, int quantity) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than 0.");
+        }
+
+        PromotionDAO.incrementIncludedInOrder(campaignId, itemId, quantity);
+    }
+
+    public void recordPurchased(String campaignId, int itemId, int quantity) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than 0.");
+        }
+
+        PromotionDAO.incrementPurchased(campaignId, itemId, quantity);
+    }
+
+    public void cancelCampaign(String campaignId) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        PromotionDAO.updateCampaignStatus(campaignId, "cancelled");
+    }
+
     public CatalogueItem findCatalogueItemById(int itemId) {
         for (CatalogueItem item : CatalogueDatabase.getCatalogueItems()) {
             if (item.getItem_id() == itemId) {
@@ -91,23 +145,6 @@ public class PromotionService {
             }
         }
         return null;
-    }
-
-    public void cancelCampaign(String campaignId) throws SQLException {
-        PromotionDAO.updateCampaignStatus(campaignId, "cancelled");
-    }
-
-    public boolean isCampaignCurrentlyActive(PromotionCampaign campaign) {
-        if (campaign == null) {
-            return false;
-        }
-
-        if (!"active".equalsIgnoreCase(campaign.getStatus())) {
-            return false;
-        }
-
-        LocalDateTime now = LocalDateTime.now();
-        return !now.isBefore(campaign.getStartDateTime()) && !now.isAfter(campaign.getEndDateTime());
     }
 
     private void validateCampaign(PromotionCampaign campaign) {

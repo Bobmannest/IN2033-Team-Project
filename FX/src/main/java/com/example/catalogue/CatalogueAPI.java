@@ -1,7 +1,9 @@
 package com.example.catalogue;
 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.promotion.PromotionSampleDataLoader;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +17,7 @@ public class CatalogueAPI {
         try {
             CatalogueDatabase.updateCatalogueItems(catalogue);
             CatalogueSyncDAO.syncCatalogueToProductTable(catalogue);
+            PromotionSampleDataLoader.loadSampleData();
             CatalogueService.printDatabase();
             return ResponseEntity.ok("Catalogue Database Accepted");
         } catch (SQLException e) {
