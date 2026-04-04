@@ -23,4 +23,11 @@ public class EmailAPI {
         emailService.sendTestEmail(recipient_email);
         return "Test Email sent to " + recipient_email;
     }
+
+    @PostMapping("/sendRegistration")
+    public String sendRegistrationEmail(@RequestParam String recipient_email,
+                                        @RequestParam String generated_password) {
+        emailService.sendRegistrationEmail(recipient_email, generated_password);
+        return "Registration email sent to " + recipient_email;
+    }
 }

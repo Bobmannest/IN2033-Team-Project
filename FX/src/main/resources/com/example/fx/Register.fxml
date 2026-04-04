@@ -56,6 +56,12 @@
                            <font><Font size="16.0" /></font>
                            <VBox.margin><Insets bottom="8.0" /></VBox.margin>
                         </Button>
+                        <Button onAction="#handleCommercialRegister" prefHeight="35.0" prefWidth="322.0"
+                                style="-fx-background-radius: 20;" styleClass="signin"
+                                text="Apply for Commercial Account">
+                           <font><Font size="16.0" /></font>
+                           <VBox.margin><Insets bottom="8.0" /></VBox.margin>
+                        </Button>
                         <Button onAction="#handleBack" prefHeight="35.0" prefWidth="322.0" style="-fx-background-radius: 20;" styleClass="signin" text="Back to Sign In">
                            <font><Font size="16.0" /></font>
                         </Button>

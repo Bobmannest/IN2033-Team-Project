@@ -20,194 +20,168 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueController">
-    <effect>
-        <Blend />
-    </effect>
-
-    <top>
-        <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-            <children>
-                <ToolBar prefHeight="40.0" prefWidth="200.0">
-                    <items>
-                        <ImageView fitHeight="33.0" fitWidth="199.0">
-                            <image>
-                                <Image url="@../../../images/curatech.png" />
-                            </image>
+<effect>
+    <Blend />
+</effect>
+   <top>
+      <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                  <ImageView fitHeight="33.0" fitWidth="199.0">
+                     <image>
+                        <Image url="@../../../images/curatech.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="38.0" prefWidth="488.0" />
+                <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../../../images/cart.png" />
+                           </image>
                         </ImageView>
-                        <Pane HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
-                            <font>
-                                <Font name="MS Reference Sans Serif" size="12.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0">
-                                    <image>
-                                        <Image url="@../../../images/cart.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </items>
-                </ToolBar>
-
-                <ToolBar prefHeight="40.0" prefWidth="200.0">
-                    <items>
-                        <Button mnemonicParsing="false" onAction="#handleHome">
-                            <graphic>
-                                <ImageView fitHeight="25.0" fitWidth="25.0">
-                                    <image>
-                                        <Image url="@../../../images/home.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
-
-                        <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-
-                        <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" />
-
-                        <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                    </items>
-                </ToolBar>
-
-                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CATALOGUE">
-                            <font>
-                                <Font name="Microsoft Sans Serif" size="24.0" />
-                            </font>
-                        </Text>
-
-                        <Line endX="678.0" startX="-100.0" />
-
-                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                            <children>
-                                <BorderPane prefHeight="450.0" prefWidth="152.0" style="-fx-border-color: #000000;">
-                                    <center>
-                                        <VBox prefHeight="438.0" prefWidth="170.0" BorderPane.alignment="CENTER">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Filters">
-                                                    <font>
-                                                        <Font name="Microsoft Sans Serif" size="20.0" />
-                                                    </font>
-                                                </Text>
-
-                                                <Line endX="35.5" startX="-100.0" />
-
-                                                <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="234.0" VBox.vgrow="NEVER">
-                                                    <items>
-                                                        <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
-                                                            <image>
-                                                                <Image url="@../../../images/search.png" />
-                                                            </image>
-                                                            <viewport>
-                                                                <Rectangle2D />
-                                                            </viewport>
-                                                        </ImageView>
-
-                                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="99.0" promptText="Search">
-                                                            <font>
-                                                                <Font size="15.0" />
-                                                            </font>
-                                                        </TextField>
-                                                    </items>
-                                                    <VBox.margin>
-                                                        <Insets top="5.0" />
-                                                    </VBox.margin>
-                                                </ToolBar>
-
-                                                <HBox prefHeight="14.0" prefWidth="227.0">
-                                                    <children>
-                                                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
-                                                            <HBox.margin>
-                                                                <Insets left="5.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-
-                                                        <Label prefHeight="19.0" prefWidth="121.0" style="-fx-border-color: #000000; -fx-border-radius: 3; -fx-font-weight: bold;" text="In Stock" HBox.hgrow="ALWAYS">
-                                                            <padding>
-                                                                <Insets left="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                    </children>
-                                                    <VBox.margin>
-                                                        <Insets bottom="5.0" top="5.0" />
-                                                    </VBox.margin>
-                                                </HBox>
-
-                                                <HBox prefHeight="0.0" prefWidth="227.0">
-                                                    <children>
-                                                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
-                                                            <HBox.margin>
-                                                                <Insets left="4.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-
-                                                        <TextField prefHeight="58.0" prefWidth="211.0" promptText="Max Price" HBox.hgrow="ALWAYS">
-                                                            <HBox.margin>
-                                                                <Insets left="5.0" />
-                                                            </HBox.margin>
-                                                        </TextField>
-                                                    </children>
-                                                    <VBox.margin>
-                                                        <Insets bottom="5.0" />
-                                                    </VBox.margin>
-                                                </HBox>
-
-                                                <HBox prefHeight="0.0" prefWidth="227.0">
-                                                    <children>
-                                                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
-                                                            <HBox.margin>
-                                                                <Insets left="4.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-
-                                                        <TextField prefHeight="57.0" prefWidth="211.0" promptText="Min Price" HBox.hgrow="ALWAYS">
-                                                            <HBox.margin>
-                                                                <Insets left="5.0" />
-                                                            </HBox.margin>
-                                                        </TextField>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                            <BorderPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </BorderPane.margin>
-                                        </VBox>
-                                    </center>
-                                </BorderPane>
-
-                                <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                    <center>
-                                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
-                                            <content>
-                                                <VBox fx:id="catalogueVBox" fillWidth="true" maxWidth="Infinity" spacing="5">
-                                                    <padding>
-                                                        <Insets bottom="10" left="10" right="10" top="10" />
-                                                    </padding>
-                                                </VBox>
-                                            </content>
-                                        </ScrollPane>
-                                    </center>
-                                </BorderPane>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </HBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </VBox>
-            </children>
-        </VBox>
-    </top>
+                     </graphic></Button>
+              </items>
+            </ToolBar>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                  <Button mnemonicParsing="false" onAction="#handleHome">
+                      <graphic>
+                          <ImageView fitHeight="25.0" fitWidth="25.0">
+                              <image><Image url="@../../../images/home.png" /></image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions" onAction="#handleCreatePromotion" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Account" onAction="#handleAccount" />
+              </items>
+            </ToolBar>
+            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CATALOGUE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Line endX="678.0" startX="-100.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <BorderPane prefHeight="450.0" prefWidth="152.0" style="-fx-border-color: #000000;">
+                           <center>
+                              <VBox prefHeight="438.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Filters">
+                                       <font>
+                                          <Font name="Microsoft Sans Serif" size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Line endX="35.5" startX="-100.0" />
+                                    <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="234.0" VBox.vgrow="NEVER">
+                                      <items>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../images/search.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                          <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="99.0" promptText="Search">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                      </items>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </ToolBar>
+                                    <HBox prefHeight="14.0" prefWidth="227.0">
+                                       <children>
+                                          <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></CheckBox>
+                                          <Label prefHeight="19.0" prefWidth="121.0" style="-fx-border-color: #000000; -fx-border-radius: 3; -fx-font-weight: bold;" text="In Stock" HBox.hgrow="ALWAYS">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="0.0" prefWidth="227.0">
+                                       <children>
+                                          <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
+                                             <HBox.margin>
+                                                <Insets left="4.0" />
+                                             </HBox.margin></CheckBox>
+                                          <TextField prefHeight="58.0" prefWidth="211.0" promptText="Max Price" HBox.hgrow="ALWAYS">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="0.0" prefWidth="227.0">
+                                       <children>
+                                          <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="checkbox">
+                                             <HBox.margin>
+                                                <Insets left="4.0" />
+                                             </HBox.margin></CheckBox>
+                                          <TextField prefHeight="57.0" prefWidth="211.0" promptText="Min Price" HBox.hgrow="ALWAYS">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <center>
+                               <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+                                   <content>
+                                       <VBox fx:id="catalogueVBox" fillWidth="true" maxWidth="Infinity" spacing="5">
+                                           <padding>
+                                               <Insets bottom="10" left="10" right="10" top="10" />
+                                           </padding>
+                                       </VBox>
+                                   </content>
+                               </ScrollPane>
+                           </center>
+                        </BorderPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+   </top>
 </BorderPane>

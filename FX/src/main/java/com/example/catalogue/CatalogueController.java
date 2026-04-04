@@ -38,6 +38,19 @@ public class CatalogueController {
         displayItems();
     }
 
+    // navigates to the orders page
+    @FXML
+    private void handleOrders() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderHistory.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) catalogueVBox.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // navigates to the account screen when the account button is clicked
     @FXML
     private void handleAccount() {

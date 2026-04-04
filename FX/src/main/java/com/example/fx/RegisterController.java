@@ -37,15 +37,24 @@ public class RegisterController {
             // registers the member in the db and get back the generated pass
             String generatedPassword = MemberDAO.registerNonCommercialMember(email);
 
-            // shows the generated login details to the user
-            // will update later to email login details
-            showStatus("Registration successful!\n"
-                     + "Your login details:\n"
-                     + "Email: " + email + "\n"
-                     + "Password: " + generatedPassword + "\n"
-                     + "You will be asked to change your password on first login.",
-                     true);
+            new Thread(() -> {
+                try {
+                    java.net.http.HttpClient client = java.net.http.HttpClient.newHttpClient();
+                    String encodedPassword = java.net.URLEncoder.encode(generatedPassword, "UTF-8");
+                    String encodedEmail = java.net.URLEncoder.encode(email, "UTF-8");
+                    java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                            .uri(java.net.URI.create("http://localhost:8080/api/emails/sendRegistration"
+                                    + "?recipient_email=" + encodedEmail
+                                    + "&generated_password=" + encodedPassword))
+                            .POST(java.net.http.HttpRequest.BodyPublishers.noBody())
+                            .build();
+                    client.send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
 
+            showStatus("Registration successful! Your login details have been sent to " + email, true);
             emailField.setDisable(true);
 
         } catch (IllegalArgumentException e) {
@@ -61,7 +70,7 @@ public class RegisterController {
     private void handleBack() {
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/example/fx/App.fxml"));
+                    getClass().getResource("/com/example/fx/Login.fxml"));
             Scene scene = new Scene(loader.load(), 600, 400);
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(scene);
@@ -76,5 +85,18 @@ public class RegisterController {
             ? "-fx-text-fill: green; -fx-font-size: 12px;"
             : "-fx-text-fill: red; -fx-font-size: 12px;");
         statusLabel.setText(message);
+    }
+
+    // navigates to the commercial account application screen
+    @FXML
+    private void handleCommercialRegister() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/CommercialRegister.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open commercial registration.", false);
+        }
     }
 }

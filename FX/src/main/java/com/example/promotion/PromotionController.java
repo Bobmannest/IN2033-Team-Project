@@ -161,7 +161,15 @@ public class PromotionController {
 
     @FXML
     private void handleOrders() {
-        showStatus("Orders screen not implemented yet.", false);
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/OrderHistory.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open orders screen.", false);
+        }
     }
 
     @FXML

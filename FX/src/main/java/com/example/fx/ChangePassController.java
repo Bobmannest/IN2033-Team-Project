@@ -54,7 +54,7 @@ public class ChangePassController {
 
             // brings up a success message and takes you back to login screen
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/example/fx/App.fxml"));
+                getClass().getResource("/com/example/fx/Login.fxml"));
             Scene scene = new Scene(loader.load(), 600, 400);
             Controller loginCtrl = loader.getController();
             loginCtrl.showSuccessMessage("Password changed! Please log in again.");

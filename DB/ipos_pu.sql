@@ -129,3 +129,24 @@ CREATE TABLE IF NOT EXISTS CampaignItemMetrics (
     FOREIGN KEY (item_id) REFERENCES Product(item_id)
     ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS Orders (
+    order_id VARCHAR(20) PRIMARY KEY,
+    account_no VARCHAR(10) NOT NULL,
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    delivery_address VARCHAR(255) NOT NULL,
+    FOREIGN KEY (account_no) REFERENCES Member(account_no)
+);
+
+CREATE TABLE IF NOT EXISTS CommercialApplication (
+    application_id VARCHAR(20) PRIMARY KEY,
+    company_name VARCHAR(100) NOT NULL,
+    companies_house_no VARCHAR(20) NOT NULL UNIQUE,
+    director_name VARCHAR(100) NOT NULL,
+    business_type VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending'
+);

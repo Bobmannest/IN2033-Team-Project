@@ -77,4 +77,38 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+    public void sendRegistrationEmail(String recipientEmail, String generatedPassword) {
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+        Session session = Session.getInstance(prop,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("ipospu33@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Your CuraTech Account Details");
+            message.setText(
+                    "Welcome to CuraTech!\n\n" +
+                            "Your account has been created. Here are your login details:\n\n" +
+                            "Email: " + recipientEmail + "\n" +
+                            "Password: " + generatedPassword + "\n\n" +
+                            "You will be asked to change your password on first login.\n\n" +
+                            "[This is an automatically generated email]"
+            );
+            Transport.send(message);
+            System.out.println("Registration email sent to " + recipientEmail);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }

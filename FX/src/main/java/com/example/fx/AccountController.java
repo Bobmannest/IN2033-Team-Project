@@ -60,29 +60,10 @@ public class AccountController {
     }
 
     @FXML
-    private void handleHome() {
-        handleCatalogue();
-    }
-
-    @FXML
-    private void handleCreatePromotion() {
+    private void handleBasket() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Promotion.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
-            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleManagePromotions() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/CampaignItem.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 650);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Basket.fxml"));
+            Scene scene = new Scene(loader.load(), 820, 633);
             Stage stage = (Stage) accountNoLabel.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
@@ -92,15 +73,9 @@ public class AccountController {
 
     @FXML
     private void handleOrders() {
-        System.out.println("Orders screen not implemented yet.");
-    }
-
-    @FXML
-    private void handleBasket() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Basket.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 650);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderHistory.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
             Stage stage = (Stage) accountNoLabel.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
@@ -109,7 +84,19 @@ public class AccountController {
     }
 
     @FXML
-    private void handleAccount() {
-        // already on account page
+    private void handleCreatePromotion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Promotion.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleHome() {
+        handleCatalogue();
     }
 }
