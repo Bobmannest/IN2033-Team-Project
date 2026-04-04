@@ -80,7 +80,15 @@ public class CatalogueController {
 
     @FXML
     private void handleHome() {
-        // if home just returns to catalogue for now
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Home.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) catalogueVBox.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
