@@ -248,7 +248,15 @@ public class CampaignItemController {
 
     @FXML
     private void handleOrders() {
-        showStatus("Orders screen not implemented yet.", false);
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/OrderHistory.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open create orders screen.", false);
+        };
     }
 
     @FXML
@@ -266,6 +274,14 @@ public class CampaignItemController {
 
     @FXML
     private void handleBasket() {
-        showStatus("Basket screen not implemented yet.", false);
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Basket.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            showStatus("Could not open basket screen.", false);
+        }
     }
 }

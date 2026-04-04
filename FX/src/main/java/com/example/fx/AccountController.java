@@ -96,7 +96,26 @@ public class AccountController {
     }
 
     @FXML
+    private void handleManagePromotions() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/CampaignItem.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void handleHome() {
-        handleCatalogue();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Home.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 650);
+            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

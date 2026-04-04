@@ -55,12 +55,13 @@ public class BasketController {
         }
     }
 
-    // navigates to order history screen when clicked
     @FXML
-    private void handleOrders() {
+    private void handleCheckout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderHistory.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Checkout.fxml")
+            );
+            Scene scene = new Scene(loader.load(), 750, 800);
             Stage stage = (Stage) basketVBox.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

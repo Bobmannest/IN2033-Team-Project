@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="850.0"
+            style="-fx-background-color: #1a3a2a;"
+            xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.fx.CommercialRegisterController"
+            stylesheets="@style.css">
+   <center>
+      <HBox prefHeight="596.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </BorderPane.margin>
+         <children>
+
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                        prefHeight="596.0" prefWidth="560.0"
+                        style="-fx-background-color: #ffffff; -fx-background: #ffffff; -fx-background-radius: 12 0 0 12;"
+                        HBox.hgrow="ALWAYS">
+               <content>
+                  <VBox prefWidth="530.0" spacing="0"
+                        style="-fx-background-color: #ffffff;">
+                     <padding>
+                        <Insets bottom="40.0" left="44.0" right="44.0" top="40.0" />
+                     </padding>
+                     <children>
+
+                        <Label text="Commercial account application"
+                               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-font-family: 'System'; -fx-text-fill: #1a1a1a;">
+                           <VBox.margin><Insets bottom="4.0" /></VBox.margin>
+                        </Label>
+
+                        <Label text="Applications are reviewed within 2-3 business days"
+                               style="-fx-font-size: 13px; -fx-text-fill: #888888; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="24.0" /></VBox.margin>
+                        </Label>
+
+                        <Label text="Company name"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="companyNameField" prefHeight="40.0"
+                                   promptText="Enter company name"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="14.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label text="Companies House registration number"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="companiesHouseField" prefHeight="40.0"
+                                   promptText="8 alphanumeric characters e.g. AB123456"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="14.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label text="Company director name(s)"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="directorNameField" prefHeight="40.0"
+                                   promptText="Enter director name(s)"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="14.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label text="Type of business"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="businessTypeField" prefHeight="40.0"
+                                   promptText="e.g. Pharmacy, Wholesale, Healthcare"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="14.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label text="Business address"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="addressField" prefHeight="40.0"
+                                   promptText="Enter full business address"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="14.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label text="Email address"
+                               style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #444444; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="5.0" /></VBox.margin>
+                        </Label>
+                        <TextField fx:id="emailField" prefHeight="40.0"
+                                   promptText="Enter company email address"
+                                   style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-background-color: #fafafa;">
+                           <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+                        </TextField>
+
+                        <Label fx:id="statusLabel" maxWidth="460.0" wrapText="true"
+                               style="-fx-font-size: 11px; -fx-font-family: 'System';">
+                           <VBox.margin><Insets bottom="8.0" /></VBox.margin>
+                        </Label>
+
+                        <Button mnemonicParsing="false"
+                                onAction="#handleSubmit"
+                                prefHeight="42.0" prefWidth="460.0"
+                                text="Submit application"
+                                style="-fx-background-color: #1a3a2a; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'System'; -fx-cursor: hand;">
+                           <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                        </Button>
+
+                        <Button mnemonicParsing="false"
+                                onAction="#handleBack"
+                                prefHeight="42.0" prefWidth="460.0"
+                                text="Back to sign in"
+                                style="-fx-background-color: transparent; -fx-text-fill: #888888; -fx-background-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-cursor: hand;">
+                        </Button>
+
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+
+            <VBox prefWidth="280.0" prefHeight="596.0"
+                  style="-fx-background-color: #1a3a2a;"
+                  alignment="CENTER">
+               <padding>
+                  <Insets bottom="60.0" left="20.0" right="20.0" top="0.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="44.0" fitWidth="199.0">
+                     <image><Image url="@../../../images/curatech.png" /></image>
+                  </ImageView>
+                  <Label text="Pharmacy Portal" alignment="CENTER" prefWidth="240.0"
+                         style="-fx-text-fill: #5a8a6a; -fx-font-size: 11px; -fx-font-family: 'System';">
+                     <VBox.margin><Insets top="6.0" /></VBox.margin>
+                  </Label>
+                  <Label text="Your trusted platform&#10;for pharmaceutical ordering"
+                         wrapText="true" alignment="CENTER" textAlignment="CENTER" prefWidth="240.0"
+                         style="-fx-text-fill: #3d6b52; -fx-font-size: 10px; -fx-font-family: 'System';">
+                     <VBox.margin><Insets top="16.0" /></VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

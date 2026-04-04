@@ -73,7 +73,7 @@ public class OrderHistory {
 
     @FXML
     private void handleHome() {
-        navigate("/com/example/fx/Catalogue.fxml", 800, 600);
+        navigate("/com/example/fx/Home.fxml", 800, 600);
     }
 
     @FXML
@@ -87,15 +87,18 @@ public class OrderHistory {
     }
 
     @FXML
+    private void handleBasket() {
+        navigate("/com/example/fx/Basket.fxml", 800, 600);
+    }
+
+    @FXML
     private void handleCreatePromotion() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Promotion.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
-            Stage stage = (Stage) ordersTable.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            errorLabel.setText("Navigation error: " + e.getMessage());
-        }
+        navigate("/com/example/fx/Promotion.fxml", 900, 650);
+    }
+
+    @FXML
+    private void handleManagePromotions() {
+        navigate("/com/example/fx/CampaignItem.fxml", 900, 650);
     }
 
     @FXML

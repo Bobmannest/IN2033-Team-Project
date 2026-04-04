@@ -7,8 +7,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,7 +31,7 @@
                      <image><Image url="@../../../images/curatech.png" /></image>
                   </ImageView>
                   <Pane HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket">
+                  <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
                      <font><Font name="MS Reference Sans Serif" size="12.0" /></font>
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
@@ -54,8 +52,9 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Promotions"/>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Account"
                           style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
                </items>
@@ -78,16 +77,14 @@
                               style="-fx-background-color: #f0f0f0; -fx-background-radius: 8;">
                            <padding><Insets bottom="12.0" left="16.0" right="16.0" top="12.0" /></padding>
                            <children>
-                              <Label text="Account No" style="-fx-text-fill: #666666;" >
+                              <Label text="Account No" style="-fx-text-fill: #666666;">
                                  <font><Font size="12.0" /></font>
                               </Label>
-                              <Label fx:id="accountNoLabel" text="-"
-                                     style="-fx-font-weight: bold;">
+                              <Label fx:id="accountNoLabel" text="-" style="-fx-font-weight: bold;">
                                  <font><Font size="22.0" /></font>
                               </Label>
                            </children>
                         </VBox>
-
 
                         <VBox prefWidth="243.0" prefHeight="80.0"
                               style="-fx-background-color: #f0f0f0; -fx-background-radius: 8;">
@@ -96,8 +93,7 @@
                               <Label text="Member Type" style="-fx-text-fill: #666666;">
                                  <font><Font size="12.0" /></font>
                               </Label>
-                              <Label fx:id="memberTypeLabel" text="-"
-                                     style="-fx-font-weight: bold;">
+                              <Label fx:id="memberTypeLabel" text="-" style="-fx-font-weight: bold;">
                                  <font><Font size="22.0" /></font>
                               </Label>
                            </children>
@@ -110,8 +106,7 @@
                               <Label text="Total Orders" style="-fx-text-fill: #666666;">
                                  <font><Font size="12.0" /></font>
                               </Label>
-                              <Label fx:id="orderCountLabel" text="-"
-                                     style="-fx-font-weight: bold;">
+                              <Label fx:id="orderCountLabel" text="-" style="-fx-font-weight: bold;">
                                  <font><Font size="22.0" /></font>
                               </Label>
                            </children>

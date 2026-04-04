@@ -9,6 +9,16 @@
     -fx-font-weight:bold;
 }
 
+/* Checkout Page */
+.checkout{
+    -fx-background-color: #beffd9;
+}
+
+.checkout:hover{
+    -fx-background-color: #a4ddbc;
+    -fx-text-fill:black;
+}
+
 /* Catalogue Page */
 .checkbox{
     -fx-scale-x: 1.5;

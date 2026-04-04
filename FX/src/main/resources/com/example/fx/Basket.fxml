@@ -44,7 +44,7 @@
                      </graphic>
                   </Button>
                   <Pane prefHeight="33.0" prefWidth="526.0" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Checkout">
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Checkout" onAction="#handleCheckout">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="32.0">
                            <image>
