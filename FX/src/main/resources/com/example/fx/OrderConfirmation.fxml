@@ -207,7 +207,7 @@
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="259.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Return to Homepage">
+                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="259.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Return to Homepage" onAction="#handleHome">
                                  <font>
                                     <Font name="MS Reference Sans Serif" size="16.0" />
                                  </font>
