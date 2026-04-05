@@ -176,7 +176,7 @@
                                                             <Insets bottom="3.0" />
                                                          </VBox.margin>
                                                       </Text>
-                                                      <TextField fx:id="cardNumField" promptText="XXXX-XXXX-XXXX-XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                      <TextField fx:id="cardNumField" promptText="XXXXXXXXXXXXXXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>

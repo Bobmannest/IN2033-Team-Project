@@ -23,6 +23,29 @@ public class CheckoutController {
     @FXML private TextField expiryField;
     @FXML private TextField cvvField;
 
+    //Checks if card numbers are valid based on Luhn's Algorithm
+    private boolean isCardValid(String cardNum) {
+        if (!cardNum.matches("\\d{13,19}")) {return false;}
+
+        char[] cardDigits = cardNum.toCharArray();
+        int sum = 0;
+        boolean shouldDoubleDigit = false;
+
+        for (int i = cardDigits.length - 1; i >= 0; i--) {
+            int digit = Character.getNumericValue(cardDigits[i]);
+            if (shouldDoubleDigit) {
+                digit *= 2;
+                if (digit > 9) {digit -= 9;}
+            }
+
+            sum += digit;
+            shouldDoubleDigit = !shouldDoubleDigit;
+        }
+
+        if (sum % 10 == 0) {return true;}
+        return false;
+    }
+
     @FXML
     private void handleCheckoutValidation() {
         boolean correctCustomerInfo = true;
@@ -41,7 +64,7 @@ public class CheckoutController {
             correctCustomerInfo = false;
         }
 
-        if (!cardNum.matches("\\d{16}") || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches("\\d{3}")) {
+        if (!isCardValid(cardNum) || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches("\\d{3}")) {
             correctPaymentInfo = false;
         }
 
