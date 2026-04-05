@@ -1,6 +1,14 @@
 CREATE DATABASE IF NOT EXISTS ipos_pu;
 USE ipos_pu;
 
+DROP TABLE IF EXISTS CampaignItemMetrics;
+DROP TABLE IF EXISTS CampaignMetrics;
+DROP TABLE IF EXISTS OnlineOrderItem;
+DROP TABLE IF EXISTS OnlineOrder;
+DROP TABLE IF EXISTS PromotionCampaignItem;
+DROP TABLE IF EXISTS PromotionCampaign;
+DROP TABLE IF EXISTS Product;
+
 CREATE TABLE IF NOT EXISTS Member (
     account_no VARCHAR(10) PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -11,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Member (
 );
 
 CREATE TABLE IF NOT EXISTS Product (
-    item_id VARCHAR(10) PRIMARY KEY,
+    item_id INT(10) PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     package_type VARCHAR(50),
     unit VARCHAR(50),
@@ -44,7 +52,7 @@ CREATE TABLE IF NOT EXISTS PromotionCampaign (
 CREATE TABLE IF NOT EXISTS PromotionCampaignItem (
     campaign_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     campaign_id VARCHAR(10) NOT NULL,
-    item_id VARCHAR(10) NOT NULL,
+    item_id INT(10) NOT NULL,
     item_discount_pct DECIMAL(5,2) DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (campaign_id, item_id),
@@ -77,7 +85,7 @@ CREATE TABLE IF NOT EXISTS OnlineOrder (
 CREATE TABLE IF NOT EXISTS OnlineOrderItem (
     order_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     order_id BIGINT NOT NULL,
-    item_id VARCHAR(10) NOT NULL,
+    item_id INT(10) NOT NULL,
     campaign_id VARCHAR(10) DEFAULT NULL,
     quantity INT NOT NULL,
     unit_price DECIMAL(10,2) NOT NULL,
@@ -108,7 +116,7 @@ CREATE TABLE IF NOT EXISTS CampaignMetrics (
 
 CREATE TABLE IF NOT EXISTS CampaignItemMetrics (
     campaign_id VARCHAR(10) NOT NULL,
-    item_id VARCHAR(10) NOT NULL,
+    item_id INT(10) NOT NULL,
     included_in_order_count INT NOT NULL DEFAULT 0,
     purchased_count INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -120,4 +128,25 @@ CREATE TABLE IF NOT EXISTS CampaignItemMetrics (
     CONSTRAINT fk_item_metrics_product
     FOREIGN KEY (item_id) REFERENCES Product(item_id)
     ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Orders (
+    order_id VARCHAR(20) PRIMARY KEY,
+    account_no VARCHAR(10) NOT NULL,
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    delivery_address VARCHAR(255) NOT NULL,
+    FOREIGN KEY (account_no) REFERENCES Member(account_no)
+);
+
+CREATE TABLE IF NOT EXISTS CommercialApplication (
+    application_id VARCHAR(20) PRIMARY KEY,
+    company_name VARCHAR(100) NOT NULL,
+    companies_house_no VARCHAR(20) NOT NULL UNIQUE,
+    director_name VARCHAR(100) NOT NULL,
+    business_type VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending'
 );

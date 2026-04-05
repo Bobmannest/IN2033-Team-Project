@@ -4,12 +4,15 @@ package com.example.checkout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
 public class CheckoutController {
     @FXML private BorderPane checkoutPane;
+
+    @FXML private TextField nameField;
 
     @FXML
     private void handleOrders() {
