@@ -1,6 +1,8 @@
 package com.example.checkout;
 
 
+import com.example.basket.BasketList;
+import com.example.catalogue.CatalogueItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
+
 
 public class CheckoutController {
     @FXML private BorderPane checkoutPane;
@@ -22,6 +25,18 @@ public class CheckoutController {
     @FXML private TextField cardNumField;
     @FXML private TextField expiryField;
     @FXML private TextField cvvField;
+
+    @FXML private Label totalLabel;
+
+    @FXML
+    public void initialize() {
+        double totalCost = 0;
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            totalCost += item.getPackage_cost();
+        }
+
+        totalLabel.setText("£" + String.format("%.2f", totalCost));
+    }
 
     //Checks if card numbers are valid based on Luhn's Algorithm
     private boolean isCardValid(String cardNum) {
@@ -37,7 +52,6 @@ public class CheckoutController {
                 digit *= 2;
                 if (digit > 9) {digit -= 9;}
             }
-
             sum += digit;
             shouldDoubleDigit = !shouldDoubleDigit;
         }

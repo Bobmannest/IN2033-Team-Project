@@ -268,7 +268,7 @@
                                                    </font>
                                                 </Text>
                                                 <Pane prefHeight="20.0" prefWidth="113.0" />
-                                                <Label text="£ XX:XX">
+                                                <Label fx:id="totalLabel" text="£ XX:XX">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
