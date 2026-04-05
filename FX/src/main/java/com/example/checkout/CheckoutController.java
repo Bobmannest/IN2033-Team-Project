@@ -4,6 +4,8 @@ package com.example.checkout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
@@ -11,8 +13,49 @@ import java.io.IOException;
 
 public class CheckoutController {
     @FXML private BorderPane checkoutPane;
+    @FXML private Label checkoutErrorLabel;
 
     @FXML private TextField nameField;
+    @FXML private TextField emailField;
+    @FXML private TextField addressField;
+    @FXML private CheckBox guestCheckbox;
+    @FXML private TextField cardNumField;
+    @FXML private TextField expiryField;
+    @FXML private TextField cvvField;
+
+    @FXML
+    private void handleCheckoutValidation() {
+        boolean correctCustomerInfo = true;
+        boolean correctPaymentInfo = true;
+
+
+        String name = nameField.getText().trim();
+        String email = emailField.getText().trim();
+        String address = addressField.getText().trim();
+        boolean isGuest = guestCheckbox.isSelected();
+        String cardNum = cardNumField.getText().trim();
+        String expiry = expiryField.getText().trim();
+        String cvv = cvvField.getText().trim();
+
+        if (name.isEmpty() || (!email.contains("@") || !email.contains(".")) || address.isEmpty()) {
+            correctCustomerInfo = false;
+        }
+
+        if (!cardNum.matches("\\d{16}") || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches("\\d{3}")) {
+            correctPaymentInfo = false;
+        }
+
+        if (correctCustomerInfo && correctPaymentInfo) {
+            handleOrderConfirmation();
+        } else if (!correctCustomerInfo && !correctPaymentInfo) {
+            checkoutErrorLabel.setText("At least one of the entered customer and payment info is incorrect");
+        } else if (!correctCustomerInfo) {
+            checkoutErrorLabel.setText("At least one of the entered customer info is incorrect");
+        } else if (!correctPaymentInfo) {
+            checkoutErrorLabel.setText("At least one of the entered payment info is incorrect");
+        }
+    }
+
 
     @FXML
     private void handleOrders() {
