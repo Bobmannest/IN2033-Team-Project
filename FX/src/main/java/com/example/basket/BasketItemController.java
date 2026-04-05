@@ -1,4 +1,3 @@
 package com.example.basket;
 
-public class BasketItemController {
-}
+public class BasketItemController {}

@@ -61,7 +61,7 @@ public class BasketController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Checkout.fxml")
             );
-            Scene scene = new Scene(loader.load(), 750, 800);
+            Scene scene = new Scene(loader.load(), 850, 750);
             Stage stage = (Stage) basketVBox.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

@@ -2,20 +2,26 @@ package com.example.checkout;
 
 
 import com.example.basket.BasketList;
+import com.example.catalogue.CatalogueDatabase;
 import com.example.catalogue.CatalogueItem;
+import com.example.catalogue.CatalogueItemController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
+import java.util.List;
 
 
 public class CheckoutController {
     @FXML private BorderPane checkoutPane;
+    @FXML private VBox basketVBox;
     @FXML private Label checkoutErrorLabel;
 
     @FXML private TextField nameField;
@@ -28,13 +34,32 @@ public class CheckoutController {
 
     @FXML private Label totalLabel;
 
+    public void displayItems() {
+        basketVBox.getChildren().clear();
+
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/CheckoutItemBox.fxml"));
+                HBox itemCard = loader.load();
+
+                CheckoutItemController itemCtrl = loader.getController();
+                itemCtrl.setItem(item);
+
+                basketVBox.getChildren().add(itemCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @FXML
     public void initialize() {
+        displayItems();
+
         double totalCost = 0;
         for (CatalogueItem item : BasketList.getBasketItems()) {
             totalCost += item.getPackage_cost();
         }
-
         totalLabel.setText("£" + String.format("%.2f", totalCost));
     }
 
