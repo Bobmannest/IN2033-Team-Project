@@ -25,7 +25,7 @@ public class BasketController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/basketItemBox.fxml"));
                 HBox itemCard = loader.load();
 
-                CatalogueItemController itemCtrl = loader.getController();
+                BasketItemController itemCtrl = loader.getController();
                 itemCtrl.setItem(item);
 
                 basketVBox.getChildren().add(itemCard);

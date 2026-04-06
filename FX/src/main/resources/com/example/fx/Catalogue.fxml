@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueController">
 <effect>
     <Blend />
 </effect>
@@ -33,8 +33,8 @@
                         <Image url="@../../../images/curatech.png" />
                      </image>
                   </ImageView>
-                  <Pane prefHeight="38.0" prefWidth="488.0" />
-                <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
+                  <Pane prefHeight="38.0" prefWidth="590.0" />
+                <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
                      <font>
                         <Font name="MS Reference Sans Serif" size="12.0" />
                      </font>
@@ -57,20 +57,32 @@
                       </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
+                  <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
+                  <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
+                  <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
                   <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
               </items>
             </ToolBar>
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CATALOGUE">
-                     <font>
-                        <Font name="Microsoft Sans Serif" size="24.0" />
-                     </font>
-                  </Text>
-                  <Line endX="678.0" startX="-100.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="885.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CATALOGUE">
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="catalogueErrorLabel" alignment="CENTER" prefHeight="17.0" prefWidth="726.0" textFill="RED">
+                           <font>
+                              <Font name="MS Reference Sans Serif" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="14.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Line endX="784.0" startX="-100.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <BorderPane prefHeight="450.0" prefWidth="152.0" style="-fx-border-color: #000000;">

@@ -267,11 +267,14 @@
                                                       <Font name="MS Reference Sans Serif" size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Pane prefHeight="20.0" prefWidth="143.0" />
-                                                <Label fx:id="totalLabel" text="£ XX:XX">
+                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="totalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                              </children>
                                              <VBox.margin>
