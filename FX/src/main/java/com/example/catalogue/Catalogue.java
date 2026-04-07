@@ -15,7 +15,7 @@ public class Catalogue extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Catalogue.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 905, 633);
         stage.setTitle("Catalogue");
-        stage.setMinWidth(820);
+        stage.setMinWidth(905);
         stage.setMinHeight(633);
         stage.setScene(scene);
         stage.show();

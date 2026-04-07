@@ -15,7 +15,7 @@ public class HomeController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Catalogue.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Scene scene = new Scene(loader.load(), 905, 633);
             Stage stage = (Stage) homePane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

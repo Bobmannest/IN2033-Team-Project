@@ -1,5 +1,6 @@
 package com.example.email;
 
+import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
@@ -46,7 +47,9 @@ public class EmailService {
                     "\nName: " + recipientName +
                     "\nEmail: " + recipientEmail +
                     "\nAddress: " + recipientAddress +
-                    "\nTracking Link: http://localhost:8080/api/orders/track?id=" + track_id
+                    "\n\nPurchased Items:\n" +
+                    getPurchasedItems() +
+                    "\n\nTracking Link: http://localhost:8080/api/orders/track?id=" + track_id
             );
 
             Transport.send(message);
@@ -56,6 +59,17 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+    private String getPurchasedItems() {
+        StringBuilder itemString = new StringBuilder();
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            itemString.append("\n- ").append(item.getItem_id())
+                    .append(" | ").append(item.getPackage_type())
+                    .append(" | £").append(item.getPackage_cost());
+        }
+        return itemString.toString();
+    }
+
     public void sendTestEmail(String recipient_email) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");

@@ -128,7 +128,7 @@ public class CheckoutController {
 
     @FXML
     private void handleCatalogue() {
-        navigate("/com/example/fx/Catalogue.fxml", 800, 600);
+        navigate("/com/example/fx/Catalogue.fxml", 905, 633);
     }
 
     @FXML
