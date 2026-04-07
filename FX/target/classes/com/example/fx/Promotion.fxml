@@ -15,7 +15,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.PromotionController">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.PromotionController" style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF;">
 
     <top>
         <VBox>
@@ -72,7 +74,10 @@
                     </padding>
 
                     <VBox spacing="4.0">
-                        <Label text="Promotions Manager" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1f2937;"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              style="-fx-font-weight: bold;" text="CREATE PROMOTION">
+                            <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
+                        </Text>
                     </VBox>
                 </HBox>
             </children>
@@ -136,6 +141,7 @@
                 <HBox spacing="15.0">
                     <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                         <Label text="Status"/>
+
                         <ComboBox fx:id="statusComboBox" prefWidth="200.0"/>
                     </VBox>
 
