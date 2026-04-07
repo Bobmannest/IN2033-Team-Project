@@ -14,7 +14,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.CampaignItemController">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.CampaignItemController" style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF;">
 
     <top>
         <VBox>
@@ -67,8 +69,10 @@
                     </padding>
 
                     <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="Manage Promotions" maxWidth="1.7976931348623157E308"
-                               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1f2937;"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              style="-fx-font-weight: bold;" text="MANAGE PROMOTIONS">
+                            <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
+                        </Text>
                     </VBox>
                 </HBox>
             </children>
