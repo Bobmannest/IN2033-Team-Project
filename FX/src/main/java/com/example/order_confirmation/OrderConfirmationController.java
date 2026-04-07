@@ -1,16 +1,30 @@
 package com.example.order_confirmation;
 
 
+import com.example.catalogue.CatalogueDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
 public class OrderConfirmationController {
+    @FXML private BorderPane orderConfirmationPane;
+
+    @FXML private Label orderIdLabel;
+    @FXML private Label totalLabel;
+    @FXML private Label emailLabel;
+    @FXML private Label addressLabel;
+
     @FXML
-    private BorderPane orderConfirmationPane;
+    public void displayOrderDetails(String orderId, double total, String email, String address) {
+        orderIdLabel.setText(orderId);
+        totalLabel.setText("£" + total);
+        emailLabel.setText(email);
+        addressLabel.setText(address);
+    }
 
     @FXML
     private void handleOrders() {
@@ -45,11 +59,6 @@ public class OrderConfirmationController {
     @FXML
     private void handleManagePromotions() {
         navigate("/com/example/fx/CampaignItem.fxml", 750, 500);
-    }
-
-    @FXML
-    private void handleOrderConfirmation() {
-        navigate("/com/example/fx/OrderConfirmation.fxml", 750, 500);
     }
 
     private void navigate(String fxml, int width, int height) {

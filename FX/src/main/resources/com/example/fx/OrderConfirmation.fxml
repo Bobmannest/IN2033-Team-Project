@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="orderConfirmationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.order_confirmation.OrderConfirmationController">
+<BorderPane fx:id="orderConfirmationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.order_confirmation.OrderConfirmationController">
 <effect>
     <Blend />
 </effect>
@@ -56,10 +56,10 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                 <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                 <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
-                 <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-                 <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
+                 <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
+                 <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
+                 <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
+                 <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
                  <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
               </items>
             </ToolBar>
@@ -106,7 +106,7 @@
                                                 <Font name="MS Reference Sans Serif" size="14.0" />
                                              </font>
                                           </Text>
-                                          <Label text="#ID">
+                                          <Label fx:id="orderIdLabel" text="#ID">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -126,7 +126,27 @@
                                                 <Font name="MS Reference Sans Serif" size="14.0" />
                                              </font>
                                           </Text>
-                                          <Label text="£ XX:XX">
+                                          <Label fx:id="totalLabel" text="£ XX:XX">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="2.0" prefWidth="446.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="47.0625">
+                                             <font>
+                                                <Font name="MS Reference Sans Serif" size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="emailLabel" text="john.doe@gmail.com">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -146,7 +166,7 @@
                                                 <Font name="MS Reference Sans Serif" size="14.0" />
                                              </font>
                                           </Text>
-                                          <Label text="123 Pharmacy Lane, City, Country">
+                                          <Label fx:id="addressLabel" text="123 Pharmacy Lane, City, Country">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -207,7 +227,7 @@
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="259.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Return to Homepage" onAction="#handleHome">
+                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleHome" prefHeight="35.0" prefWidth="259.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Return to Homepage">
                                  <font>
                                     <Font name="MS Reference Sans Serif" size="16.0" />
                                  </font>

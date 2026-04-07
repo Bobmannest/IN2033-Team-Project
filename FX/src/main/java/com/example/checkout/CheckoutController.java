@@ -3,6 +3,7 @@ package com.example.checkout;
 
 import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
+import com.example.order_confirmation.OrderConfirmationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -180,7 +181,21 @@ public class CheckoutController {
             e.printStackTrace();
         }
 
-        navigate("/com/example/fx/OrderConfirmation.fxml", 800, 650);
+
+        //Load OrderConfirmation
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderConfirmation.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 650);
+
+            OrderConfirmationController controller = loader.getController();
+            controller.displayOrderDetails("123", calculateTotal(), email, address);
+
+            Stage stage = (Stage) checkoutPane.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //Records order and updates CA available stock
         BasketList.clear();
     }
@@ -194,5 +209,13 @@ public class CheckoutController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private double calculateTotal() {
+        double totalCost = 0;
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            totalCost += item.getPackage_cost();
+        }
+        return totalCost;
     }
 }
