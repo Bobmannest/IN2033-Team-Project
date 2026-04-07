@@ -13,9 +13,14 @@ public class EmailAPI {
     }
 
     @PostMapping("/sendPurchase")
-    public String sendPurchaseEmail(@RequestParam String recipient_email) {
-        emailService.sendPurchaseEmail(recipient_email);
-        return "Purchase Email sent to " + recipient_email;
+    public String sendPurchaseEmail(
+            @RequestParam String recipientName,
+            @RequestParam String recipientEmail,
+            @RequestParam String recipientAddress,
+            @RequestParam String trackId)
+    {
+        emailService.sendPurchaseEmail(recipientName, recipientEmail, recipientAddress, trackId);
+        return "Purchase Email sent to " + recipientEmail;
     }
 
     @PostMapping("/sendTest")

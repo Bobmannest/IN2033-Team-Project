@@ -2,9 +2,7 @@ package com.example.checkout;
 
 
 import com.example.basket.BasketList;
-import com.example.catalogue.CatalogueDatabase;
 import com.example.catalogue.CatalogueItem;
-import com.example.catalogue.CatalogueItemController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
-import java.util.List;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.UUID;
 
 
 public class CheckoutController {
@@ -108,7 +110,7 @@ public class CheckoutController {
         }
 
         if (correctCustomerInfo && correctPaymentInfo) {
-            handleOrderConfirmation();
+            handleOrderConfirmation(name, email, address);
         } else if (!correctCustomerInfo && !correctPaymentInfo) {
             checkoutErrorLabel.setText("At least one of the entered customer and payment info is incorrect");
         } else if (!correctCustomerInfo) {
@@ -155,8 +157,29 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleOrderConfirmation() {
+    private void handleOrderConfirmation(String name, String email, String address) {
+        String trackId = UUID.randomUUID().toString();
+
+        try {
+            String url = "http://localhost:8080/api/emails/sendPurchase"
+                    + "?recipientName=" + name
+                    + "&recipientEmail=" + email
+                    + "&recipientAddress=" + address
+                    + "&trackId=" + trackId;
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         navigate("/com/example/fx/OrderConfirmation.fxml", 800, 650);
+        //Records order and updates CA available stock
+        BasketList.clear();
     }
 
     private void navigate(String fxml, int width, int height) {
