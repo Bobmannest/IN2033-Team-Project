@@ -55,7 +55,8 @@
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Account"
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Account" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Reports" onAction="#handleReports"
                           style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
                </items>
             </ToolBar>

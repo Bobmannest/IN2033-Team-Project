@@ -11,7 +11,6 @@ module com.example.fx {
     requires spring.core;
     requires java.net.http;
     requires com.fasterxml.jackson.annotation;
-    requires javafx.swt;
 
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
@@ -33,4 +32,6 @@ module com.example.fx {
     exports com.example.checkout;
     opens com.example.order_confirmation to javafx.fxml;
     exports com.example.order_confirmation;
+    opens com.example.reports to javafx.fxml;
+    exports com.example.reports;
 }

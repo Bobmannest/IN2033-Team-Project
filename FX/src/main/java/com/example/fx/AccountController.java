@@ -118,4 +118,16 @@ public class AccountController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleReports() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
+            Scene scene = new Scene(loader.load(), 1000, 620);
+            Stage stage = (Stage) accountNoLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
