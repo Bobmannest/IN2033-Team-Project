@@ -6,6 +6,7 @@ import com.example.catalogue.CatalogueItem;
 import com.example.order_confirmation.OrderConfirmationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -127,37 +128,37 @@ public class CheckoutController {
 
     @FXML
     private void handleOrders() {
-        navigate("/com/example/fx/OrderHistory.fxml", 800, 600);
+        navigate("/com/example/fx/OrderHistory.fxml");
     }
 
     @FXML
     private void handleCatalogue() {
-        navigate("/com/example/fx/Catalogue.fxml", 905, 633);
+        navigate("/com/example/fx/Catalogue.fxml");
     }
 
     @FXML
     private void handleAccount() {
-        navigate("/com/example/fx/Account.fxml", 800, 600);
+        navigate("/com/example/fx/Account.fxml");
     }
 
     @FXML
     private void handleBasket() {
-        navigate("/com/example/fx/Basket.fxml", 820, 633);
+        navigate("/com/example/fx/Basket.fxml");
     }
 
     @FXML
     private void handleHome() {
-        navigate("/com/example/fx/Home.fxml", 900, 650);
+        navigate("/com/example/fx/Home.fxml");
     }
 
     @FXML
     private void handleCreatePromotion() {
-        navigate("/com/example/fx/Promotion.fxml", 900, 650);
+        navigate("/com/example/fx/Promotion.fxml");
     }
 
     @FXML
     private void handleManagePromotions() {
-        navigate("/com/example/fx/CampaignItem.fxml", 750, 500);
+        navigate("/com/example/fx/CampaignItem.fxml");
     }
 
     @FXML
@@ -200,12 +201,12 @@ public class CheckoutController {
         BasketList.clear();
     }
 
-    private void navigate(String fxml, int width, int height) {
+    private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Scene scene = new Scene(loader.load(), width, height);
+            Parent root = loader.load();
             Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

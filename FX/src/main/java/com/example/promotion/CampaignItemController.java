@@ -4,6 +4,7 @@ import com.example.catalogue.CatalogueDatabase;
 import com.example.catalogue.CatalogueItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -212,9 +213,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Home.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open home.", false);
         }
@@ -225,9 +226,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Catalogue.fxml"));
-            Scene scene = new Scene(loader.load(), 905, 633);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open catalogue.", false);
         }
@@ -238,9 +239,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Promotion.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open create promotion screen.", false);
         }
@@ -251,9 +252,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/OrderHistory.fxml"));
-            Scene scene = new Scene(loader.load(), 900, 650);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open create orders screen.", false);
         };
@@ -264,9 +265,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Account.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open account screen.", false);
         }
@@ -277,9 +278,9 @@ public class CampaignItemController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Basket.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open basket screen.", false);
         }

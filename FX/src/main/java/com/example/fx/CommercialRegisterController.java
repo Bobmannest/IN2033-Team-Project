@@ -2,6 +2,7 @@ package com.example.fx;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -84,9 +85,9 @@ public class CommercialRegisterController {
     private void handleBack() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Login.fxml"));
-            Scene scene = new Scene(loader.load(), 850, 520);
+            Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not return to sign in screen.", false);
         }
