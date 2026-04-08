@@ -10,7 +10,6 @@ public class CheckoutItemController {
     private CatalogueItem currentItem;
 
     @FXML private Label idLabel;
-    @FXML private Label quantityLabel;
     @FXML private Label packageCostLabel;
 
 
@@ -18,7 +17,6 @@ public class CheckoutItemController {
         this.currentItem = item;
 
         idLabel.setText("#" + item.getItem_id());
-        quantityLabel.setText("Qty - X");
         packageCostLabel.setText("£" + item.getPackage_cost());
     }
 }
