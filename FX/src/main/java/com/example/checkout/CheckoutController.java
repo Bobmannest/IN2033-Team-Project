@@ -3,13 +3,12 @@ package com.example.checkout;
 
 import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
-import com.example.fx.Member;
-import com.example.fx.Session;
+import com.example.members.Member;
+import com.example.members.Session;
 import com.example.order_confirmation.OrderConfirmationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

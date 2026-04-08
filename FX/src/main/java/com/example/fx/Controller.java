@@ -1,9 +1,12 @@
 package com.example.fx;
 
+import com.example.members.ChangePassController;
+import com.example.members.Member;
+import com.example.members.MemberDAO;
+import com.example.members.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -61,6 +64,21 @@ public class Controller {
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             showError("Could not open registration screen.");
+        }
+    }
+
+    // continue as guest
+    @FXML
+    private void handleGuestLogin() {
+        try {
+            Session.setMember(null);
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            showError("Could not open catalogue.");
         }
     }
 

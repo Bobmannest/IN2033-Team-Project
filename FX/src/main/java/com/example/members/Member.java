@@ -1,4 +1,4 @@
-package com.example.fx;
+package com.example.members;
 
 public class Member {
     private String accountNo;

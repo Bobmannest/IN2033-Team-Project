@@ -1,4 +1,4 @@
-package com.example.fx;
+package com.example.members;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
@@ -17,6 +18,10 @@ public class AccountController {
     @FXML private Label orderCountLabel;
     @FXML private Label accountNoLabel2;
     @FXML private Label memberTypeLabel2;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnOrders;
+    @FXML private Button btnReports;
 
     @FXML
     public void initialize() {
@@ -30,6 +35,27 @@ public class AccountController {
             accountNoLabel2.setText(member.getAccountNo());
             memberTypeLabel2.setText(member.getMemberType());
         }
+        setupNavBar();
+    }
+
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports);
+        } else {
+            hide(btnCreatePromotion, btnManagePromotions, btnReports);
+            show(btnOrders);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
     @FXML

@@ -7,16 +7,26 @@ DROP TABLE IF EXISTS OnlineOrderItem;
 DROP TABLE IF EXISTS OnlineOrder;
 DROP TABLE IF EXISTS PromotionCampaignItem;
 DROP TABLE IF EXISTS PromotionCampaign;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS CommercialApplication;
 DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS Member;
 
 CREATE TABLE IF NOT EXISTS Member (
     account_no VARCHAR(10) PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
-    member_type ENUM('non_commercial', 'commercial') NOT NULL DEFAULT 'non_commercial',
+    member_type ENUM('non_commercial', 'commercial', 'admin') NOT NULL DEFAULT 'non_commercial',
     is_first_login BOOLEAN NOT NULL DEFAULT TRUE,
     order_count INT NOT NULL DEFAULT 0
 );
+
+INSERT INTO Member (account_no, email, password, member_type, is_first_login, order_count) VALUES
+('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
+('manager', 'curatecht33+manager@gmail.com', 'GetPU it done', 'admin',          FALSE, 0),
+('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
+('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
+('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     FALSE, 0);
 
 CREATE TABLE IF NOT EXISTS Product (
     item_id INT(10) PRIMARY KEY,
@@ -150,3 +160,6 @@ CREATE TABLE IF NOT EXISTS CommercialApplication (
     submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending'
 );
+
+INSERT INTO CommercialApplication (application_id, company_name, companies_house_no, director_name, business_type, address, email, status)
+VALUES ('APP0001', 'Pond Pharmacy', 'UK10003429', 'TBD', 'Pharmacy', 'Chislehurst, 25 High Street, BR7 5BN', 'curatecht33+pu0003@gmail.com', 'approved');

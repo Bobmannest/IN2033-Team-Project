@@ -1,4 +1,6 @@
-package com.example.fx;
+package com.example.members;
+
+import com.example.fx.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

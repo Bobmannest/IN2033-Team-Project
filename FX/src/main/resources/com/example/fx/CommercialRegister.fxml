@@ -16,7 +16,7 @@
             style="-fx-background-color: #1a3a2a;"
             xmlns="http://javafx.com/javafx/21.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.fx.CommercialRegisterController"
+            fx:controller="com.example.members.CommercialRegisterController"
             stylesheets="@style.css">
    <center>
       <HBox prefHeight="596.0" prefWidth="850.0" BorderPane.alignment="CENTER">

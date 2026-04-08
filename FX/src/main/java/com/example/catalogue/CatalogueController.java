@@ -8,12 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.example.members.Session;
+import com.example.members.Member;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.util.List;
 
 public class CatalogueController {
     @FXML private VBox catalogueVBox;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
+    @FXML private Button btnReports;
 
     public void displayItems() {
         catalogueVBox.getChildren().clear();
@@ -38,6 +46,33 @@ public class CatalogueController {
     public void initialize() {
         CatalogueDatabase.setListener(this);
         displayItems();
+        setupNavBar();
+    }
+
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports);
+        } else {
+            hide(btnCreatePromotion, btnManagePromotions, btnReports);
+            show(btnOrders, btnAccount);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) {
+            b.setVisible(false);
+            b.setManaged(false);
+        }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) {
+            b.setVisible(true);
+            b.setManaged(true);
+        }
     }
 
     // navigates to the orders page
@@ -71,6 +106,9 @@ public class CatalogueController {
     private void handleManagePromotions() {
         navigate("/com/example/fx/CampaignItem.fxml");
     }
+
+    @FXML
+    private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
 
     private void navigate(String fxml) {
         try {

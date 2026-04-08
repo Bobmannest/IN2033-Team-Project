@@ -34,4 +34,6 @@ module com.example.fx {
     exports com.example.order_confirmation;
     opens com.example.reports to javafx.fxml;
     exports com.example.reports;
+    exports com.example.members;
+    opens com.example.members to javafx.fxml;
 }

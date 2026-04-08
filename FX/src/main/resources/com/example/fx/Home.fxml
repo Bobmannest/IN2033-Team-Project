@@ -54,10 +54,11 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
-                  <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                 <Button fx:id="btnCreatePromotion" mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
+                 <Button fx:id="btnManagePromotions" mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
+                 <Button fx:id="btnOrders" mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />
+                 <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                 <Button fx:id="btnReports" mnemonicParsing="false" prefHeight="33.0" text="Reports" onAction="#handleReports" />
               </items>
             </ToolBar>
             <VBox prefHeight="489.0" prefWidth="698.0" VBox.vgrow="ALWAYS">
