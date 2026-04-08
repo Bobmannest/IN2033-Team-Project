@@ -18,4 +18,14 @@ public class PaymentAPI {
         paymentService.printPayment(payment);
         return ResponseEntity.ok("Payment Accepted");
     }
+
+    @PostMapping("/process")
+    public ResponseEntity<String> processPayment(@RequestBody PaymentDetails paymentDetails) {
+        boolean valid = paymentService.processPayment(paymentDetails);
+        if (valid) {
+            return ResponseEntity.ok("Payment Details Accepted");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid Payment Details");
+        }
+    }
 }

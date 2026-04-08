@@ -3,6 +3,7 @@ package com.example.promotion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -133,9 +134,9 @@ public class PromotionController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Home.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open home.", false);
         }
@@ -146,9 +147,9 @@ public class PromotionController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Catalogue.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open catalogue.", false);
         }
@@ -159,9 +160,9 @@ public class PromotionController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/CampaignItem.fxml"));
-            Scene scene = new Scene(loader.load(), 750, 500);
+            Parent root = loader.load();
             Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open manage promotions screen.", false);
         }
@@ -172,9 +173,9 @@ public class PromotionController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/OrderHistory.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open orders screen.", false);
         }
@@ -185,9 +186,9 @@ public class PromotionController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Account.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) campaignIdField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open account screen.", false);
         }
@@ -195,6 +196,13 @@ public class PromotionController {
 
     @FXML
     private void handleBasket() {
-        showStatus("Basket screen not implemented yet.", false);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Basket.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

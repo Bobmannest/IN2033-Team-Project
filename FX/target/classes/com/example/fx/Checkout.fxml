@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
@@ -135,11 +134,6 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <CheckBox fx:id="guestCheckbox" mnemonicParsing="false" text="Checkout as Guest">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="12.0" />
-                                             </font>
-                                          </CheckBox>
                                        </children>
                                     </VBox>
                                  </children>
@@ -239,9 +233,9 @@
                         </VBox>
                         <VBox prefHeight="405.0" prefWidth="388.0">
                            <children>
-                              <VBox prefHeight="220.0" prefWidth="246.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
+                              <VBox prefHeight="141.0" prefWidth="271.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
                                  <children>
-                                    <VBox prefHeight="250.0" prefWidth="175.0">
+                                    <VBox prefHeight="128.0" prefWidth="237.0" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </VBox.margin>
@@ -254,7 +248,7 @@
                                                 <Insets bottom="15.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <VBox fx:id="basketVBox" prefHeight="76.0" prefWidth="212.0">
+                                          <VBox fx:id="basketVBox" prefHeight="0.0" prefWidth="237.0">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
@@ -262,20 +256,65 @@
                                           <Line endX="135.0" startX="-100.0" style="-fx-stroke: #e3e3e3; -fx-scale-y: 2;" />
                                           <HBox prefHeight="7.0" prefWidth="212.0">
                                              <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Pane prefHeight="20.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="subtotalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox prefHeight="7.0" prefWidth="212.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="discountLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="72.0" text="- 0%">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox prefHeight="7.0" prefWidth="212.0">
+                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
                                                    <font>
                                                       <Font name="MS Reference Sans Serif" size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Pane prefHeight="20.0" prefWidth="143.0" />
-                                                <Label fx:id="totalLabel" text="£ XX:XX">
+                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="totalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                              </children>
                                              <VBox.margin>
-                                                <Insets top="10.0" />
+                                                <Insets />
                                              </VBox.margin>
                                           </HBox>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Estimated Delivery: 3-5 Business Days">

@@ -2,6 +2,7 @@ package com.example.fx;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -55,9 +56,9 @@ public class Controller {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Register.fxml"));
-            Scene scene = new Scene(loader.load(), 850, 520);
+            Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showError("Could not open registration screen.");
         }
@@ -68,11 +69,11 @@ public class Controller {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/ChangePassword.fxml"));
-            Scene scene = new Scene(loader.load(), 600, 400);
+            Parent root = loader.load();
             ChangePassController ctrl = loader.getController();
             ctrl.setMember(member);
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showError("Could not open password change screen.");
         }
@@ -85,9 +86,9 @@ public class Controller {
             Session.setMember(member);
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Catalogue.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 600);
+            Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             showError("Could not open dashboard.");
         }

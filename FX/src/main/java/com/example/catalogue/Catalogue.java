@@ -13,9 +13,9 @@ public class Catalogue extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Catalogue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 633);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Catalogue");
-        stage.setMinWidth(820);
+        stage.setMinWidth(905);
         stage.setMinHeight(633);
         stage.setScene(scene);
         stage.show();

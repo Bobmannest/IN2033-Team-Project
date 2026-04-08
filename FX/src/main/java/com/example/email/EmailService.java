@@ -1,9 +1,13 @@
 package com.example.email;
 
+import com.example.basket.BasketList;
+import com.example.catalogue.CatalogueItem;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Properties;
 
 @Service
@@ -11,7 +15,12 @@ public class EmailService {
     final String username = "ipospu33@gmail.com";
     final String password = "ljom jqat cjay eeqd";
 
-    public void sendPurchaseEmail(String recipient_email) {
+    public void sendPurchaseEmail(
+            String recipientName,
+            String recipientEmail,
+            String recipientAddress,
+            String track_id)
+    {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
@@ -30,12 +39,17 @@ public class EmailService {
             message.setFrom(new InternetAddress("ipospu33@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(recipient_email)
+                    InternetAddress.parse(recipientEmail)
             );
-            message.setSubject("IPOS Purchase Email");
-            message.setText("Purchase Successful," +
-                    "\nReceipt: ..." +
-                    "\nTracking Link: ..."
+            message.setSubject("IPOS Purchase Receipt");
+            message.setText("Purchase Successful!\n" +
+                    "\nReceipt: " +
+                    "\nName: " + recipientName +
+                    "\nEmail: " + recipientEmail +
+                    "\nAddress: " + recipientAddress +
+                    "\n\nPurchased Items:\n" +
+                    getPurchasedItems() +
+                    "\n\nTracking Link: http://localhost:8080/api/orders/track?id=" + track_id
             );
 
             Transport.send(message);
@@ -45,6 +59,17 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+    private String getPurchasedItems() {
+        StringBuilder itemString = new StringBuilder();
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            itemString.append("\n- ").append(item.getItem_id())
+                    .append(" | ").append(item.getPackage_type())
+                    .append(" | £").append(item.getPackage_cost());
+        }
+        return itemString.toString();
+    }
+
     public void sendTestEmail(String recipient_email) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");

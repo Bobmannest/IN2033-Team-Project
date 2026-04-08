@@ -2,6 +2,7 @@ package com.example.fx;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -55,11 +56,11 @@ public class ChangePassController {
             // brings up a success message and takes you back to login screen
             FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/com/example/fx/Login.fxml"));
-            Scene scene = new Scene(loader.load(), 600, 400);
+            Parent root = loader.load();
             Controller loginCtrl = loader.getController();
             loginCtrl.showSuccessMessage("Password changed! Please log in again.");
             Stage stage = (Stage) newPasswordField.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
 
         } catch (SQLException e) {
             showError("Database error: " + e.getMessage());

@@ -1,63 +1,73 @@
 package com.example.order_confirmation;
 
 
+import com.example.catalogue.CatalogueDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
 public class OrderConfirmationController {
+    @FXML private BorderPane orderConfirmationPane;
+
+    @FXML private Label orderIdLabel;
+    @FXML private Label totalLabel;
+    @FXML private Label emailLabel;
+    @FXML private Label addressLabel;
+
     @FXML
-    private BorderPane orderConfirmationPane;
+    public void displayOrderDetails(String orderId, double total, String email, String address) {
+        orderIdLabel.setText(orderId);
+        totalLabel.setText("£" + total);
+        emailLabel.setText(email);
+        addressLabel.setText(address);
+    }
 
     @FXML
     private void handleOrders() {
-        navigate("/com/example/fx/OrderHistory.fxml", 800, 600);
+        navigate("/com/example/fx/OrderHistory.fxml");
     }
 
     @FXML
     private void handleCatalogue() {
-        navigate("/com/example/fx/Catalogue.fxml", 800, 600);
+        navigate("/com/example/fx/Catalogue.fxml");
     }
 
     @FXML
     private void handleAccount() {
-        navigate("/com/example/fx/Account.fxml", 800, 600);
+        navigate("/com/example/fx/Account.fxml");
     }
 
     @FXML
     private void handleBasket() {
-        navigate("/com/example/fx/Basket.fxml", 820, 633);
+        navigate("/com/example/fx/Basket.fxml");
     }
 
     @FXML
     private void handleHome() {
-        navigate("/com/example/fx/Home.fxml", 900, 650);
+        navigate("/com/example/fx/Home.fxml");
     }
 
     @FXML
     private void handleCreatePromotion() {
-        navigate("/com/example/fx/Promotion.fxml", 900, 650);
+        navigate("/com/example/fx/Promotion.fxml");
     }
 
     @FXML
     private void handleManagePromotions() {
-        navigate("/com/example/fx/CampaignItem.fxml", 750, 500);
+        navigate("/com/example/fx/CampaignItem.fxml");
     }
 
-    @FXML
-    private void handleOrderConfirmation() {
-        navigate("/com/example/fx/OrderConfirmation.fxml", 750, 500);
-    }
-
-    private void navigate(String fxml, int width, int height) {
+    private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Scene scene = new Scene(loader.load(), width, height);
+            Parent root = loader.load();
             Stage stage = (Stage) orderConfirmationPane.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
