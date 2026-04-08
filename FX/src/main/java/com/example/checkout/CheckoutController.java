@@ -80,26 +80,29 @@ public class CheckoutController {
         totalLabel.setText("£" + String.format("%.2f", totalCost));
     }
 
-    //Checks if card numbers are valid based on Luhn's Algorithm
-    private boolean isCardValid(String cardNum) {
-        if (!cardNum.matches("\\d{13,19}")) {return false;}
+    private boolean processPaymentViaAPI(String cardNum, String expiry, String cvv) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
 
-        char[] cardDigits = cardNum.toCharArray();
-        int sum = 0;
-        boolean shouldDoubleDigit = false;
+            String json = String.format(
+                    "{\"card_number\":\"%s\",\"expiry_date\":\"%s\",\"cvv\":\"%s\"}",
+                    cardNum, expiry, cvv
+            );
 
-        for (int i = cardDigits.length - 1; i >= 0; i--) {
-            int digit = Character.getNumericValue(cardDigits[i]);
-            if (shouldDoubleDigit) {
-                digit *= 2;
-                if (digit > 9) {digit -= 9;}
-            }
-            sum += digit;
-            shouldDoubleDigit = !shouldDoubleDigit;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/api/payments/process"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() == 200;
+
+        } catch (Exception e) {
+            checkoutErrorLabel.setText("Could not connect to payment service.");
+            return false;
         }
-
-        if (sum % 10 == 0) {return true;}
-        return false;
     }
 
     @FXML
@@ -121,7 +124,7 @@ public class CheckoutController {
                 correctCustomerInfo = false;
             }
 
-            if (!isCardValid(cardNum) || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches("\\d{3}")) {
+            if (!processPaymentViaAPI(cardNum, expiry, cvv)) {
                 correctPaymentInfo = false;
             }
 
@@ -206,6 +209,12 @@ public class CheckoutController {
             totalCost *= 0.9;
         }
 
+        //Increments current member order count by 1
+        if (member != null) {
+            member.setOrderCount(member.getOrderCount() + 1);
+        }
+        BasketList.clear();
+
         //Load OrderConfirmation
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderConfirmation.fxml"));
@@ -222,9 +231,6 @@ public class CheckoutController {
 
         //Records order and updates CA available stock
 
-        //Increments current member order count by 1
-        Session.getMember().setOrderCount(Session.getMember().getOrderCount() + 1);
-        BasketList.clear();
     }
 
     private void navigate(String fxml) {
