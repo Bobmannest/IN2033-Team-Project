@@ -16,4 +16,8 @@ public class PaymentService {
     public void recordPayment() {
 
     }
+
+    public void processPayment() {
+
+    }
 }

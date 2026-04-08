@@ -3,6 +3,8 @@ package com.example.checkout;
 
 import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
+import com.example.fx.Member;
+import com.example.fx.Session;
 import com.example.order_confirmation.OrderConfirmationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +38,8 @@ public class CheckoutController {
     @FXML private TextField expiryField;
     @FXML private TextField cvvField;
 
+    @FXML private Label subtotalLabel;
+    @FXML private Label discountLabel;
     @FXML private Label totalLabel;
 
     public void displayItems() {
@@ -60,9 +64,18 @@ public class CheckoutController {
     public void initialize() {
         displayItems();
 
+        //Calculates total
         double totalCost = 0;
         for (CatalogueItem item : BasketList.getBasketItems()) {
             totalCost += item.getPackage_cost();
+        }
+
+        //Calculates discounts and displays text
+        subtotalLabel.setText("£" + String.format("%.2f", totalCost));
+        Member member = Session.getMember();
+        if (member != null && member.getOrderCount() % 10 == 9) {
+            discountLabel.setText("-10%");
+            totalCost *= 0.9;
         }
         totalLabel.setText("£" + String.format("%.2f", totalCost));
     }
@@ -100,7 +113,6 @@ public class CheckoutController {
             String name = nameField.getText().trim();
             String email = emailField.getText().trim();
             String address = addressField.getText().trim();
-            boolean isGuest = guestCheckbox.isSelected();
             String cardNum = cardNumField.getText().trim();
             String expiry = expiryField.getText().trim();
             String cvv = cvvField.getText().trim();
@@ -182,22 +194,36 @@ public class CheckoutController {
             e.printStackTrace();
         }
 
+        //Calculates total
+        double totalCost = 0;
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            totalCost += item.getPackage_cost();
+        }
+
+        //Calculates discounts
+        Member member = Session.getMember();
+        if (member != null && member.getOrderCount() % 10 == 9) {
+            totalCost *= 0.9;
+        }
 
         //Load OrderConfirmation
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderConfirmation.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 650);
+            Parent root = loader.load();
 
             OrderConfirmationController controller = loader.getController();
-            controller.displayOrderDetails("123", calculateTotal(), email, address);
+            controller.displayOrderDetails("123", totalCost, email, address);
 
             Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //Records order and updates CA available stock
+
+        //Increments current member order count by 1
+        Session.getMember().setOrderCount(Session.getMember().getOrderCount() + 1);
         BasketList.clear();
     }
 
@@ -210,13 +236,5 @@ public class CheckoutController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private double calculateTotal() {
-        double totalCost = 0;
-        for (CatalogueItem item : BasketList.getBasketItems()) {
-            totalCost += item.getPackage_cost();
-        }
-        return totalCost;
     }
 }

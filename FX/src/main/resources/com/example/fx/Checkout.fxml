@@ -256,6 +256,48 @@
                                           <Line endX="135.0" startX="-100.0" style="-fx-stroke: #e3e3e3; -fx-scale-y: 2;" />
                                           <HBox prefHeight="7.0" prefWidth="212.0">
                                              <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Pane prefHeight="20.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="subtotalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox prefHeight="7.0" prefWidth="212.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="discountLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="72.0" text="- 0%">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="3.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox prefHeight="7.0" prefWidth="212.0">
+                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
                                                    <font>
                                                       <Font name="MS Reference Sans Serif" size="14.0" />
@@ -272,7 +314,7 @@
                                                 </Label>
                                              </children>
                                              <VBox.margin>
-                                                <Insets top="10.0" />
+                                                <Insets />
                                              </VBox.margin>
                                           </HBox>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Estimated Delivery: 3-5 Business Days">
