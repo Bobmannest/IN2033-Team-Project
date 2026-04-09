@@ -150,13 +150,13 @@ CREATE TABLE IF NOT EXISTS Orders (
 );
 
 CREATE TABLE payments (
-    id            BIGINT UNSIGNED   NOT NULL AUTO_INCREMENT,
-    card_first4   CHAR(4)           NOT NULL,
-    card_last4    CHAR(4)           NOT NULL,
-    card_expiry   CHAR(5)           NOT NULL,
-    card_type     VARCHAR(20)       NOT NULL,
-    amount        DECIMAL(10, 2)    NOT NULL,
-    created_at    TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    card_first4 CHAR(4) NOT NULL,
+    card_last4 CHAR(4) NOT NULL,
+    card_expiry CHAR(5) NOT NULL,
+    card_type VARCHAR(20) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
