@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS Orders (
 
 CREATE TABLE payments (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
     card_first4 CHAR(4) NOT NULL,
     card_last4 CHAR(4) NOT NULL,
     card_expiry CHAR(5) NOT NULL,
@@ -159,6 +160,14 @@ CREATE TABLE payments (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+INSERT INTO payments (name, card_first4, card_last4, card_expiry, card_type, amount, created_at) VALUES
+('Cosymed Ltd', '4532', '8842', '06/28', 'Credit Card', 806.00, '2026-03-15 00:00:00'),
+('John Smith', '4916', '3174', '11/27', 'Visa', 45.00, '2026-03-03 00:00:00'),
+('Jane Doe', '4024', '5678', '03/29', 'Debit Card', 32.50, '2026-03-03 00:00:00'),
+('Glynne Morisson', '5412', '9021', '09/26', 'Credit Card', 78.00, '2026-03-29 00:00:00'),
+('Peter Popov', '0000', '0001', '08/30', 'AmEx', 52.00, '2026-03-20 00:00:00'),
+('Eva Bauyer', '0001', '0005', '09/28', 'Mastercard', 10.50, '2026-04-08 00:00:00');
 
 CREATE TABLE IF NOT EXISTS CommercialApplication (
     application_id VARCHAR(20) PRIMARY KEY,
