@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="225.0" prefWidth="205.0" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.active_promotions.ActivePromotionItemController">
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </VBox.margin>
+            <children>
+            <HBox prefHeight="1.0" prefWidth="134.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="169.0" text="Name">
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+                <Line endX="73.0" endY="-1.1587142944335938E-4" startX="-100.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="3.0" top="3.0" />
+               </VBox.margin></Line>
+            <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #f3f3f3;" text="Enjoy a limited-time discount on selected items! Get quality products at a reduced price while stocks last." wrapText="true">
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="7.0" prefWidth="212.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label fx:id="subtotalLabel1" prefHeight="25.0" prefWidth="122.0" text="Discount:">
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/discount.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="subtotalLabel" alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="10% Off">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="3.0" top="3.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label prefHeight="29.0" prefWidth="113.0" text="Ends in:">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/timeleft.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="113.0" text="5 Days 2 Hours" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+                <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="192.0" text="View Items">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="40.0">
+                            <image>
+                                <Image url="@../../../images/view.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</VBox>

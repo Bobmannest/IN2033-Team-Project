@@ -98,6 +98,11 @@ public class CatalogueController {
     }
 
     @FXML
+    private void handleActivePromotions() {
+        navigate("/com/example/fx/ActivePromotions.fxml");
+    }
+
+    @FXML
     private void handleCreatePromotion() {
         navigate("/com/example/fx/Promotion.fxml");
     }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="416.0" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.order_confirmation.OrderConfirmationItemController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="425.0" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.order_confirmation.OrderConfirmationItemController">
    <children>
       <Label fx:id="idLabel" prefHeight="18.0" prefWidth="70.0" text="ID" HBox.hgrow="ALWAYS">
          <font>

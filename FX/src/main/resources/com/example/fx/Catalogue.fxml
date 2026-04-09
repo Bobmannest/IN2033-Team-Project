@@ -56,6 +56,7 @@
                           </ImageView>
                       </graphic>
                   </Button>
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions"/>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />

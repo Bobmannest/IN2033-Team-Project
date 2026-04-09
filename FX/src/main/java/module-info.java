@@ -36,4 +36,6 @@ module com.example.fx {
     exports com.example.reports;
     exports com.example.members;
     opens com.example.members to javafx.fxml;
+    opens com.example.active_promotions to javafx.fxml;
+    exports com.example.active_promotions;
 }
