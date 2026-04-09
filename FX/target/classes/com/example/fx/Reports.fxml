@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.reports.ReportsHubController"
+            stylesheets="@../fx/style.css">
+
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+
+         <ToolBar prefHeight="40.0" prefWidth="900.0">
+            <items>
+               <ImageView fitHeight="33.0" fitWidth="199.0">
+                  <image><Image url="@../../../images/curatech.png" /></image>
+               </ImageView>
+               <Pane prefHeight="38.0" prefWidth="560.0" />
+               <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
+                  <graphic>
+                     <ImageView fitHeight="30.0" fitWidth="30.0">
+                        <image><Image url="@../../../images/cart.png" /></image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+            </items>
+         </ToolBar>
+
+         <ToolBar prefHeight="40.0" prefWidth="900.0">
+            <items>
+               <Button mnemonicParsing="false" onAction="#handleHome">
+                  <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0">
+                        <image><Image url="@../../../images/home.png" /></image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue"         onAction="#handleCatalogue" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion"  onAction="#handleCreatePromotion" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Orders"            onAction="#handleOrders" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Account"           onAction="#handleAccount" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Reports"
+                       style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
+            </items>
+         </ToolBar>
+
+         <VBox prefWidth="900.0" spacing="40">
+            <padding><Insets bottom="40.0" left="40.0" right="40.0" top="40.0" /></padding>
+
+            <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                  style="-fx-font-weight: bold;" text="REPORTS">
+               <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
+            </Text>
+            <Line endX="820.0" startX="-100.0" />
+
+            <HBox spacing="30" alignment="CENTER">
+
+               <VBox spacing="12" alignment="CENTER"
+                     style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-color: #f9f9f9; -fx-background-radius: 8;"
+                     prefWidth="240" prefHeight="180">
+                  <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+                  <Text style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Campaign Hits" />
+                  <Label wrapText="true" text="Customer engagement with advertising campaigns — hits, purchases and conversion rates." style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+                  <Button text="Open Report" onAction="#handleCampaignHits"
+                          prefWidth="140"
+                          style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
+               </VBox>
+
+               <VBox spacing="12" alignment="CENTER"
+                     style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-color: #f9f9f9; -fx-background-radius: 8;"
+                     prefWidth="240" prefHeight="180">
+                  <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+                  <Text style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Sales Report" />
+                  <Label wrapText="true" text="Sales within a specified period — quantity sold, unit price and total per item." style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+                  <Button text="Open Report" onAction="#handleSalesReport"
+                          prefWidth="140"
+                          style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
+               </VBox>
+
+               <VBox spacing="12" alignment="CENTER"
+                     style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-color: #f9f9f9; -fx-background-radius: 8;"
+                     prefWidth="240" prefHeight="180">
+                  <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+                  <Text style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Advert Campaigns" />
+                  <Label wrapText="true" text="Advertising campaigns for a given period — items, discounts and total sales per campaign." style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+                  <Button text="Open Report" onAction="#handleAdvertCampaigns"
+                          prefWidth="140"
+                          style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
+               </VBox>
+
+            </HBox>
+
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+
+         </VBox>
+      </VBox>
+   </top>
+
+</BorderPane>

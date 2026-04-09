@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="650.0" prefWidth="900.0"
+            style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.reports.CampaignHitsReportController"
+            stylesheets="@../fx/style.css">
+
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+
+         <ToolBar prefHeight="40.0" prefWidth="900.0">
+            <items>
+               <ImageView fitHeight="33.0" fitWidth="199.0">
+                  <image><Image url="@../../../images/curatech.png" /></image>
+               </ImageView>
+               <Pane prefHeight="38.0" prefWidth="560.0" />
+               <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
+                  <graphic>
+                     <ImageView fitHeight="30.0" fitWidth="30.0">
+                        <image><Image url="@../../../images/cart.png" /></image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+            </items>
+         </ToolBar>
+
+         <ToolBar prefHeight="40.0" prefWidth="900.0">
+            <items>
+               <Button mnemonicParsing="false" onAction="#handleHome">
+                  <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0">
+                        <image><Image url="@../../../images/home.png" /></image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue"         onAction="#handleCatalogue" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion"  onAction="#handleCreatePromotion" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Orders"            onAction="#handleOrders" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Account"           onAction="#handleAccount" />
+               <Button mnemonicParsing="false" prefHeight="33.0" text="Reports"           onAction="#handleReports"
+                       style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
+            </items>
+         </ToolBar>
+
+         <VBox fx:id="printableArea" prefWidth="900.0" spacing="12">
+            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="16.0" /></padding>
+
+            <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                  style="-fx-font-weight: bold;" text="CAMPAIGN HITS REPORT">
+               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
+            </Text>
+            <Line endX="840.0" startX="-100.0" />
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+               <ComboBox fx:id="campaignCombo" prefWidth="400.0" promptText="Select a campaign…" />
+               <Button text="Generate Report" onAction="#handleGenerateReport"
+                       style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
+               <Button text="🖨 Print" onAction="#handlePrint"
+                       style="-fx-background-color: #2c5f8a; -fx-text-fill: white; -fx-font-weight: bold;" />
+               <Button text="← Back to Reports" onAction="#handleReports"
+                       style="-fx-background-color: #888888; -fx-text-fill: white; -fx-font-weight: bold;" />
+            </HBox>
+
+            <Line endX="840.0" startX="-100.0" />
+
+            <VBox fx:id="headerBox" spacing="4" visible="false" managed="false">
+               <Label fx:id="lblCampaignId"   text="" style="-fx-font-weight: bold; -fx-font-size: 13px;" />
+               <Label fx:id="lblCampaignDesc" text="" style="-fx-font-size: 12px;" />
+               <Label fx:id="lblStartDate"    text="" style="-fx-font-size: 12px;" />
+               <Label fx:id="lblEndDate"      text="" style="-fx-font-size: 12px;" />
+               <Label fx:id="lblGeneratedDate" text="" style="-fx-font-size: 11px; -fx-text-fill: #666;" />
+            </VBox>
+
+            <TableView fx:id="hitsTable" prefHeight="340.0" prefWidth="852.0" style="-fx-font-size: 13px;">
+               <columns>
+                  <TableColumn fx:id="colCounterId"   text="Counter ID"          prefWidth="110" />
+                  <TableColumn fx:id="colDescription" text="Counter Description"  prefWidth="230" />
+                  <TableColumn fx:id="colHits"        text="Hits Count"           prefWidth="100" />
+                  <TableColumn fx:id="colPurchases"   text="Purchases"            prefWidth="100" />
+                  <TableColumn fx:id="colConversion"  text="Conversion Rate"      prefWidth="300" />
+               </columns>
+               <placeholder>
+                  <Label text="Select a campaign and click Generate Report." />
+               </placeholder>
+            </TableView>
+
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+
+         </VBox>
+      </VBox>
+   </top>
+
+</BorderPane>

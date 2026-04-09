@@ -15,6 +15,6 @@ public class OrderConfirmationItemController {
     public void setItem(CatalogueItem item) {
         this.currentItem = item;
         idLabel.setText("#" + item.getItem_id());
-        packageCostLabel.setText("Price - £" + item.getPackage_cost());
+        packageCostLabel.setText("£" + item.getPackage_cost());
     }
 }

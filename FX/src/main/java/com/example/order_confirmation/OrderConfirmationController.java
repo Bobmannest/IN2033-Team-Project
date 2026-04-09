@@ -24,10 +24,9 @@ public class OrderConfirmationController {
     @FXML private Label emailLabel;
     @FXML private Label addressLabel;
 
-    public void displayItems() {
+    public void displayItems(List<CatalogueItem> items) {
         orderItemsVBox.getChildren().clear();
 
-        List<CatalogueItem> items = BasketList.getBasketItems();
         for (CatalogueItem item : items) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderConfirmationItemBox.fxml"));
@@ -43,16 +42,13 @@ public class OrderConfirmationController {
         }
     }
 
-    @FXML
-    public void initialize() {
-        displayItems();
-    }
-
 
     @FXML
     public void displayOrderDetails(String orderId, double total, String email, String address) {
+        String roundedTotal = String.format("%.2f", total);
+
         orderIdLabel.setText(orderId);
-        totalLabel.setText("£" + total);
+        totalLabel.setText("£" + roundedTotal);
         emailLabel.setText(email);
         addressLabel.setText(address);
     }

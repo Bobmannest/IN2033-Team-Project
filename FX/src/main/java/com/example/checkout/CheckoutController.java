@@ -21,6 +21,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -212,6 +214,9 @@ public class CheckoutController {
         if (member != null) {
             member.setOrderCount(member.getOrderCount() + 1);
         }
+
+        //Makes a copy of basket_items to send to controller to display items ordered
+        List<CatalogueItem> orderConfirmationItems = new ArrayList<>(BasketList.getBasketItems());
         BasketList.clear();
 
         //Load OrderConfirmation
@@ -221,6 +226,7 @@ public class CheckoutController {
 
             OrderConfirmationController controller = loader.getController();
             controller.displayOrderDetails("123", totalCost, email, address);
+            controller.displayItems(orderConfirmationItems);
 
             Stage stage = (Stage) checkoutPane.getScene().getWindow();
             stage.getScene().setRoot(root);
