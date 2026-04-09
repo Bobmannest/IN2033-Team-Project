@@ -33,10 +33,13 @@
                <VBox.margin>
                   <Insets bottom="3.0" top="3.0" />
                </VBox.margin></Line>
-            <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #f3f3f3;" text="Enjoy a limited-time discount on selected items! Get quality products at a reduced price while stocks last." wrapText="true">
+            <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" prefHeight="94.0" prefWidth="185.0" style="-fx-background-color: #f3f3f3;" text="Enjoy a limited-time discount on selected items! " wrapText="true">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
             <HBox prefHeight="7.0" prefWidth="212.0" style="-fx-background-color: #f3f3f3;">
                <children>
@@ -57,7 +60,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="3.0" />
+                        <Insets right="2.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -87,14 +90,14 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="3.0" />
+                        <Insets right="2.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
                 <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="192.0" text="View Items">
                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="40.0">
+                        <ImageView fitHeight="20.0" fitWidth="30.0">
                             <image>
                                 <Image url="@../../../images/view.png" />
                             </image>
@@ -103,6 +106,9 @@
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
+               <font>
+                  <Font name="MS Reference Sans Serif" size="14.0" />
+               </font>
                 </Button>
             </children>
         </VBox>
