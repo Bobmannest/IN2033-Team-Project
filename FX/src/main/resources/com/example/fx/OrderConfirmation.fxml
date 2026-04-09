@@ -8,7 +8,6 @@
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -211,13 +210,17 @@
                                     </Line>
                                  </children>
                               </VBox>
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                </content>
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="20.0" left="25.0" right="25.0" />
                                  </VBox.margin>
+                                 <content>
+                                    <VBox fx:id="orderItemsVBox" prefHeight="38.0" prefWidth="447.0">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
                               </ScrollPane>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="A detailed invoice/receipt has been sent to your email address." wrappingWidth="277.439453125">
                                  <font>

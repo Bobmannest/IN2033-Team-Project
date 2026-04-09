@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class BasketController {
-    @FXML
-    private VBox basketVBox;
+    @FXML private VBox basketVBox;
 
     public void displayItems() {
         basketVBox.getChildren().clear();
