@@ -2,6 +2,7 @@ package com.example.payment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//For Payments that will be recorded from IPOS-PU
 public class PaymentDetails {
     @JsonProperty("card_type")
     private String card_type;

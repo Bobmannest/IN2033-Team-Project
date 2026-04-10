@@ -139,6 +139,18 @@ public class CheckoutController {
             String expiry = expiryField.getText().trim();
             String cvv = cvvField.getText().trim();
 
+            //Calculates total
+            double totalCost = 0;
+            for (CatalogueItem item : BasketList.getBasketItems()) {
+                totalCost += item.getPackage_cost();
+            }
+
+            //Calculates discounts
+            Member member = Session.getMember();
+            if (member != null && member.getOrderCount() % 10 == 9) {
+                totalCost *= 0.9;
+            }
+
             if (name.isEmpty() || (!email.contains("@") || !email.contains(".")) || address.isEmpty()) {
                 correctCustomerInfo = false;
             }
@@ -148,7 +160,11 @@ public class CheckoutController {
             }
 
             if (correctCustomerInfo && correctPaymentInfo) {
-                handleOrderConfirmation(name, email, address);
+                handleOrderConfirmation(name, email, address, totalCost, member);
+
+                String first4Digits = cardNum.substring(0, 4);
+                String last4Digits = cardNum.substring(cardNum.length() - 1);
+                recordPayment(cardType, first4Digits, last4Digits, cardType, expiry, cvv, totalCost);
             } else if (!correctCustomerInfo && !correctPaymentInfo) {
                 checkoutErrorLabel.setText("At least one of the entered customer and payment info is incorrect");
             } else if (!correctCustomerInfo) {
@@ -157,6 +173,11 @@ public class CheckoutController {
                 checkoutErrorLabel.setText("At least one of the entered payment info is incorrect");
             }
         }
+    }
+
+    private void recordPayment(String name, String first4Digits, String last4Digits, String cardType, String expiry, String cvv, double amount) {
+
+
     }
 
 
@@ -196,7 +217,7 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleOrderConfirmation(String name, String email, String address) {
+    private void handleOrderConfirmation(String name, String email, String address, double totalCost, Member member) {
         String trackId = UUID.randomUUID().toString();
 
         try {
@@ -214,18 +235,6 @@ public class CheckoutController {
             HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-        //Calculates total
-        double totalCost = 0;
-        for (CatalogueItem item : BasketList.getBasketItems()) {
-            totalCost += item.getPackage_cost();
-        }
-
-        //Calculates discounts
-        Member member = Session.getMember();
-        if (member != null && member.getOrderCount() % 10 == 9) {
-            totalCost *= 0.9;
         }
 
         //Increments current member order count by 1
@@ -251,8 +260,6 @@ public class CheckoutController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //Records order and updates CA available stock
 
     }
 

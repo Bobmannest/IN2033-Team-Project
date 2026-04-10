@@ -2,6 +2,7 @@ package com.example.payment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//For Payments that will be recorded from other subsystems
 public class Payment {
     @JsonProperty("first_digits")
     private int first_digits;
