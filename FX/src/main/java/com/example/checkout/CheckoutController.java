@@ -9,7 +9,7 @@ import com.example.order_confirmation.OrderConfirmationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -34,7 +34,8 @@ public class CheckoutController {
     @FXML private TextField nameField;
     @FXML private TextField emailField;
     @FXML private TextField addressField;
-    @FXML private CheckBox guestCheckbox;
+
+    @FXML private ComboBox<String> cardTypeBox;
     @FXML private TextField cardNumField;
     @FXML private TextField expiryField;
     @FXML private TextField cvvField;
@@ -79,15 +80,30 @@ public class CheckoutController {
             totalCost *= 0.9;
         }
         totalLabel.setText("£" + String.format("%.2f", totalCost));
+
+        //Card type listener
+        cardTypeBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null) return;
+            switch (newVal) {
+                case "Visa", "Mastercard" -> {
+                    cardNumField.setPromptText("XXXX XXXX XXXX XXXX");
+                    cvvField.setPromptText("XXX");
+                }
+                case "AmEx" -> {
+                    cardNumField.setPromptText("XXXX XXXXXX XXXXX");
+                    cvvField.setPromptText("XXXX");
+                }
+            }
+        });
     }
 
-    private boolean processPaymentViaAPI(String cardNum, String expiry, String cvv) {
+    private boolean processPaymentViaAPI(String cardType, String cardNum, String expiry, String cvv) {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
             String json = String.format(
-                    "{\"card_number\":\"%s\",\"expiry_date\":\"%s\",\"cvv\":\"%s\"}",
-                    cardNum, expiry, cvv
+                    "{\"card_type\":\"%s\",\"card_number\":\"%s\",\"expiry_date\":\"%s\",\"cvv\":\"%s\"}",
+                    cardType, cardNum, expiry, cvv
             );
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -117,7 +133,9 @@ public class CheckoutController {
             String name = nameField.getText().trim();
             String email = emailField.getText().trim();
             String address = addressField.getText().trim();
-            String cardNum = cardNumField.getText().trim();
+
+            String cardType = cardTypeBox.getValue();
+            String cardNum = cardNumField.getText().trim().replace(" ", "");
             String expiry = expiryField.getText().trim();
             String cvv = cvvField.getText().trim();
 
@@ -125,7 +143,7 @@ public class CheckoutController {
                 correctCustomerInfo = false;
             }
 
-            if (!processPaymentViaAPI(cardNum, expiry, cvv)) {
+            if (!processPaymentViaAPI(cardType, cardNum, expiry, cvv)) {
                 correctPaymentInfo = false;
             }
 

@@ -18,23 +18,44 @@ public class PaymentService {
     }
 
     public boolean processPayment(PaymentDetails paymentDetails) {
-        String cardNum = paymentDetails.getCard_number();
+        String cardType = paymentDetails.getCardType();
+        String cardNum = paymentDetails.getCardNumber();
         String expiry = paymentDetails.getExpiryDate();
         String cvv = paymentDetails.getCvv();
 
-        if (!isCardValid(cardNum) || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches("\\d{3}")) {
+        String cvvPattern;
+        if (cardType.equals("AmEx")) {
+            cvvPattern = "\\d{4}";
+        } else {
+            cvvPattern = "\\d{3}";
+        }
+
+        System.out.println("Processing" + cardType + "Payment...");
+        if (!isCardValid(cardNum, cardType) || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches(cvvPattern)) {
             System.out.println("Invalid payment details.");
             return false;
         }
 
-        System.out.println("Payment is valid, processing...");
+        System.out.println("Payment is valid");
         return true;
     }
 
     // Checks format and Luhn's algorithm
-    private boolean isCardValid(String cardNum) {
-        if (cardNum == null || !cardNum.matches("\\d{15,16}")) {
-            return false;
+    private boolean isCardValid(String cardNum, String cardType) {
+        if (cardNum == null) return false;
+
+        switch (cardType) {
+            case ("Visa"):
+                if (!cardNum.matches("4\\d{15}")) {return false;}
+                break;
+            case ("Mastercard"):
+                if (!cardNum.matches("5[1-5]\\d{14}")) {return false;}
+                break;
+            case ("AmEx"):
+                if (!cardNum.matches("3[47]\\d{13}")) {return false;}
+                break;
+            default:
+                return false;
         }
         return Luhns(cardNum);
     }

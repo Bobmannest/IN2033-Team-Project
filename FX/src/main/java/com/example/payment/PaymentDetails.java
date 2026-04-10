@@ -3,6 +3,8 @@ package com.example.payment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PaymentDetails {
+    @JsonProperty("card_type")
+    private String card_type;
     @JsonProperty("card_number")
     private String card_number;
     @JsonProperty("expiry_date")
@@ -13,8 +15,10 @@ public class PaymentDetails {
     public PaymentDetails() {}
 
     //Getters
+    @JsonProperty("card_type")
+    public String getCardType() {return card_type;}
     @JsonProperty("card_number")
-    public String getCard_number() {return card_number;}
+    public String getCardNumber() {return card_number;}
     @JsonProperty("expiry_date")
     public String getExpiryDate() {return expiry_date;}
     @JsonProperty("cvv")
@@ -22,7 +26,8 @@ public class PaymentDetails {
 
 
     //Setters
-    public void setCard_number(String card_number) {this.card_number = card_number;}
+    public void setCardType(String card_type) {this.card_type = card_type;}
+    public void setCardNumber(String card_number) {this.card_number = card_number;}
     public void setExpiryDate(String expiry_date) {this.expiry_date = expiry_date;}
     public void setCvv(String cvv) {this.cvv = cvv;}
 }
