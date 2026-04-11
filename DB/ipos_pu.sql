@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (account_no) REFERENCES Member(account_no)
 );
 
-CREATE TABLE payments (
+CREATE TABLE Payments (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     card_first4 CHAR(4) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE payments (
     PRIMARY KEY (id)
 );
 
-INSERT INTO payments (name, card_first4, card_last4, card_expiry, card_type, amount, created_at) VALUES
+INSERT INTO Payments (name, card_first4, card_last4, card_expiry, card_type, amount, created_at) VALUES
 ('Cosymed Ltd', '4532', '8842', '06/28', 'Credit Card', 806.00, '2026-03-15 00:00:00'),
 ('John Smith', '4916', '3174', '11/27', 'Visa', 45.00, '2026-03-03 00:00:00'),
 ('Jane Doe', '4024', '5678', '03/29', 'Debit Card', 32.50, '2026-03-03 00:00:00'),

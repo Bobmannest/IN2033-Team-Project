@@ -184,7 +184,7 @@ public class CheckoutController {
     private void recordPayment(String name, String first4Digits, String last4Digits, String cardType, String expiry, double amount) {
         System.out.println("Recording Payment...");
         String sql = """
-            INSERT INTO payments
+            INSERT INTO Payments
             (name, card_first4, card_last4, card_expiry, card_type, amount)
             VALUES (?, ?, ?, ?, ?, ?)
             """;
