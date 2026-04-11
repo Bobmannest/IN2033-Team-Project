@@ -55,11 +55,15 @@
                             </graphic>
                         </Button>
 
-                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
-                        <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" />
-                        <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                        <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
+                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
                     </items>
                 </ToolBar>
 
