@@ -13,9 +13,6 @@ public class PaymentService {
         );
     }
 
-    public void recordPayment(Payment payment) {
-        //Records payment to database
-    }
 
     public boolean processPayment(PaymentDetails paymentDetails) {
         String cardType = paymentDetails.getCardType();

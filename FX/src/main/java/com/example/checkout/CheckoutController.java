@@ -3,6 +3,7 @@ package com.example.checkout;
 
 import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
+import com.example.fx.DatabaseConnection;
 import com.example.members.Member;
 import com.example.members.Session;
 import com.example.order_confirmation.OrderConfirmationController;
@@ -25,6 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javafx.scene.control.Button;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.sql.Timestamp;
+
 
 
 public class CheckoutController {
@@ -174,7 +181,7 @@ public class CheckoutController {
 
                 String first4Digits = cardNum.substring(0, 4);
                 String last4Digits = cardNum.substring(cardNum.length() - 1);
-                recordPayment(cardType, first4Digits, last4Digits, cardType, expiry, cvv, totalCost);
+                recordPayment(cardType, first4Digits, last4Digits, cardType, expiry, totalCost);
             } else if (!correctCustomerInfo && !correctPaymentInfo) {
                 checkoutErrorLabel.setText("At least one of the entered customer and payment info is incorrect");
             } else if (!correctCustomerInfo) {
@@ -185,9 +192,30 @@ public class CheckoutController {
         }
     }
 
-    private void recordPayment(String name, String first4Digits, String last4Digits, String cardType, String expiry, String cvv, double amount) {
+    private void recordPayment(String name, String first4Digits, String last4Digits, String cardType, String expiry, double amount) {
+        System.out.println("Recording Payment...");
+        String sql = """
+            INSERT INTO payments
+            (name, card_first4, card_last4, card_expiry, card_type, amount)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """;
 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setString(1, name);
+            ps.setString(2, first4Digits);
+            ps.setString(3, last4Digits);
+            ps.setString(4, expiry);
+            ps.setString(5, cardType);
+            ps.setDouble(6, amount);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Failed to record payment: " + e.getMessage());
+            checkoutErrorLabel.setText("Could not connect to database. Please try again.");
+        }
+        System.out.println("Payment Successfully Recorded");
     }
 
 
