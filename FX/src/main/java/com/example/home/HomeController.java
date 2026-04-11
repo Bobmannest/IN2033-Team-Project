@@ -18,17 +18,25 @@ public class HomeController {
     @FXML private Button btnOrders;
     @FXML private Button btnAccount;
     @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     @FXML
     public void initialize() {
+        setupNavBar();
+    }
+
+    private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
-            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports);
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
         } else if (member.getMemberType().equals("admin")) {
-            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports);
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
         } else {
-            hide(btnCreatePromotion, btnManagePromotions, btnReports);
-            show(btnOrders, btnAccount);
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
         }
     }
 
@@ -71,7 +79,16 @@ public class HomeController {
     }
 
     @FXML
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
     private void handleReports() { navigate("/com/example/fx/Reports.fxml");}
+
+    @FXML
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
+    private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 
     private void navigate(String fxml) {
         try {

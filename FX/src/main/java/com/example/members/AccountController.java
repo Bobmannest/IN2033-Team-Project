@@ -102,6 +102,9 @@ public class AccountController {
     private void handleHome() {
         navigate("/com/example/fx/Home.fxml");
     }
+
+    @FXML
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
     
     private void navigate(String fxml) {
         try {

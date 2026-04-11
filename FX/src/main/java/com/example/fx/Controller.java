@@ -73,7 +73,7 @@ public class Controller {
         try {
             Session.setMember(null);
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+                    getClass().getResource("/com/example/fx/Home.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.getScene().setRoot(root);
@@ -103,7 +103,7 @@ public class Controller {
             // stores the logged in member
             Session.setMember(member);
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/example/fx/Catalogue.fxml"));
+                    getClass().getResource("/com/example/fx/Home.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.getScene().setRoot(root);

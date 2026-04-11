@@ -52,6 +52,7 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
                   <Button fx:id="btnOrders" mnemonicParsing="false" prefHeight="33.0" text="Orders" onAction="#handleOrders" />

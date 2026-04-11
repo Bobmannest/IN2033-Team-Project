@@ -19,26 +19,20 @@ import java.util.List;
 
 public class OrderHistory {
 
-    @FXML
-    private TableView<Order> ordersTable;
-    @FXML
-    private TableColumn<Order, Void> colRowNum;
-    @FXML
-    private TableColumn<Order, String> colOrderId;
-    @FXML
-    private TableColumn<Order, LocalDateTime> colDate;
-    @FXML
-    private TableColumn<Order, Double> colAmount;
-    @FXML
-    private TableColumn<Order, String> colAddress;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private Button btnCreatePromotion;
-    @FXML
-    private Button btnManagePromotions;
-    @FXML
-    private Button btnReports;
+    @FXML private TableView<Order> ordersTable;
+    @FXML private TableColumn<Order, Void> colRowNum;
+    @FXML private TableColumn<Order, String> colOrderId;
+    @FXML private TableColumn<Order, LocalDateTime> colDate;
+    @FXML private TableColumn<Order, Double> colAmount;
+    @FXML private TableColumn<Order, String> colAddress;
+    @FXML private Label errorLabel;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
 
     @FXML
     public void initialize() {
@@ -118,16 +112,28 @@ public class OrderHistory {
     }
 
     @FXML
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
     private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+
+    @FXML
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
+    private void handleLogout() {Session.setMember(null); navigate("/com/example/fx/Login.fxml");}
 
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
-            hide(btnCreatePromotion, btnManagePromotions, btnReports);
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
         } else if (member.getMemberType().equals("admin")) {
-            show(btnCreatePromotion, btnManagePromotions, btnReports);
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
         } else {
-            hide(btnCreatePromotion, btnManagePromotions, btnReports);
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
         }
     }
 
@@ -139,11 +145,6 @@ public class OrderHistory {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
-    @FXML
-    private void handleLogout() {
-        Session.setMember(null);
-        navigate("/com/example/fx/Login.fxml");
-    }
 
     private void navigate(String fxml) {
         try {
