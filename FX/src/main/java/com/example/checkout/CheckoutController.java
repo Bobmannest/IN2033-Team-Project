@@ -182,6 +182,7 @@ public class CheckoutController {
     }
 
     private void recordPayment(String name, String first4Digits, String last4Digits, String cardType, String expiry, double amount) {
+        System.out.println("Recording Payment...");
         String sql = """
             INSERT INTO payments
             (name, card_first4, card_last4, card_expiry, card_type, amount)
@@ -200,9 +201,10 @@ public class CheckoutController {
 
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Failed to record payment: " + e.getMessage());
+            checkoutErrorLabel.setText("Could not connect to database. Please try again.");
         }
-
+        System.out.println("Payment Successfully Recorded");
     }
 
 
