@@ -23,10 +23,10 @@ CREATE TABLE IF NOT EXISTS Member (
 
 INSERT INTO Member (account_no, email, password, member_type, is_first_login, order_count) VALUES
 ('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
-('manager', 'curatecht33+manager@gmail.com', 'GetPU it done', 'admin',          FALSE, 0),
+('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
 ('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
 ('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
-('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     FALSE, 0);
+('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
 
 CREATE TABLE IF NOT EXISTS Product (
     item_id INT(10) PRIMARY KEY,
@@ -182,4 +182,4 @@ CREATE TABLE IF NOT EXISTS CommercialApplication (
 );
 
 INSERT INTO CommercialApplication (application_id, company_name, companies_house_no, director_name, business_type, address, email, status)
-VALUES ('APP0001', 'Pond Pharmacy', 'UK10003429', 'TBD', 'Pharmacy', 'Chislehurst, 25 High Street, BR7 5BN', 'curatecht33+pu0003@gmail.com', 'approved');
+VALUES ('APP0001', 'Pond Pharmacy', 'UK10003429CompH', 'TBD', 'Pharmacy', 'Chislehurst, 25 High Street, BR7 5BN', 'curatecht33+pu0003@gmail.com', 'approved');

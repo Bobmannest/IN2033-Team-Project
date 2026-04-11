@@ -17,3 +17,37 @@ Testing:
 
 - To test Payment service run SpringApp then PaymentTester.java
 - To test Catalogue service run Catalogue.java then CatalogueTester.java
+
+Database Setup:
+
+This project uses MySQL. Follow these steps to set up the database locally:
+
+1) Install MySQL if you haven't already
+2) Open MySQL Workbench or any MySQL client
+3) Connect to localhost:3306 with your root credentials
+4) Open and run the SQL file located at 'DB/ipos_pu.sql'
+5) This creates the 'ipos_pu' db and all required tables.
+6) Will also insert sample data including test accounts
+
+**Database credentials used by the app:**
+- Host: localhost:3306
+- Database: ipos_pu
+- Password: Ipos2026@
+
+## Test Accounts
+
+| Email | Password | Role |
+|-------|----------|------|
+| curatecht33+manager@gmail.com | GetPU it done | Admin |
+| curatecht33+sysdba@gmail.com | masterkey | Admin |
+| curatecht33+pu0001@gmail.com | 12ss_56_SS | Non-commercial |
+| curatecht33+pu0002@gmail.com | 34pp_78_LL | Non-commercial |
+| curatecht33+pu0003@gmail.com | changeme | Commercial |
+
+Important notes:
+
+- **SpringApp must be running** before:
+  - Creating a new account (registration email won't send without it)
+  - Using the forgot password feature (reset email won't send without it)
+- Start SpringApp first: `FX > src > main > java > com.example > SpringApp.java`
+- Then run the JavaFX app via Login.java
