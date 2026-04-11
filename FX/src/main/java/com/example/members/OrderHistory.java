@@ -29,10 +29,10 @@ public class OrderHistory {
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
     @FXML private Button btnReports;
-    @FXML private Button btnLogin;
-    @FXML private Button btnLogout;
     @FXML private Button btnOrders;
     @FXML private Button btnAccount;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     @FXML
     public void initialize() {
