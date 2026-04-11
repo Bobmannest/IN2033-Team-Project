@@ -140,7 +140,7 @@ public class Controller {
                 final String password = newPassword;
                 showSuccessMessage("Sending new password to your email...");
                 new Thread(() -> {
-                    new com.example.email.EmailService().sendRegistrationEmail(email, password);
+                    new com.example.email.EmailService().sendPasswordResetEmail(email, password);
                     javafx.application.Platform.runLater(() ->
                             showSuccessMessage("A new password has been sent to your email.")
                     );
