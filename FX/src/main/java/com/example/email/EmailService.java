@@ -53,7 +53,7 @@ public class EmailService {
             );
 
             Transport.send(message);
-            System.out.println("Done");
+            System.out.println("Sent Email Successfully");
 
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -132,6 +132,41 @@ public class EmailService {
             );
             Transport.send(message);
             System.out.println("Registration email sent to " + recipientEmail);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendPasswordResetEmail(String recipientEmail, String tempPass) {
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+        Session session = Session.getInstance(prop,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("ipospu33@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("CuraTech - Password Reset Request");
+            message.setText(
+                    "We received a request to reset the password for your CuraTech account.\n\n" +
+                            "Your temporary password is : " + tempPass + "\n\n" +
+                            "For security reasons, you will be asked to change this password when you next log in.\n\n" +
+                            "If you did not request a password reset, please contact your system administrator immediately.\n\n" +
+                            "You will be asked to change your password on first login.\n\n" +
+                            "CuraTech Pharmacy Portal\n" +
+                            "[This is an automatically generated email - please do not reply]\n"
+            );
+            Transport.send(message);
+            System.out.println("Password reset email sent to " + recipientEmail);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

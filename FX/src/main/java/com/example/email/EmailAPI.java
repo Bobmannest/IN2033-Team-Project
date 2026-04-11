@@ -35,4 +35,11 @@ public class EmailAPI {
         emailService.sendRegistrationEmail(recipient_email, generated_password);
         return "Registration email sent to " + recipient_email;
     }
+
+    @PostMapping("/sendPassReset")
+    public String sendPasswordResetEmail(@RequestParam String recipient_email,
+                                        @RequestParam String tempPass) {
+        emailService.sendPasswordResetEmail(recipient_email, tempPass);
+        return "Registration email sent to " + recipient_email;
+    }
 }
