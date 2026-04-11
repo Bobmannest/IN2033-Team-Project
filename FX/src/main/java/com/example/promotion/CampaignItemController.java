@@ -12,6 +12,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import com.example.members.Member;
+import com.example.members.Session;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,6 +28,12 @@ public class CampaignItemController {
     @FXML private TextField itemDiscountField;
     @FXML private Label selectedCampaignLabel;
     @FXML private Label statusLabel;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
+    @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     private final PromotionService promotionService = new PromotionService();
 
@@ -43,6 +52,7 @@ public class CampaignItemController {
                 campaignItemsListView.getItems().clear();
             }
         });
+        setupNavBar();
     }
 
     private void configureCampaignList() {
@@ -283,6 +293,44 @@ public class CampaignItemController {
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Could not open basket screen.", false);
+        }
+    }
+
+    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+    @FXML private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+    @FXML private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+    @FXML private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
+
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
+        } else {
+            hide(btnCreatePromotion, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+    }
+
+    private void navigate(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            showStatus("Navigation error: " + e.getMessage(), false);
         }
     }
 }

@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import com.example.members.Member;
+import com.example.members.Session;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +30,12 @@ public class PromotionController {
     @FXML private TextField defaultDiscountField;
     @FXML private TextField createdByField;
     @FXML private Label statusLabel;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
+    @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     private final PromotionService promotionService = new PromotionService();
 
@@ -37,6 +45,7 @@ public class PromotionController {
         discountModeComboBox.getItems().addAll("fixed", "variable");
         statusComboBox.setValue("scheduled");
         discountModeComboBox.setValue("fixed");
+        setupNavBar();
     }
 
     @FXML
@@ -203,6 +212,44 @@ public class PromotionController {
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
+        } else {
+            hide(btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+    }
+
+    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+    @FXML private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+    @FXML private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+    @FXML private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
+
+    private void navigate(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            Stage stage = (Stage) campaignIdField.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            showStatus("Navigation error: " + e.getMessage(), false);
         }
     }
 }

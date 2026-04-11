@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueController">
 <effect>
     <Blend />
 </effect>
@@ -56,13 +56,15 @@
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions"/>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
                   <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
                   <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
                   <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
+                  <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
+                  <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
               </items>
             </ToolBar>
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">

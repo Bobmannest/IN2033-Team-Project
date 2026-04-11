@@ -7,16 +7,26 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.example.members.Member;
+import com.example.members.Session;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
 public class ActivePromotionsController {
     @FXML private BorderPane ActivePromotionsPane;
     @FXML private FlowPane ActivePromotionsFlowPane;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     @FXML
     public void initialize() {
         testDisplayItems();
+        setupNavBar();
     }
 
     /*
@@ -95,6 +105,12 @@ public class ActivePromotionsController {
         navigate("/com/example/fx/CampaignItem.fxml");
     }
 
+    @FXML
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
+    private void handleLogout() {Session.setMember(null); navigate("/com/example/fx/Login.fxml");}
+
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -104,5 +120,27 @@ public class ActivePromotionsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
+            show(btnLogin);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
+            hide(btnLogin);
+        } else {
+            hide(btnCreatePromotion, btnManagePromotions, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 }

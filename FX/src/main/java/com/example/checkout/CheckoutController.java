@@ -25,11 +25,13 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javafx.scene.control.Button;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.sql.Timestamp;
+
 
 
 public class CheckoutController {
@@ -49,6 +51,14 @@ public class CheckoutController {
     @FXML private Label subtotalLabel;
     @FXML private Label discountLabel;
     @FXML private Label totalLabel;
+
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
+    @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
 
     public void displayItems() {
         basketVBox.getChildren().clear();
@@ -101,6 +111,7 @@ public class CheckoutController {
                 }
             }
         });
+        setupNavBar();
     }
 
     private boolean processPaymentViaAPI(String cardType, String cardNum, String expiry, String cvv) {
@@ -244,6 +255,18 @@ public class CheckoutController {
     }
 
     @FXML
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
+    private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+
+    @FXML
+    private void handleLogin() {navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
+    private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
     private void handleOrderConfirmation(String name, String email, String address, double totalCost, Member member) {
         String trackId = UUID.randomUUID().toString();
 
@@ -300,4 +323,29 @@ public class CheckoutController {
             e.printStackTrace();
         }
     }
+
+    // Hides/Shows nav buttons depending on the user's role
+    private void setupNavBar() {
+        Member member = Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
+        } else {
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+    }
+
+
 }

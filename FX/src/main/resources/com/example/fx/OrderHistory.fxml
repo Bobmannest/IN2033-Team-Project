@@ -53,11 +53,14 @@
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
                   <Button fx:id="btnOrders" mnemonicParsing="false" prefHeight="33.0" text="Orders" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Account" onAction="#handleAccount" />
+                  <Button fx:id="btnAccount" mnemonicParsing="false" prefHeight="33.0" text="Account" onAction="#handleAccount" />
                   <Button fx:id="btnReports" mnemonicParsing="false" prefHeight="33.0" text="Reports" onAction="#handleReports" />
+                  <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
+                  <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
                </items>
             </ToolBar>
 
