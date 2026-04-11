@@ -14,7 +14,6 @@ Testing:
   curl -X POST "http://localhost:8080/api/emails/sendPurchase?recipientName=John&recipientEmail=example@gmail.com&recipientAddress=address&trackId=TRK123456789"
 - For Registration email) curl -X POST "http://localhost:8080/api/emails/sendTest?recipient_email=recipient@gmail.com&generated_password=generatedpass123"
 - For Password Reset email) curl -X POST "http://localhost:8080/api/emails/sendPassReset?recipient_email=recipient@gmail.com&tempPass=temppassword123"
-
 - To test Payment service run SpringApp then PaymentTester.java
 - To test Catalogue service run Catalogue.java then CatalogueTester.java
 
@@ -36,13 +35,13 @@ This project uses MySQL. Follow these steps to set up the database locally:
 
 ## Test Accounts
 
-| Email | Password | Role |
-|-------|----------|------|
-| curatecht33+manager@gmail.com | GetPU it done | Admin |
-| curatecht33+sysdba@gmail.com | masterkey | Admin |
-| curatecht33+pu0001@gmail.com | 12ss_56_SS | Non-commercial |
-| curatecht33+pu0002@gmail.com | 34pp_78_LL | Non-commercial |
-| curatecht33+pu0003@gmail.com | changeme | Commercial |
+| Email | Password      | Role |
+|-------|---------------|------|
+| curatecht33+manager@gmail.com | GetPU_it_done | Admin |
+| curatecht33+sysdba@gmail.com | masterkey     | Admin |
+| curatecht33+pu0001@gmail.com | 12ss_56_SS    | Non-commercial |
+| curatecht33+pu0002@gmail.com | 34pp_78_LL    | Non-commercial |
+| curatecht33+pu0003@gmail.com | changeme      | Commercial |
 
 Important notes:
 
