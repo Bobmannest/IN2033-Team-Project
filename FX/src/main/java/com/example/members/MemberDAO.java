@@ -115,4 +115,24 @@ public class MemberDAO {
         }
         return sb.toString();
     }
+
+    // resets password for a given email -> generates new pass, updates db, sets is_first_login = true
+    public static String resetPassword(String email) throws SQLException {
+        Connection conn = DatabaseConnection.getConnection();
+
+        // will check if email exists
+        if (!emailExists(conn, email)) {
+            return null; // email not found
+        }
+
+        String newPassword = generateRandomPassword(10);
+
+        String sql = "UPDATE Member SET password = ?, is_first_login = TRUE WHERE email = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, newPassword);
+        ps.setString(2, email);
+        ps.executeUpdate();
+
+        return newPassword;
+    }
 }

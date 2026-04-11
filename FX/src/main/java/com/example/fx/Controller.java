@@ -122,4 +122,32 @@ public class Controller {
         errorLabel.setStyle("-fx-text-fill: green;");
         errorLabel.setText(message);
     }
+
+    @FXML
+    private void handleForgotPassword() {
+        String email = emailField.getText().trim();
+
+        if (email.isEmpty()) {
+            showError("Please enter your email address first.");
+            return;
+        }
+
+        try {
+            String newPassword = MemberDAO.resetPassword(email);
+            if (newPassword == null) {
+                showError("No account found with that email.");
+            } else {
+                final String password = newPassword;
+                showSuccessMessage("Sending new password to your email...");
+                new Thread(() -> {
+                    new com.example.email.EmailService().sendRegistrationEmail(email, password);
+                    javafx.application.Platform.runLater(() ->
+                            showSuccessMessage("A new password has been sent to your email.")
+                    );
+                }).start();
+            }
+        } catch (SQLException e) {
+            showError("Database error: " + e.getMessage());
+        }
+    }
 }
