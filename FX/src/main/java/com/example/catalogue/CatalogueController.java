@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,6 +19,15 @@ import java.util.List;
 
 public class CatalogueController {
     @FXML private VBox catalogueVBox;
+    @FXML private Label filterErrorLabel;
+
+    @FXML private TextField searchBar;
+    @FXML private CheckBox inStockCheckbox;
+    @FXML private CheckBox maxPriceCheckBox;
+    @FXML private TextField maxPriceField;
+    @FXML private CheckBox minPriceCheckBox;
+    @FXML private TextField minPriceField;
+
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
     @FXML private Button btnOrders;
@@ -27,8 +38,39 @@ public class CatalogueController {
 
     public void displayItems() {
         catalogueVBox.getChildren().clear();
+        filterErrorLabel.setText("");
 
         List<CatalogueItem> items = CatalogueDatabase.getCatalogueItems();
+
+        double minPrice = 0;
+        double maxPrice = Double.MAX_VALUE;
+        boolean inStockOnly = inStockCheckbox.isSelected();
+        String search = searchBar.getText().trim().toLowerCase();
+
+        //Checks filter selections
+        try {
+            if (minPriceCheckBox.isSelected() && !minPriceField.getText().trim().isEmpty()) {
+                minPrice = Double.parseDouble(minPriceField.getText().trim());
+            }
+            if (maxPriceCheckBox.isSelected() && !maxPriceField.getText().trim().isEmpty()) {
+                maxPrice = Double.parseDouble(maxPriceField.getText().trim());
+            }
+        } catch (NumberFormatException e) {
+            filterErrorLabel.setText("Enter a valid price");
+        }
+
+        double finalMinPrice = minPrice;
+        double finalMaxPrice = maxPrice;
+
+        //Applies filters
+        items = items.stream()
+                .filter(item -> item.getPackage_cost() >= finalMinPrice)
+                .filter(item -> item.getPackage_cost() <= finalMaxPrice)
+                .filter(item -> !inStockOnly || item.getAvailability() > 0)
+                .filter(item -> search.isEmpty() || item.getDescription().toLowerCase().contains(search))
+                .toList();
+
+        //Displays each item
         for (CatalogueItem item : items) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
@@ -42,6 +84,11 @@ public class CatalogueController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    private void handleApplyFilters() {
+        displayItems();
     }
 
     @FXML
