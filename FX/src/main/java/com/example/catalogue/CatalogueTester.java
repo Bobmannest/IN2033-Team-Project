@@ -9,9 +9,9 @@ import java.nio.charset.StandardCharsets;
 
 public class CatalogueTester {
     public static void main(String[] args) throws Exception {
-        InputStream inputStream = CatalogueTester.class.getResourceAsStream("/com/example/fx/test_sales.json");
+        InputStream inputStream = CatalogueTester.class.getResourceAsStream("/com/example/fx/CAStock.json");
         if (inputStream == null) {
-            throw new RuntimeException("Resource not found: test_sales.json");
+            throw new RuntimeException("Resource not found: CAStock.json");
         }
         String json = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 
