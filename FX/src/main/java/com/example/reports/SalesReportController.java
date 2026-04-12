@@ -137,7 +137,9 @@ public class SalesReportController {
         }
     }
 
-    @FXML private void handleBackToReports() { navigate("/com/example/fx/Reports.fxml", 1000, 620); }
+    @FXML private void handleBackToReports()    { navigate("/com/example/fx/Reports.fxml", 1000, 620); }
+    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml", 800, 600); }
+    @FXML private void handleLogout()           { navigate("/com/example/fx/Login.fxml", 800, 600); }
     @FXML private void handleHome()             { navigate("/com/example/fx/Home.fxml", 800, 600); }
     @FXML private void handleCatalogue()        { navigate("/com/example/fx/Catalogue.fxml", 800, 600); }
     @FXML private void handleOrders()           { navigate("/com/example/fx/OrderHistory.fxml", 800, 600); }

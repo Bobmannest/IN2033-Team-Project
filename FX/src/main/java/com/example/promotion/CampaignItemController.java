@@ -297,7 +297,21 @@ public class CampaignItemController {
     }
 
     @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
-    @FXML private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+
+    @FXML
+    private void handleReports() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) statusLabel.getScene().getWindow();
+            stage.setWidth(1000);
+            stage.setHeight(620);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            showStatus("Navigation error: " + e.getMessage(), false);
+        }
+    }
+
     @FXML private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
     @FXML private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 

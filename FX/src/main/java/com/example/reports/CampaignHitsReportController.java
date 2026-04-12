@@ -192,7 +192,9 @@ public class CampaignHitsReportController {
     @FXML private void handleBasket()             { navigate("/com/example/fx/Basket.fxml", 800, 600); }
     @FXML private void handleCreatePromotion()    { navigate("/com/example/fx/Promotion.fxml", 900, 650); }
     @FXML private void handleManagePromotions()   { navigate("/com/example/fx/CampaignItem.fxml", 900, 650); }
-    @FXML private void handleReports() { navigate("/com/example/fx/Reports.fxml", 1000, 620); }        {}
+    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml", 800, 600); }
+    @FXML private void handleReports()          { navigate("/com/example/fx/Reports.fxml", 1000, 620); }
+    @FXML private void handleLogout()           { navigate("/com/example/fx/Login.fxml", 800, 600); }
 
     private void navigate(String fxml, int w, int h) {
         try {
