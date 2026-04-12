@@ -14,370 +14,382 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="checkoutPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.checkout.CheckoutController">
-<effect>
-    <Blend />
-</effect>
-   <center>
-      <VBox prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                  <ImageView fitHeight="33.0" fitWidth="199.0">
-                     <image>
-                        <Image url="@../../../images/curatech.png" />
-                     </image>
-                  </ImageView>
-                  <Pane prefHeight="38.0" prefWidth="488.0" />
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button mnemonicParsing="false" onAction="#handleHome">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.checkout.CheckoutController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane fx:id="checkoutPane" maxHeight="900.0" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css">
+         <effect>
+            <Blend />
+         </effect>
+         <center>
+            <VBox prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                     <items>
+                        <ImageView fitHeight="33.0" fitWidth="199.0">
                            <image>
-                              <Image url="@../../../images/home.png" />
+                              <Image url="@../../../images/curatech.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                  </Button>
-                 <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
-                 <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" text="Active Promotions" />
-                 <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                 <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-                 <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                 <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                 <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
-                 <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" text="Login" />
-                 <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" text="Logout" />
-              </items>
-            </ToolBar>
-            <VBox prefHeight="489.0" prefWidth="698.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <BorderPane prefHeight="22.0" prefWidth="778.0">
-                     <left>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Checkout" BorderPane.alignment="CENTER_LEFT">
-                           <font>
-                              <Font name="Microsoft Sans Serif" size="24.0" />
-                           </font>
-                        </Text>
-                     </left>
-                     <right>
-                      <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket" BorderPane.alignment="BOTTOM_RIGHT">
-                           <font>
-                              <Font name="MS Reference Sans Serif" size="12.0" />
-                           </font>
+                        <Pane prefHeight="38.0" prefWidth="488.0" />
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
                                  <image>
-                                    <Image url="@../../../images/cart.png" />
+                                    <Image url="@../../../images/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                     </right>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="26.0" right="26.0" />
-                     </VBox.margin>
-                  </BorderPane>
-                  <HBox prefHeight="0.0" prefWidth="780.0" style="-fx-border-color: #000000;">
-                     <VBox.margin>
-                        <Insets left="26.0" right="26.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="410.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="10.0" />
-                     </VBox.margin>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
+                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" text="Active Promotions" />
+                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
+                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" text="Login" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" text="Logout" />
+                     </items>
+                  </ToolBar>
+                  <VBox prefHeight="489.0" prefWidth="698.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox maxWidth="1.7976931348623157E308" prefHeight="405.0" prefWidth="66666.0" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets right="25.0" />
-                           </HBox.margin>
+                        <BorderPane prefHeight="22.0" prefWidth="778.0">
+                           <left>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Checkout" BorderPane.alignment="CENTER_LEFT">
+                                 <font>
+                                    <Font name="Microsoft Sans Serif" size="24.0" />
+                                 </font>
+                              </Text>
+                           </left>
+                           <right>
+                              <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket" BorderPane.alignment="BOTTOM_RIGHT">
+                                 <font>
+                                    <Font name="MS Reference Sans Serif" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0">
+                                       <image>
+                                          <Image url="@../../../images/cart.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </right>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="26.0" right="26.0" />
+                           </VBox.margin>
+                        </BorderPane>
+                        <HBox prefHeight="0.0" prefWidth="780.0" style="-fx-border-color: #000000;">
+                           <VBox.margin>
+                              <Insets left="26.0" right="26.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="410.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="10.0" />
+                           </VBox.margin>
                            <children>
-                              <VBox prefHeight="332.0" prefWidth="459.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;" VBox.vgrow="ALWAYS">
+                              <VBox maxWidth="1.7976931348623157E308" prefHeight="405.0" prefWidth="66666.0" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets right="25.0" />
+                                 </HBox.margin>
                                  <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <VBox.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </VBox.margin>
+                                    <VBox prefHeight="242.0" prefWidth="485.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Details">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="18.0" />
-                                             </font>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
                                              <VBox.margin>
-                                                <Insets bottom="15.0" />
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                              </VBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name:">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="3.0" />
-                                             </VBox.margin>
-                                          </Text>
-                                          <TextField fx:id="nameField" promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <TextField fx:id="emailField" promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Address:">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <TextField fx:id="addressField" promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="15.0" />
-                                 </VBox.margin></VBox>
-                              <VBox prefHeight="320.0" prefWidth="484.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
-                                 <children>
-                                    <VBox prefHeight="262.0" prefWidth="450.0">
-                                       <VBox.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Information">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="18.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="15.0" />
-                                             </VBox.margin>
-                                          </Text>
-                                          <VBox prefHeight="225.0" prefWidth="450.0" style="-fx-background-color: #f1f1f1; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
                                              <children>
-                                                <VBox prefHeight="74.0" prefWidth="391.0" VBox.vgrow="ALWAYS">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Details">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="18.0" />
+                                                   </font>
                                                    <VBox.margin>
-                                                      <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                                                      <Insets bottom="15.0" />
                                                    </VBox.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="3.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <TextField fx:id="nameField" promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <TextField fx:id="emailField" promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Address:">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <TextField fx:id="addressField" promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="320.0" prefWidth="484.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
+                                       <children>
+                                          <VBox prefHeight="262.0" prefWidth="450.0">
+                                             <VBox.margin>
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Information">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="18.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <VBox prefHeight="225.0" prefWidth="450.0" style="-fx-background-color: #f1f1f1; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card Type:">
-                                                         <font>
-                                                            <Font name="MS Reference Sans Serif" size="14.0" />
-                                                         </font>
+                                                      <VBox prefHeight="74.0" prefWidth="391.0" VBox.vgrow="ALWAYS">
                                                          <VBox.margin>
-                                                            <Insets bottom="3.0" />
+                                                            <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
                                                          </VBox.margin>
-                                                      </Text>
-                                                      <ComboBox fx:id="cardTypeBox" prefHeight="25.0" prefWidth="111.0" value="Visa">
-                                                         <items>
-                                                            <FXCollections fx:factory="observableArrayList">
-                                                               <String fx:value="Visa" />
-                                                               <String fx:value="Mastercard" />
-                                                               <String fx:value="AmEx" />
-                                                            </FXCollections>
-                                                         </items>
-                                                      </ComboBox>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number:">
-                                                         <font>
-                                                            <Font name="MS Reference Sans Serif" size="14.0" />
-                                                         </font>
-                                                         <VBox.margin>
-                                                            <Insets bottom="3.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </Text>
-                                                      <TextField fx:id="cardNumField" promptText="XXXX XXXX XXXX XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </TextField>
-                                                      <HBox prefHeight="18.0" prefWidth="391.0">
                                                          <children>
-                                                            <VBox prefHeight="47.0" prefWidth="177.0" HBox.hgrow="ALWAYS">
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card Type:">
+                                                               <font>
+                                                                  <Font name="MS Reference Sans Serif" size="14.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="3.0" />
+                                                               </VBox.margin>
+                                                            </Text>
+                                                            <ComboBox fx:id="cardTypeBox" prefHeight="25.0" prefWidth="111.0" value="Visa">
+                                                               <items>
+                                                                  <FXCollections fx:factory="observableArrayList">
+                                                                     <String fx:value="Visa" />
+                                                                     <String fx:value="Mastercard" />
+                                                                     <String fx:value="AmEx" />
+                                                                  </FXCollections>
+                                                               </items>
+                                                            </ComboBox>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number:">
+                                                               <font>
+                                                                  <Font name="MS Reference Sans Serif" size="14.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="3.0" top="10.0" />
+                                                               </VBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="cardNumField" promptText="XXXX XXXX XXXX XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <HBox prefHeight="18.0" prefWidth="391.0">
                                                                <children>
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry Date:">
-                                                                     <font>
-                                                                        <Font name="MS Reference Sans Serif" size="14.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                                  <TextField fx:id="expiryField" promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                  <VBox prefHeight="47.0" prefWidth="177.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry Date:">
+                                                                           <font>
+                                                                              <Font name="MS Reference Sans Serif" size="14.0" />
+                                                                           </font>
+                                                                        </Text>
+                                                                        <TextField fx:id="expiryField" promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                                  <VBox prefHeight="47.0" prefWidth="199.0">
+                                                                     <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CVV:">
+                                                                           <font>
+                                                                              <Font name="MS Reference Sans Serif" size="14.0" />
+                                                                           </font>
+                                                                        </Text>
+                                                                        <TextField fx:id="cvvField" promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                     </children>
+                                                                  </VBox>
                                                                </children>
-                                                               <HBox.margin>
-                                                                  <Insets right="10.0" />
-                                                               </HBox.margin>
-                                                            </VBox>
-                                                            <VBox prefHeight="47.0" prefWidth="199.0">
-                                                               <children>
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CVV:">
-                                                                     <font>
-                                                                        <Font name="MS Reference Sans Serif" size="14.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                                  <TextField fx:id="cvvField" promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
-                                                               </children>
-                                                            </VBox>
+                                                               <VBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </VBox.margin>
+                                                            </HBox>
                                                          </children>
-                                                         <VBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </VBox.margin>
-                                                      </HBox>
+                                                      </VBox>
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </VBox>
                                        </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                              </VBox>
-                              <Label fx:id="checkoutErrorLabel" alignment="CENTER" prefHeight="17.0" prefWidth="500.0" textFill="RED">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="MS Reference Sans Serif" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleCheckoutValidation" prefHeight="35.0" prefWidth="482.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Place Order">
-                                 <font>
-                                    <Font name="MS Reference Sans Serif" size="16.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="405.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <VBox prefHeight="141.0" prefWidth="271.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
-                                 <children>
-                                    <VBox prefHeight="128.0" prefWidth="237.0" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                          <Insets bottom="5.0" />
                                        </VBox.margin>
+                                    </VBox>
+                                    <Label fx:id="checkoutErrorLabel" alignment="CENTER" prefHeight="17.0" prefWidth="500.0" textFill="RED">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="MS Reference Sans Serif" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleCheckoutValidation" prefHeight="35.0" prefWidth="482.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Place Order">
+                                       <font>
+                                          <Font name="MS Reference Sans Serif" size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="405.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox prefHeight="141.0" prefWidth="271.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 2;">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Summary">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="18.0" />
-                                             </font>
+                                          <VBox prefHeight="128.0" prefWidth="237.0" VBox.vgrow="ALWAYS">
                                              <VBox.margin>
-                                                <Insets bottom="15.0" />
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                              </VBox.margin>
-                                          </Text>
-                                          <VBox fx:id="basketVBox" prefHeight="0.0" prefWidth="237.0">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Summary">
+                                                   <font>
+                                                      <Font name="MS Reference Sans Serif" size="18.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <VBox fx:id="basketVBox" prefHeight="0.0" prefWidth="237.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </VBox>
+                                                <Line endX="135.0" startX="-100.0" style="-fx-stroke: #e3e3e3; -fx-scale-y: 2;" />
+                                                <HBox prefHeight="7.0" prefWidth="212.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
+                                                         <font>
+                                                            <Font name="MS Reference Sans Serif" size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Pane prefHeight="20.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                                                      <Label fx:id="subtotalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <HBox.margin>
+                                                            <Insets right="3.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="7.0" prefWidth="212.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:">
+                                                         <font>
+                                                            <Font name="MS Reference Sans Serif" size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                      <Label fx:id="discountLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="72.0" text="- 0%">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <HBox.margin>
+                                                            <Insets right="3.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="7.0" prefWidth="212.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+                                                         <font>
+                                                            <Font name="MS Reference Sans Serif" size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+                                                      <Label fx:id="totalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <HBox.margin>
+                                                            <Insets right="3.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Estimated Delivery: 3-5 Business Days">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Invoice/Receipt will be generated after order confirmation" wrappingWidth="196.439453125">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
                                           </VBox>
-                                          <Line endX="135.0" startX="-100.0" style="-fx-stroke: #e3e3e3; -fx-scale-y: 2;" />
-                                          <HBox prefHeight="7.0" prefWidth="212.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
-                                                   <font>
-                                                      <Font name="MS Reference Sans Serif" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Pane prefHeight="20.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
-                                                <Label fx:id="subtotalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
-                                                   <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                   </font>
-                                                   <HBox.margin>
-                                                      <Insets right="3.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox prefHeight="7.0" prefWidth="212.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:">
-                                                   <font>
-                                                      <Font name="MS Reference Sans Serif" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
-                                                <Label fx:id="discountLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="72.0" text="- 0%">
-                                                   <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                   </font>
-                                                   <HBox.margin>
-                                                      <Insets right="3.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox prefHeight="7.0" prefWidth="212.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
-                                                   <font>
-                                                      <Font name="MS Reference Sans Serif" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Pane prefHeight="20.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
-                                                <Label fx:id="totalLabel" alignment="CENTER_RIGHT" text="£ XX:XX">
-                                                   <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                   </font>
-                                                   <HBox.margin>
-                                                      <Insets right="3.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Estimated Delivery: 3-5 Business Days">
-                                             <font>
-                                                <Font size="10.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #989898;" text="Invoice/Receipt will be generated after order confirmation" wrappingWidth="196.439453125">
-                                             <font>
-                                                <Font size="10.0" />
-                                             </font>
-                                          </Text>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
                                     </VBox>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets bottom="15.0" />
-                                 </VBox.margin>
                               </VBox>
-                           </children></VBox>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
             </VBox>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
