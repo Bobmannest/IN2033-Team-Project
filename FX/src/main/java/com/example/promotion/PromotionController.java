@@ -1,10 +1,8 @@
 package com.example.promotion;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.example.members.Member;
@@ -45,6 +43,9 @@ public class PromotionController {
         discountModeComboBox.getItems().addAll("fixed", "variable");
         statusComboBox.setValue("scheduled");
         discountModeComboBox.setValue("fixed");
+
+        setNextCampaignId();
+        setCreatedByFromSession();
         setupNavBar();
     }
 
@@ -64,8 +65,31 @@ public class PromotionController {
         }
     }
 
-    private PromotionCampaign buildCampaignFromForm() {
-        String campaignId = campaignIdField.getText().trim();
+    private void setNextCampaignId() {
+        try {
+            String nextId = PromotionDAO.generateNextCampaignId();
+            campaignIdField.setText(nextId);
+            campaignIdField.setEditable(false);
+            campaignIdField.setFocusTraversable(false);
+        } catch (Exception e) {
+            showStatus("Could not generate campaign ID.", false);
+        }
+    }
+
+    private void setCreatedByFromSession() {
+        Member member = Session.getMember();
+
+        if (member != null) {
+            createdByField.setText(member.getAccountNo());
+            createdByField.setEditable(false);
+            createdByField.setFocusTraversable(false);
+        } else {
+            createdByField.setText("");
+        }
+    }
+
+    private PromotionCampaign buildCampaignFromForm() throws SQLException {
+        String campaignId = PromotionDAO.generateNextCampaignId();
         String campaignName = campaignNameField.getText().trim();
         String description = campaignDescriptionArea.getText().trim();
 
@@ -103,7 +127,8 @@ public class PromotionController {
             }
         }
 
-        String createdBy = createdByField.getText().trim();
+        Member member = Session.getMember();
+        String createdBy = (member != null) ? member.getAccountNo() : null;
 
         return new PromotionCampaign(
                 campaignId,
@@ -120,7 +145,6 @@ public class PromotionController {
 
     @FXML
     private void clearForm() {
-        campaignIdField.clear();
         campaignNameField.clear();
         campaignDescriptionArea.clear();
         startDatePicker.setValue(null);
@@ -128,9 +152,10 @@ public class PromotionController {
         endDatePicker.setValue(null);
         endTimeField.clear();
         defaultDiscountField.clear();
-        createdByField.clear();
+        setCreatedByFromSession();
         statusComboBox.setValue("scheduled");
         discountModeComboBox.setValue("fixed");
+        setNextCampaignId();
     }
 
     private void showStatus(String message, boolean success) {
@@ -230,14 +255,23 @@ public class PromotionController {
     }
 
     private void hide(Button... buttons) {
-        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+        for (Button b : buttons) {
+            b.setVisible(false);
+            b.setManaged(false);
+        }
     }
 
     private void show(Button... buttons) {
-        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+        for (Button b : buttons) {
+            b.setVisible(true);
+            b.setManaged(true);
+        }
     }
 
-    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+    @FXML
+    private void handleActivePromotions() {
+        navigate("/com/example/fx/ActivePromotions.fxml");
+    }
 
     @FXML
     private void handleReports() {
@@ -253,8 +287,16 @@ public class PromotionController {
         }
     }
 
-    @FXML private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
-    @FXML private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
+    @FXML
+    private void handleLogin() {
+        navigate("/com/example/fx/Login.fxml");
+    }
+
+    @FXML
+    private void handleLogout() {
+        Session.setMember(null);
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     private void navigate(String fxml) {
         try {

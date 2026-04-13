@@ -47,6 +47,25 @@ public class PromotionDAO {
         createCampaignMetricsRow(campaign.getCampaignId());
     }
 
+    public static String generateNextCampaignId() throws SQLException {
+        String sql = "SELECT campaign_id FROM PromotionCampaign " +
+                "WHERE campaign_id LIKE 'CAMP%' " +
+                "ORDER BY campaign_id DESC LIMIT 1";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                String last = rs.getString("campaign_id");   // e.g. CAMP0002
+                int number = Integer.parseInt(last.substring(4));
+                return String.format("CAMP%04d", number + 1);
+            } else {
+                return "CAMP0001";
+            }
+        }
+    }
+
     public static void addItemToCampaign(String campaignId, int itemId, Double itemDiscountPct) throws SQLException {
         String sql = """
                 INSERT INTO PromotionCampaignItem

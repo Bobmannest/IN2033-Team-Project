@@ -30,7 +30,7 @@
                                 <Image url="@../../../images/curatech.png" />
                             </image>
                         </ImageView>
-                        <Pane prefHeight="38.0" prefWidth="591.0" />
+                        <Pane HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
                             <font>
                                 <Font name="MS Reference Sans Serif" size="12.0" />
@@ -45,6 +45,7 @@
                     </items>
                 </ToolBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
+
                <items>
                   <Button mnemonicParsing="false" onAction="#handleHome">
                      <graphic>

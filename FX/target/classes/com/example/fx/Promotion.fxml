@@ -158,14 +158,14 @@
 
                     <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                         <Label text="Created By (Account No)"/>
-                        <TextField fx:id="createdByField" promptText="e.g. PU0001"/>
+                        <TextField fx:id="createdByField" promptText="Auto-filled" editable="false"/>
                     </VBox>
                 </HBox>
 
                 <HBox spacing="12.0" alignment="CENTER_LEFT">
                     <Button text="Create Campaign"
                             onAction="#handleCreateCampaign"
-                            style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+                            style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
                     <Button text="Clear"
                             onAction="#clearForm"
                             style="-fx-background-color: #e5e7eb; -fx-text-fill: #111827; -fx-font-weight: bold; -fx-background-radius: 8;"/>
