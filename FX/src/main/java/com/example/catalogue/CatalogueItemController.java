@@ -12,6 +12,7 @@ public class CatalogueItemController {
     @FXML private TextField qtyField;
 
     @FXML private Label idLabel;
+    @FXML private Label nameLabel;
     @FXML private Label packageCostLabel;
     @FXML private Label packageTypeLabel;
     @FXML private Label availabilityLabel;
@@ -22,6 +23,7 @@ public class CatalogueItemController {
         String roundedPrice = String.format("%.2f", item.getPackage_cost());
 
         idLabel.setText("#" + item.getItem_id());
+        nameLabel.setText(item.getDescription());
         packageCostLabel.setText("Price - £" + roundedPrice);
         packageTypeLabel.setText(item.getPackage_type());
         availabilityLabel.setText("Available - " + item.getAvailability());

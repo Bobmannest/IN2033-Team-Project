@@ -1,11 +1,16 @@
 package com.example.active_promotions;
 
+import com.example.catalogue.CatalogueDatabase;
 import com.example.promotion.PromotionCampaign;
 import com.example.promotion.PromotionService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -84,8 +89,14 @@ public class ActivePromotionItemController {
 
         try {
             promotionService.recordCampaignClick(currentCampaign.getCampaignId());
-            System.out.println("View items clicked for campaign: " + currentCampaign.getCampaignId());
-        } catch (SQLException e) {
+            CatalogueDatabase.pendingCampaignFilter = currentCampaign.getCampaignId();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Catalogue.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) viewItemsButton.getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
