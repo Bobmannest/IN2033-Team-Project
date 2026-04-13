@@ -70,7 +70,6 @@ public class CatalogueController {
                 .filter(item -> search.isEmpty() || item.getDescription().toLowerCase().contains(search))
                 .toList();
 
-        //Displays each item
         for (CatalogueItem item : items) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));

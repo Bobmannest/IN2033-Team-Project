@@ -19,9 +19,10 @@ public class CatalogueItemController {
 
     public void setItem(CatalogueItem item) {
         this.currentItem = item;
+        String roundedPrice = String.format("%.2f", item.getPackage_cost());
 
         idLabel.setText("#" + item.getItem_id());
-        packageCostLabel.setText("Price - £" + item.getPackage_cost());
+        packageCostLabel.setText("Price - £" + roundedPrice);
         packageTypeLabel.setText(item.getPackage_type());
         availabilityLabel.setText("Available - " + item.getAvailability());
         statusLabel.setText("[" + item.getStatus() + "]");
