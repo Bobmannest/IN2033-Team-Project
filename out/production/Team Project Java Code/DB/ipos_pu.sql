@@ -7,16 +7,26 @@ DROP TABLE IF EXISTS OnlineOrderItem;
 DROP TABLE IF EXISTS OnlineOrder;
 DROP TABLE IF EXISTS PromotionCampaignItem;
 DROP TABLE IF EXISTS PromotionCampaign;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS CommercialApplication;
 DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS Member;
 
 CREATE TABLE IF NOT EXISTS Member (
     account_no VARCHAR(10) PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
-    member_type ENUM('non_commercial', 'commercial') NOT NULL DEFAULT 'non_commercial',
+    member_type ENUM('non_commercial', 'commercial', 'admin') NOT NULL DEFAULT 'non_commercial',
     is_first_login BOOLEAN NOT NULL DEFAULT TRUE,
     order_count INT NOT NULL DEFAULT 0
 );
+
+INSERT INTO Member (account_no, email, password, member_type, is_first_login, order_count) VALUES
+('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
+('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
+('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
+('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
+('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
 
 CREATE TABLE IF NOT EXISTS Product (
     item_id INT(10) PRIMARY KEY,
@@ -139,6 +149,26 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (account_no) REFERENCES Member(account_no)
 );
 
+CREATE TABLE Payments (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    card_first4 CHAR(4) NOT NULL,
+    card_last4 CHAR(4) NOT NULL,
+    card_expiry CHAR(5) NOT NULL,
+    card_type VARCHAR(20) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO Payments (name, card_first4, card_last4, card_expiry, card_type, amount, created_at) VALUES
+('Cosymed Ltd', '4532', '8842', '06/28', 'Credit Card', 806.00, '2026-03-15 00:00:00'),
+('John Smith', '4916', '3174', '11/27', 'Visa', 45.00, '2026-03-03 00:00:00'),
+('Jane Doe', '4024', '5678', '03/29', 'Debit Card', 32.50, '2026-03-03 00:00:00'),
+('Glynne Morisson', '5412', '9021', '09/26', 'Credit Card', 78.00, '2026-03-29 00:00:00'),
+('Peter Popov', '0000', '0001', '08/30', 'AmEx', 52.00, '2026-03-20 00:00:00'),
+('Eva Bauyer', '0001', '0005', '09/28', 'Mastercard', 10.50, '2026-04-08 00:00:00');
+
 CREATE TABLE IF NOT EXISTS CommercialApplication (
     application_id VARCHAR(20) PRIMARY KEY,
     company_name VARCHAR(100) NOT NULL,
@@ -150,3 +180,6 @@ CREATE TABLE IF NOT EXISTS CommercialApplication (
     submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending'
 );
+
+INSERT INTO CommercialApplication (application_id, company_name, companies_house_no, director_name, business_type, address, email, status)
+VALUES ('APP0001', 'Pond Pharmacy', 'UK10003429CompH', 'TBD', 'Pharmacy', 'Chislehurst, 25 High Street, BR7 5BN', 'curatecht33+pu0003@gmail.com', 'approved');

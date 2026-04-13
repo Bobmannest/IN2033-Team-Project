@@ -14,8 +14,8 @@ public class PromotionSampleDataLoader {
                 PromotionCampaign marchPromotion = new PromotionCampaign(
                         "CAMP0001",
                         "March Promotion",
-                        "Promotion campaign created from sample data",
-                        LocalDateTime.of(2026, 3, 15, 0, 0),
+                        "Aspirin 5%, Analgin 10%, Celebrex 100mg 10%, Retin-A Tretin 30g 20%",
+                        LocalDateTime.of(2026, 4, 12, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",
@@ -26,18 +26,18 @@ public class PromotionSampleDataLoader {
                 System.out.println("Created CAMP0001");
             }
 
-            addIfItemExists(service, "CAMP0001", 10000002, 5.0);
-            addIfItemExists(service, "CAMP0001", 10000003, 10.0);
-            addIfItemExists(service, "CAMP0001", 10000004, 10.0);
-            addIfItemExists(service, "CAMP0001", 10000006, 20.0);
+            addIfItemExists(service, "CAMP0001", 1, 5.0);
+            addIfItemExists(service, "CAMP0001", 2, 10.0);
+            addIfItemExists(service, "CAMP0001", 3, 10.0);
+            addIfItemExists(service, "CAMP0001", 4, 20.0);
 
             if (PromotionDAO.getCampaignById("CAMP0002") == null) {
                 PromotionCampaign aprilPromotion = new PromotionCampaign(
                         "CAMP0002",
                         "April Promotion",
-                        "Promotion campaign created from sample data",
-                        LocalDateTime.of(2026, 4, 5, 0, 0),
-                        LocalDateTime.of(2026, 4, 10, 23, 59),
+                        "Ospen 20%, Vitamin C 10%",
+                        LocalDateTime.of(2026, 4, 12, 0, 0),
+                        LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",
                         null,
@@ -47,8 +47,8 @@ public class PromotionSampleDataLoader {
                 System.out.println("Created CAMP0002");
             }
 
-            addIfItemExists(service, "CAMP0002", 30000001, 20.0);
-            addIfItemExists(service, "CAMP0002", 40000001, 10.0);
+            addIfItemExists(service, "CAMP0002", 3, 20.0);
+            addIfItemExists(service, "CAMP0002", 4, 10.0);
 
             System.out.println("Promotion sample data load finished.");
 
