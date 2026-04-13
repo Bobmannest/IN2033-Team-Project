@@ -130,11 +130,76 @@ public class SalesReportController {
             errorLabel.setText("Generate a report before printing.");
             return;
         }
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null && job.showPrintDialog(printableArea.getScene().getWindow())) {
-            boolean success = job.printPage(printableArea);
-            if (success) job.endJob();
+
+        StringBuilder html = new StringBuilder();
+        html.append("""
+        <html><head><style>
+        body { font-family: Arial, sans-serif; margin: 40px; font-size: 13px; }
+        h2 { font-style: italic; }
+        .header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .address { text-align: right; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th { background: #eee; border: 1px solid #999; padding: 6px; text-align: left; }
+        td { border: 1px solid #ccc; padding: 6px; }
+        .footer { margin-top: 16px; font-size: 11px; color: #555; }
+        </style></head><body>
+        <h2>IPOS-PU Sales Report</h2>
+        <hr/>
+        <div class="header">
+          <div>
+    """);
+
+        html.append("<p>").append(lblStartPeriod.getText()).append("</p>");
+        html.append("<p>").append(lblEndPeriod.getText()).append("</p>");
+        html.append("""
+          </div>
+          <div class="address">
+            Cosymed Ltd.,<br/>
+            27 Sainsbury Close,<br/>
+            3, High Level Drive,<br/>
+            Sydenham,<br/>
+            SE26 3ET<br/>
+            Phone: 0208 778 0124<br/>
+            Fax: 0208 778 0125
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>Item ID</th>
+            <th>Description</th>
+            <th>Sold, packs</th>
+            <th>Unit price, £</th>
+            <th>Total, £</th>
+          </tr>
+    """);
+
+        for (SalesRow row : salesTable.getItems()) {
+            html.append("<tr>")
+                    .append("<td>").append(row.itemId()).append("</td>")
+                    .append("<td>").append(row.description()).append("</td>")
+                    .append("<td>").append(row.soldPacks()).append("</td>")
+                    .append("<td>").append(row.unitPrice()).append("</td>")
+                    .append("<td>").append(row.total()).append("</td>")
+                    .append("</tr>");
         }
+
+        html.append("</table>");
+        html.append("<div class='footer'><p>").append(lblGenerated.getText()).append("</p></div>");
+        html.append("</body></html>");
+
+        javafx.scene.web.WebView webView = new javafx.scene.web.WebView();
+        webView.getEngine().loadContent(html.toString());
+
+        javafx.scene.web.WebEngine engine = webView.getEngine();
+        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
+                PrinterJob job = PrinterJob.createPrinterJob();
+                if (job != null && job.showPrintDialog(printableArea.getScene().getWindow())) {
+                    engine.print(job);
+                    job.endJob();
+                }
+            }
+        });
     }
 
     @FXML private void handleBackToReports()    { navigate("/com/example/fx/Reports.fxml", 1000, 620); }
