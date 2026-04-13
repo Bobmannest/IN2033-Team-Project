@@ -1,19 +1,23 @@
 package com.example.active_promotions;
 
+import com.example.members.Member;
+import com.example.members.Session;
+import com.example.promotion.PromotionCampaign;
+import com.example.promotion.PromotionService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import com.example.members.Member;
-import com.example.members.Session;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ActivePromotionsController {
+
     @FXML private BorderPane ActivePromotionsPane;
     @FXML private FlowPane ActivePromotionsFlowPane;
     @FXML private Button btnCreatePromotion;
@@ -23,44 +27,39 @@ public class ActivePromotionsController {
     @FXML private Button btnLogin;
     @FXML private Button btnLogout;
 
+    private final PromotionService promotionService = new PromotionService();
+
     @FXML
     public void initialize() {
-        testDisplayItems();
+        displayActiveCampaigns();
         setupNavBar();
     }
 
-    /*
-    public void displayItems() {
+    private void displayActiveCampaigns() {
         ActivePromotionsFlowPane.getChildren().clear();
 
-        for (ActivePromotionItem item : ActivePromotionsList.getItems()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/ActivePromotionItem.fxml"));
-                javafx.scene.layout.HBox itemCard = loader.load();
+        try {
+            List<PromotionCampaign> campaigns = promotionService.getActiveCampaigns();
+            System.out.println("Active campaigns found: " + campaigns.size());
 
-                ActivePromotionItemController itemCtrl = loader.getController();
-                itemCtrl.setItem(item);
+            for (PromotionCampaign campaign : campaigns) {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/com/example/fx/ActivePromotionItem.fxml")
+                );
 
-                flowPane.getChildren().add(itemCard);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-     */
-
-    public void testDisplayItems() {
-        ActivePromotionsFlowPane.getChildren().clear();
-
-        for (int i = 0; i < 11; i++) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/ActivePromotionItem.fxml"));
                 VBox itemCard = loader.load();
+
+                ActivePromotionItemController itemController = loader.getController();
+                itemController.setCampaign(campaign);
+
                 ActivePromotionsFlowPane.getChildren().add(itemCard);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+
+            System.out.println("Cards added: " + ActivePromotionsFlowPane.getChildren().size());
+
+        } catch (Exception e) {
+            System.out.println("Error loading active promotions:");
+            e.printStackTrace();
         }
     }
 
@@ -69,7 +68,6 @@ public class ActivePromotionsController {
         navigate("/com/example/fx/OrderHistory.fxml");
     }
 
-    // navigates to the account screen when the account button is clicked
     @FXML
     private void handleAccount() {
         navigate("/com/example/fx/Account.fxml");
@@ -91,11 +89,6 @@ public class ActivePromotionsController {
     }
 
     @FXML
-    private void handleActivePromotions() {
-        navigate("/com/example/fx/ActivePromotions.fxml");
-    }
-
-    @FXML
     private void handleCreatePromotion() {
         navigate("/com/example/fx/Promotion.fxml");
     }
@@ -106,10 +99,15 @@ public class ActivePromotionsController {
     }
 
     @FXML
-    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+    private void handleLogin() {
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     @FXML
-    private void handleLogout() {Session.setMember(null); navigate("/com/example/fx/Login.fxml");}
+    private void handleLogout() {
+        Session.setMember(null);
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     private void navigate(String fxml) {
         try {
@@ -124,10 +122,11 @@ public class ActivePromotionsController {
 
     private void setupNavBar() {
         Member member = Session.getMember();
+
         if (member == null) {
             hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
             show(btnLogin);
-        } else if (member.getMemberType().equals("admin")) {
+        } else if ("admin".equalsIgnoreCase(member.getMemberType())) {
             show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
             hide(btnLogin);
         } else {
@@ -137,10 +136,16 @@ public class ActivePromotionsController {
     }
 
     private void hide(Button... buttons) {
-        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+        for (Button button : buttons) {
+            button.setVisible(false);
+            button.setManaged(false);
+        }
     }
 
     private void show(Button... buttons) {
-        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+        for (Button button : buttons) {
+            button.setVisible(true);
+            button.setManaged(true);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.catalogue;
 
+import com.example.promotion.PromotionDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ import com.example.members.Member;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CatalogueController {
@@ -70,7 +72,6 @@ public class CatalogueController {
                 .filter(item -> search.isEmpty() || item.getDescription().toLowerCase().contains(search))
                 .toList();
 
-        //Displays each item
         for (CatalogueItem item : items) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
@@ -86,6 +87,29 @@ public class CatalogueController {
         }
     }
 
+    public void displayPromotionItems(String campaignId) {
+        catalogueVBox.getChildren().clear();
+
+        try {
+            List<CatalogueItem> items = PromotionDAO.getCampaignCatalogueItems(campaignId);
+            System.out.println("Campaign ID: " + campaignId);
+            System.out.println("Items found: " + items.size());
+
+            for (CatalogueItem item : items) {
+                System.out.println("Displaying item: " + item.getItem_id() + " - " + item.getDescription());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
+                HBox itemCard = loader.load();
+
+                CatalogueItemController itemCtrl = loader.getController();
+                itemCtrl.setItem(item);
+
+                catalogueVBox.getChildren().add(itemCard);
+            }
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @FXML
     private void handleApplyFilters() {
         displayItems();
@@ -94,8 +118,14 @@ public class CatalogueController {
     @FXML
     public void initialize() {
         CatalogueDatabase.setListener(this);
-        displayItems();
         setupNavBar();
+
+        if (CatalogueDatabase.pendingCampaignFilter != null) {
+            displayPromotionItems(CatalogueDatabase.pendingCampaignFilter);
+            CatalogueDatabase.pendingCampaignFilter = null;
+        } else {
+            displayItems();
+        }
     }
 
     private void setupNavBar() {

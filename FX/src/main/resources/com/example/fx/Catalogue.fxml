@@ -165,9 +165,14 @@
                                              </HBox.margin></TextField>
                                        </children>
                                     </HBox>
+                                    <HBox prefHeight="0.0" prefWidth="140.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                     <Button mnemonicParsing="false" onAction="#handleApplyFilters" prefHeight="25.0" prefWidth="184.0" text="Apply Filters">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </Button>
                                     <Label fx:id="filterErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="146.0" textFill="RED">

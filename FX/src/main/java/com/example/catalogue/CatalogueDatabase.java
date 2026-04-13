@@ -7,6 +7,7 @@ import java.util.List;
 public class CatalogueDatabase {
     private static CatalogueController listener;
     private static List<CatalogueItem> catalogue_items = new ArrayList<>();
+    public static String pendingCampaignFilter = null;
 
     public static void setListener(CatalogueController lis) {
         listener = lis;

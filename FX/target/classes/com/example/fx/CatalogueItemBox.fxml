@@ -10,14 +10,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="687.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueItemController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="779.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.catalogue.CatalogueItemController">
    <children>
-      <Label fx:id="idLabel" prefHeight="18.0" prefWidth="69.0" text="ID">
+      <Label fx:id="idLabel" prefHeight="18.0" prefWidth="39.0" text="ID">
          <font>
             <Font name="MS Reference Sans Serif" size="14.0" />
          </font>
          <HBox.margin>
             <Insets left="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="nameLabel" prefHeight="19.0" prefWidth="121.0" text="Name">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+         <font>
+            <Font name="MS Reference Sans Serif" size="12.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="5.0" right="5.0" />
          </HBox.margin>
       </Label>
       <Pane prefHeight="33.0" prefWidth="18.0" />
