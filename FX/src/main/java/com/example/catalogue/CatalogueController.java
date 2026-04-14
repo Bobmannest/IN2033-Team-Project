@@ -28,6 +28,7 @@ public class CatalogueController {
     @FXML private TextField maxPriceField;
     @FXML private CheckBox minPriceCheckBox;
     @FXML private TextField minPriceField;
+    @FXML private Button clearFiltersButton;
 
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
@@ -54,9 +55,18 @@ public class CatalogueController {
         refreshDisplayedItems();
     }
 
+    @FXML
+    private void handleClearFilters() {
+        clearFiltersButton.setVisible(false);
+        clearFiltersButton.setManaged(false);
+        displayItems();
+    }
+
     private void refreshDisplayedItems() {
         catalogueVBox.getChildren().clear();
         filterErrorLabel.setText("");
+        filterErrorLabel.setManaged(false);
+
 
         List<CatalogueItem> items;
 
@@ -86,6 +96,7 @@ public class CatalogueController {
             }
         } catch (NumberFormatException e) {
             filterErrorLabel.setText("Enter a valid price");
+            filterErrorLabel.setManaged(true);
         }
 
         double finalMinPrice = minPrice;
@@ -123,6 +134,8 @@ public class CatalogueController {
         if (CatalogueDatabase.pendingCampaignFilter != null) {
             currentCampaignFilter = CatalogueDatabase.pendingCampaignFilter;
             CatalogueDatabase.pendingCampaignFilter = null;
+            clearFiltersButton.setVisible(true);
+            clearFiltersButton.setManaged(true);
         }
 
         refreshDisplayedItems();

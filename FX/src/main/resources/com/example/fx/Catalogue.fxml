@@ -91,7 +91,7 @@
                      <children>
                         <BorderPane prefHeight="450.0" prefWidth="152.0" style="-fx-border-color: #000000;">
                            <center>
-                              <VBox prefHeight="438.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="438.0" prefWidth="155.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Filters">
                                        <font>
@@ -99,7 +99,7 @@
                                        </font>
                                     </Text>
                                     <Line endX="35.5" startX="-100.0" />
-                                    <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="234.0" VBox.vgrow="NEVER">
+                                    <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="160.0" VBox.vgrow="NEVER">
                                       <items>
                                           <ImageView fitHeight="25.0" fitWidth="25.0" preserveRatio="true">
                                              <image>
@@ -167,15 +167,20 @@
                                     </HBox>
                                     <HBox prefHeight="0.0" prefWidth="140.0">
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="5.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </HBox>
                                     <Button mnemonicParsing="false" onAction="#handleApplyFilters" prefHeight="25.0" prefWidth="184.0" text="Apply Filters">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets bottom="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Label fx:id="filterErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="146.0" textFill="RED">
+                                    <Button fx:id="clearFiltersButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="Clear Filters" visible="false" managed="false" onAction="#handleClearFilters">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Label fx:id="filterErrorLabel" alignment="CENTER" contentDisplay="CENTER" managed="false" prefHeight="15.0" prefWidth="146.0" textFill="RED">
                                        <font>
                                           <Font name="MS Reference Sans Serif" size="12.0" />
                                        </font>
