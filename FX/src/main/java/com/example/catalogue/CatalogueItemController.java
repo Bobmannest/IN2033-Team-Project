@@ -38,13 +38,14 @@ public class CatalogueItemController {
         if (!qtyFieldInput.isEmpty()) {quantity = Integer.parseInt(qtyFieldInput);}
 
         if (quantity <= currentItem.getAvailability()) {
+            CatalogueController.stockErrorLabel.setText("");
             for (int i = 0; i < quantity; i++) {
                 BasketList.addItem(currentItem);
                 currentItem.setAvailability(currentItem.getAvailability() - 1);
             }
             availabilityLabel.setText("Available - " + currentItem.getAvailability());
         } else {
-            //error
+            CatalogueController.stockErrorLabel.setText("Insufficient Stock Available");
         }
     }
 }

@@ -95,7 +95,7 @@
                         <Insets bottom="60.0" left="20.0" right="20.0" top="0.0" />
                      </padding>
                      <children>
-                        <ImageView fitHeight="44.0" fitWidth="199.0">
+                        <ImageView fitHeight="44.0" fitWidth="237.0">
                            <image>
                               <Image url="@../../../images/curatech.png" />
                            </image>

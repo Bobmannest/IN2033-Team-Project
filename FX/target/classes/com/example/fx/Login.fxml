@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.Controller">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
@@ -21,7 +20,7 @@
             <Image url="@../../../images/background.png" />
          </image>
       </ImageView>
-      <BorderPane maxHeight="620.0" maxWidth="950.0" prefHeight="520.0" prefWidth="850.0" style="-fx-background-color: #1a3a2a; -fx-background-radius: 25; -fx-border-radius: 25;" stylesheets="@style.css">
+      <BorderPane maxHeight="620.0" maxWidth="950.0" prefHeight="520.0" prefWidth="850.0" style="-fx-background-color: #1a3a2a; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
          <center>
             <HBox prefHeight="520.0" prefWidth="850.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
@@ -91,12 +90,12 @@
                         <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleGuestLogin" prefHeight="42.0" prefWidth="360.0" style="-fx-background-color: #f5f5f5; -fx-text-fill: #666666; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-font-size: 13px; -fx-font-family: 'System'; -fx-cursor: hand;" text="Continue as Guest" HBox.hgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="516.0" HBox.hgrow="ALWAYS" prefWidth="204.0" style="-fx-background-color: #1a3a2a; -fx-background-radius: 0 10 10 0;">
+                  <VBox alignment="CENTER" prefHeight="516.0" prefWidth="204.0" style="-fx-background-color: #1a3a2a; -fx-background-radius: 0 10 10 0;" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="60.0" left="20.0" right="20.0" top="0.0" />
                      </padding>
                      <children>
-                        <ImageView fitHeight="44.0" fitWidth="199.0">
+                        <ImageView fitHeight="44.0" fitWidth="237.0">
                            <image>
                               <Image url="@../../../images/curatech.png" />
                            </image>

@@ -21,6 +21,8 @@ import java.util.List;
 public class CatalogueController {
     @FXML private VBox catalogueVBox;
     @FXML private Label filterErrorLabel;
+    @FXML private Label insufficientStockErrorLabel;
+    public static Label stockErrorLabel;
 
     @FXML private TextField searchBar;
     @FXML private CheckBox inStockCheckbox;
@@ -49,6 +51,7 @@ public class CatalogueController {
         currentCampaignFilter = campaignId;
         refreshDisplayedItems();
     }
+
 
     @FXML
     private void handleApplyFilters() {
@@ -128,6 +131,7 @@ public class CatalogueController {
 
     @FXML
     public void initialize() {
+        stockErrorLabel = insufficientStockErrorLabel;
         CatalogueDatabase.setListener(this);
         setupNavBar();
 
