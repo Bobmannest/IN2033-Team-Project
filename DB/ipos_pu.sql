@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS OnlineOrder;
 DROP TABLE IF EXISTS PromotionCampaignItem;
 DROP TABLE IF EXISTS PromotionCampaign;
 DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Payments;
 DROP TABLE IF EXISTS CommercialApplication;
 DROP TABLE IF EXISTS Product;
 DROP TABLE IF EXISTS Member;
@@ -22,14 +23,14 @@ CREATE TABLE IF NOT EXISTS Member (
 );
 
 INSERT INTO Member (account_no, email, password, member_type, is_first_login, order_count) VALUES
-('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
-('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
-('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
-('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
-('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
+    ('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
+    ('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
+    ('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
+    ('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
+    ('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
 
 CREATE TABLE IF NOT EXISTS Product (
-    item_id INT(10) PRIMARY KEY,
+    item_id VARCHAR(10) PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     package_type VARCHAR(50),
     unit VARCHAR(50),
@@ -55,23 +56,23 @@ CREATE TABLE IF NOT EXISTS PromotionCampaign (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_campaign_created_by
-    FOREIGN KEY (created_by) REFERENCES Member(account_no)
-    ON DELETE SET NULL
+        FOREIGN KEY (created_by) REFERENCES Member(account_no)
+            ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS PromotionCampaignItem (
     campaign_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     campaign_id VARCHAR(10) NOT NULL,
-    item_id INT(10) NOT NULL,
+    item_id VARCHAR(10) NOT NULL,
     item_discount_pct DECIMAL(5,2) DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (campaign_id, item_id),
     CONSTRAINT fk_promo_item_campaign
-    FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
-    ON DELETE CASCADE,
+        FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
+            ON DELETE CASCADE,
     CONSTRAINT fk_promo_item_product
-    FOREIGN KEY (item_id) REFERENCES Product(item_id)
-    ON DELETE CASCADE
+        FOREIGN KEY (item_id) REFERENCES Product(item_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS OnlineOrder (
@@ -85,17 +86,17 @@ CREATE TABLE IF NOT EXISTS OnlineOrder (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_online_order_member
-    FOREIGN KEY (member_account_no) REFERENCES Member(account_no)
-    ON DELETE CASCADE,
+        FOREIGN KEY (member_account_no) REFERENCES Member(account_no)
+            ON DELETE CASCADE,
     CONSTRAINT fk_online_order_campaign
-    FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
-    ON DELETE SET NULL
+        FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
+            ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS OnlineOrderItem (
     order_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     order_id BIGINT NOT NULL,
-    item_id INT(10) NOT NULL,
+    item_id VARCHAR(10) NOT NULL,
     campaign_id VARCHAR(10) DEFAULT NULL,
     quantity INT NOT NULL,
     unit_price DECIMAL(10,2) NOT NULL,
@@ -104,14 +105,14 @@ CREATE TABLE IF NOT EXISTS OnlineOrderItem (
     line_total DECIMAL(10,2) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_order_item_order
-    FOREIGN KEY (order_id) REFERENCES OnlineOrder(order_id)
-    ON DELETE CASCADE,
+        FOREIGN KEY (order_id) REFERENCES OnlineOrder(order_id)
+            ON DELETE CASCADE,
     CONSTRAINT fk_order_item_product
-    FOREIGN KEY (item_id) REFERENCES Product(item_id)
-    ON DELETE RESTRICT,
+        FOREIGN KEY (item_id) REFERENCES Product(item_id)
+            ON DELETE RESTRICT,
     CONSTRAINT fk_order_item_campaign
-    FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
-    ON DELETE SET NULL
+        FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
+            ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS CampaignMetrics (
@@ -120,24 +121,24 @@ CREATE TABLE IF NOT EXISTS CampaignMetrics (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_campaign_metrics_campaign
-    FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
-    ON DELETE CASCADE
+        FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS CampaignItemMetrics (
     campaign_id VARCHAR(10) NOT NULL,
-    item_id INT(10) NOT NULL,
+    item_id VARCHAR(10) NOT NULL,
     included_in_order_count INT NOT NULL DEFAULT 0,
     purchased_count INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (campaign_id, item_id),
     CONSTRAINT fk_item_metrics_campaign
-    FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
-    ON DELETE CASCADE,
+        FOREIGN KEY (campaign_id) REFERENCES PromotionCampaign(campaign_id)
+            ON DELETE CASCADE,
     CONSTRAINT fk_item_metrics_product
-    FOREIGN KEY (item_id) REFERENCES Product(item_id)
-    ON DELETE CASCADE
+        FOREIGN KEY (item_id) REFERENCES Product(item_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Orders (
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (account_no) REFERENCES Member(account_no)
 );
 
-CREATE TABLE Payments (
+CREATE TABLE IF NOT EXISTS Payments (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     card_first4 CHAR(4) NOT NULL,
@@ -162,12 +163,12 @@ CREATE TABLE Payments (
 );
 
 INSERT INTO Payments (name, card_first4, card_last4, card_expiry, card_type, amount, created_at) VALUES
-('Cosymed Ltd', '4532', '8842', '06/28', 'Credit Card', 806.00, '2026-03-15 00:00:00'),
-('John Smith', '4916', '3174', '11/27', 'Visa', 45.00, '2026-03-03 00:00:00'),
-('Jane Doe', '4024', '5678', '03/29', 'Debit Card', 32.50, '2026-03-03 00:00:00'),
-('Glynne Morisson', '5412', '9021', '09/26', 'Credit Card', 78.00, '2026-03-29 00:00:00'),
-('Peter Popov', '0000', '0001', '08/30', 'AmEx', 52.00, '2026-03-20 00:00:00'),
-('Eva Bauyer', '0001', '0005', '09/28', 'Mastercard', 10.50, '2026-04-08 00:00:00');
+                                                                                                     ('Cosymed Ltd', '4532', '8842', '06/28', 'Credit Card', 806.00, '2026-03-15 00:00:00'),
+                                                                                                     ('John Smith', '4916', '3174', '11/27', 'Visa', 45.00, '2026-03-03 00:00:00'),
+                                                                                                     ('Jane Doe', '4024', '5678', '03/29', 'Debit Card', 32.50, '2026-03-03 00:00:00'),
+                                                                                                     ('Glynne Morisson', '5412', '9021', '09/26', 'Credit Card', 78.00, '2026-03-29 00:00:00'),
+                                                                                                     ('Peter Popov', '0000', '0001', '08/30', 'AmEx', 52.00, '2026-03-20 00:00:00'),
+                                                                                                     ('Eva Bauyer', '0001', '0005', '09/28', 'Mastercard', 10.50, '2026-04-08 00:00:00');
 
 CREATE TABLE IF NOT EXISTS CommercialApplication (
     application_id VARCHAR(20) PRIMARY KEY,

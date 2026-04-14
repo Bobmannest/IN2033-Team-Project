@@ -15,7 +15,7 @@ public class PromotionService {
         PromotionDAO.createCampaign(campaign);
     }
 
-    public void addItemToCampaign(String campaignId, int itemId, Double itemDiscountPct) throws SQLException {
+    public void addItemToCampaign(String campaignId, String itemId, Double itemDiscountPct) throws SQLException {
         if (campaignId == null || campaignId.isBlank()) {
             throw new IllegalArgumentException("Campaign ID cannot be empty.");
         }
@@ -68,11 +68,11 @@ public class PromotionService {
                 && !now.isAfter(campaign.getEndDateTime());
     }
 
-    public Double getDiscountForItem(String campaignId, int itemId) throws SQLException {
+    public Double getDiscountForItem(String campaignId, String itemId) throws SQLException {
         return PromotionDAO.getDiscountForItem(campaignId, itemId);
     }
 
-    public double getDiscountedPrice(String campaignId, int itemId, double originalPrice) throws SQLException {
+    public double getDiscountedPrice(String campaignId, String itemId, double originalPrice) throws SQLException {
         Double discountPct = getDiscountForItem(campaignId, itemId);
 
         if (discountPct == null || discountPct <= 0) {
@@ -89,7 +89,7 @@ public class PromotionService {
             List<CatalogueItem> items = PromotionDAO.getCampaignCatalogueItems(campaign.getCampaignId());
 
             for (CatalogueItem item : items) {
-                if (item.getItem_id() == itemId) {
+                if (item.getItem_id().equals(itemId)) {
                     return campaign.getCampaignId();
                 }
             }
@@ -106,7 +106,7 @@ public class PromotionService {
         PromotionDAO.incrementCampaignHits(campaignId);
     }
 
-    public void recordIncludedInOrder(String campaignId, int itemId, int quantity) throws SQLException {
+    public void recordIncludedInOrder(String campaignId, String itemId, int quantity) throws SQLException {
         if (campaignId == null || campaignId.isBlank()) {
             throw new IllegalArgumentException("Campaign ID cannot be empty.");
         }
@@ -118,7 +118,7 @@ public class PromotionService {
         PromotionDAO.incrementIncludedInOrder(campaignId, itemId, quantity);
     }
 
-    public void recordPurchased(String campaignId, int itemId, int quantity) throws SQLException {
+    public void recordPurchased(String campaignId, String itemId, int quantity) throws SQLException {
         if (campaignId == null || campaignId.isBlank()) {
             throw new IllegalArgumentException("Campaign ID cannot be empty.");
         }
@@ -138,7 +138,7 @@ public class PromotionService {
         PromotionDAO.updateCampaignStatus(campaignId, "cancelled");
     }
 
-    public CatalogueItem findCatalogueItemById(int itemId) {
+    public CatalogueItem findCatalogueItemById(String itemId) {
         for (CatalogueItem item : CatalogueDatabase.getCatalogueItems()) {
             if (item.getItem_id() == itemId) {
                 return item;

@@ -181,7 +181,7 @@ public class CampaignItemController {
                 throw new IllegalArgumentException("Please select an item to delete.");
             }
 
-            int itemId = Integer.parseInt(selectedItemLine.split(" ")[0]);
+            String itemId = selectedItemLine.split(" - ")[0];
 
             PromotionDAO.deleteItemFromCampaign(selectedCampaign.getCampaignId(), itemId);
             loadCampaignItems(selectedCampaign.getCampaignId());

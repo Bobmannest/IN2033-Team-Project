@@ -3,13 +3,13 @@ package com.example.promotion;
 public class PromotionCampaignItem {
     private long campaignItemId;
     private String campaignId;
-    private int itemId;
+    private String itemId;
     private Double itemDiscountPct;
 
     public PromotionCampaignItem() {
     }
 
-    public PromotionCampaignItem(long campaignItemId, String campaignId, int itemId, Double itemDiscountPct) {
+    public PromotionCampaignItem(long campaignItemId, String campaignId, String itemId, Double itemDiscountPct) {
         this.campaignItemId = campaignItemId;
         this.campaignId = campaignId;
         this.itemId = itemId;
@@ -32,11 +32,11 @@ public class PromotionCampaignItem {
         this.campaignId = campaignId;
     }
 
-    public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 

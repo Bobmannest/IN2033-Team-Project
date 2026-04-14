@@ -66,7 +66,7 @@ public class PromotionDAO {
         }
     }
 
-    public static void addItemToCampaign(String campaignId, int itemId, Double itemDiscountPct) throws SQLException {
+    public static void addItemToCampaign(String campaignId, String itemId, Double itemDiscountPct) throws SQLException {
         String sql = """
                 INSERT INTO PromotionCampaignItem
                 (campaign_id, item_id, item_discount_pct)
@@ -77,7 +77,7 @@ public class PromotionDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, campaignId);
-            ps.setInt(2, itemId);
+            ps.setString(2, itemId);
 
             if (itemDiscountPct != null) {
                 ps.setDouble(3, itemDiscountPct);
@@ -151,7 +151,7 @@ public class PromotionDAO {
 
     public static List<CatalogueItem> getCampaignCatalogueItems(String campaignId) throws SQLException {
         String sql = "SELECT item_id FROM PromotionCampaignItem WHERE campaign_id = ?";
-        List<Integer> campaignItemIds = new ArrayList<>();
+        List<String> campaignItemIds = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -160,7 +160,7 @@ public class PromotionDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    campaignItemIds.add(rs.getInt("item_id"));
+                    campaignItemIds.add(rs.getString("item_id"));
                 }
             }
         }
@@ -177,7 +177,7 @@ public class PromotionDAO {
         return result;
     }
 
-    public static Double getDiscountForItem(String campaignId, int itemId) throws SQLException {
+    public static Double getDiscountForItem(String campaignId, String itemId) throws SQLException {
         String sql = """
                 SELECT pci.item_discount_pct, pc.default_discount_pct
                 FROM PromotionCampaignItem pci
@@ -189,7 +189,7 @@ public class PromotionDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, campaignId);
-            ps.setInt(2, itemId);
+            ps.setString(2, itemId);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -230,7 +230,7 @@ public class PromotionDAO {
         }
     }
 
-    public static void incrementIncludedInOrder(String campaignId, int itemId, int quantity) throws SQLException {
+    public static void incrementIncludedInOrder(String campaignId, String itemId, int quantity) throws SQLException {
         ensureCampaignItemMetricsRowExists(campaignId, itemId);
 
         String sql = """
@@ -244,12 +244,12 @@ public class PromotionDAO {
 
             ps.setInt(1, quantity);
             ps.setString(2, campaignId);
-            ps.setInt(3, itemId);
+            ps.setString(3, itemId);
             ps.executeUpdate();
         }
     }
 
-    public static void incrementPurchased(String campaignId, int itemId, int quantity) throws SQLException {
+    public static void incrementPurchased(String campaignId, String itemId, int quantity) throws SQLException {
         ensureCampaignItemMetricsRowExists(campaignId, itemId);
 
         String sql = """
@@ -263,7 +263,7 @@ public class PromotionDAO {
 
             ps.setInt(1, quantity);
             ps.setString(2, campaignId);
-            ps.setInt(3, itemId);
+            ps.setString(3, itemId);
             ps.executeUpdate();
         }
     }
@@ -291,14 +291,14 @@ public class PromotionDAO {
         }
     }
 
-    public static void deleteItemFromCampaign(String campaignId, int itemId) throws SQLException {
+    public static void deleteItemFromCampaign(String campaignId, String itemId) throws SQLException {
         String sql = "DELETE FROM PromotionCampaignItem WHERE campaign_id = ? AND item_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, campaignId);
-            ps.setInt(2, itemId);
+            ps.setString(2, itemId);
             ps.executeUpdate();
         }
     }
@@ -321,7 +321,7 @@ public class PromotionDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    int itemId = rs.getInt("item_id");
+                    String itemId = rs.getString("item_id");
                     String productName = rs.getString("product_name");
 
                     Double discount = rs.getDouble("item_discount_pct");
@@ -356,7 +356,7 @@ public class PromotionDAO {
         }
     }
 
-    private static void createCampaignItemMetricsRow(String campaignId, int itemId) throws SQLException {
+    private static void createCampaignItemMetricsRow(String campaignId, String itemId) throws SQLException {
         String sql = """
                 INSERT IGNORE INTO CampaignItemMetrics
                 (campaign_id, item_id, included_in_order_count, purchased_count)
@@ -367,7 +367,7 @@ public class PromotionDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, campaignId);
-            ps.setInt(2, itemId);
+            ps.setString(2, itemId);
             ps.executeUpdate();
         }
     }
@@ -376,7 +376,7 @@ public class PromotionDAO {
         createCampaignMetricsRow(campaignId);
     }
 
-    private static void ensureCampaignItemMetricsRowExists(String campaignId, int itemId) throws SQLException {
+    private static void ensureCampaignItemMetricsRowExists(String campaignId, String itemId) throws SQLException {
         createCampaignItemMetricsRow(campaignId, itemId);
     }
 

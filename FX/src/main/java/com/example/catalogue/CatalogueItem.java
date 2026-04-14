@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CatalogueItem {
     @JsonProperty("item_id")
-    private int item_id;
+    private String item_id;
     @JsonProperty("description")
     private String description;
     @JsonProperty("package_type")
@@ -27,7 +27,7 @@ public class CatalogueItem {
     public CatalogueItem() {}
 
     // Getters
-    public int getItem_id() {return item_id;}
+    public String getItem_id() {return item_id;}
     public String getDescription() {return description;}
     public String getPackage_type() {return package_type;}
     public String getUnit() {return unit;}
@@ -39,7 +39,7 @@ public class CatalogueItem {
     public double getOrder_percentage() {return order_percentage;}
 
     // Setters
-    public void setItem_id(int item_id) {this.item_id = item_id;}
+    public void setItem_id(String item_id) {this.item_id = item_id;}
     public void setDescription(String description) {this.description = description;}
     public void setPackage_type(String package_type) {this.package_type = package_type;}
     public void setUnit(String unit) {this.unit = unit;}

@@ -1,6 +1,6 @@
 [
   {
-    "item_id": 1,
+    "item_id": "100 0001",
     "description": "Paracetamol",
     "package_type": "Box",
     "unit": "Caps",
@@ -12,7 +12,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 2,
+    "item_id": "100 0002",
     "description": "Aspirin",
     "package_type": "Box",
     "unit": "Caps",
@@ -24,7 +24,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 3,
+    "item_id": "100 0003",
     "description": "Analgin",
     "package_type": "Box",
     "unit": "Caps",
@@ -36,7 +36,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 4,
+    "item_id": "100 0004",
     "description": "Celebrex caps 100mg",
     "package_type": "Box",
     "unit": "Caps",

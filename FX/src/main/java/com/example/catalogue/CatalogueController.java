@@ -4,7 +4,6 @@ import com.example.promotion.PromotionDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,18 +37,46 @@ public class CatalogueController {
     @FXML private Button btnLogin;
     @FXML private Button btnLogout;
 
+    private String currentCampaignFilter = null;
+
     public void displayItems() {
+        currentCampaignFilter = null;
+        refreshDisplayedItems();
+    }
+
+    public void displayPromotionItems(String campaignId) {
+        currentCampaignFilter = campaignId;
+        refreshDisplayedItems();
+    }
+
+    @FXML
+    private void handleApplyFilters() {
+        refreshDisplayedItems();
+    }
+
+    private void refreshDisplayedItems() {
         catalogueVBox.getChildren().clear();
         filterErrorLabel.setText("");
 
-        List<CatalogueItem> items = CatalogueDatabase.getCatalogueItems();
+        List<CatalogueItem> items;
+
+        try {
+            if (currentCampaignFilter != null) {
+                items = PromotionDAO.getCampaignCatalogueItems(currentCampaignFilter);
+                System.out.println("Campaign ID: " + currentCampaignFilter);
+                System.out.println("Items found: " + items.size());
+            } else {
+                items = CatalogueDatabase.getCatalogueItems();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         double minPrice = 0;
         double maxPrice = Double.MAX_VALUE;
         boolean inStockOnly = inStockCheckbox.isSelected();
         String search = searchBar.getText().trim().toLowerCase();
 
-        //Checks filter selections
         try {
             if (minPriceCheckBox.isSelected() && !minPriceField.getText().trim().isEmpty()) {
                 minPrice = Double.parseDouble(minPriceField.getText().trim());
@@ -64,7 +91,6 @@ public class CatalogueController {
         double finalMinPrice = minPrice;
         double finalMaxPrice = maxPrice;
 
-        //Applies filters
         items = items.stream()
                 .filter(item -> item.getPackage_cost() >= finalMinPrice)
                 .filter(item -> item.getPackage_cost() <= finalMaxPrice)
@@ -74,6 +100,8 @@ public class CatalogueController {
 
         for (CatalogueItem item : items) {
             try {
+                System.out.println("Displaying item: " + item.getItem_id() + " - " + item.getDescription());
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
                 HBox itemCard = loader.load();
 
@@ -87,45 +115,17 @@ public class CatalogueController {
         }
     }
 
-    public void displayPromotionItems(String campaignId) {
-        catalogueVBox.getChildren().clear();
-
-        try {
-            List<CatalogueItem> items = PromotionDAO.getCampaignCatalogueItems(campaignId);
-            System.out.println("Campaign ID: " + campaignId);
-            System.out.println("Items found: " + items.size());
-
-            for (CatalogueItem item : items) {
-                System.out.println("Displaying item: " + item.getItem_id() + " - " + item.getDescription());
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/catalogueItemBox.fxml"));
-                HBox itemCard = loader.load();
-
-                CatalogueItemController itemCtrl = loader.getController();
-                itemCtrl.setItem(item);
-
-                catalogueVBox.getChildren().add(itemCard);
-            }
-        } catch (IOException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    private void handleApplyFilters() {
-        displayItems();
-    }
-
     @FXML
     public void initialize() {
         CatalogueDatabase.setListener(this);
         setupNavBar();
 
         if (CatalogueDatabase.pendingCampaignFilter != null) {
-            displayPromotionItems(CatalogueDatabase.pendingCampaignFilter);
+            currentCampaignFilter = CatalogueDatabase.pendingCampaignFilter;
             CatalogueDatabase.pendingCampaignFilter = null;
-        } else {
-            displayItems();
         }
+
+        refreshDisplayedItems();
     }
 
     private void setupNavBar() {
@@ -156,13 +156,11 @@ public class CatalogueController {
         }
     }
 
-    // navigates to the orders page
     @FXML
     private void handleOrders() {
         navigate("/com/example/fx/OrderHistory.fxml");
     }
 
-    // navigates to the account screen when the account button is clicked
     @FXML
     private void handleAccount() {
         navigate("/com/example/fx/Account.fxml");
@@ -208,10 +206,15 @@ public class CatalogueController {
     }
 
     @FXML
-    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+    private void handleLogin() {
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     @FXML
-    private void handleLogout() {Session.setMember(null); navigate("/com/example/fx/Login.fxml");}
+    private void handleLogout() {
+        Session.setMember(null);
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     private void navigate(String fxml) {
         try {

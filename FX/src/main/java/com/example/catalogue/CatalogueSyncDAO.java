@@ -30,7 +30,7 @@ public class CatalogueSyncDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             for (CatalogueItem item : items) {
-                ps.setInt(1, item.getItem_id());
+                ps.setString(1, item.getItem_id());
                 ps.setString(2, item.getDescription());
                 ps.setString(3, item.getPackage_type());
                 ps.setString(4, item.getUnit());

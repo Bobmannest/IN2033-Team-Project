@@ -64,14 +64,8 @@
             </items>
          </ToolBar>
 
-         <VBox fx:id="printableArea" prefWidth="1100.0" spacing="12">
-            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="16.0" /></padding>
-
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Advert Campaigns Report">
-               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
-            </Text>
-            <Line endX="1040.0" startX="-100.0" />
+         <VBox spacing="12">
+            <padding><Insets bottom="0.0" left="24.0" right="24.0" top="16.0" /></padding>
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                <Label text="From:" />
@@ -88,11 +82,35 @@
 
             <Line endX="1040.0" startX="-100.0" />
 
+         </VBox>
+
+         <VBox fx:id="printableArea" prefWidth="1100.0" spacing="12">
+            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="8.0" /></padding>
+
+            <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                  style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Advert Campaigns Report">
+               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
+            </Text>
+            <Line endX="1040.0" startX="-100.0" />
+
             <VBox fx:id="headerBox" spacing="2" visible="false" managed="false">
-               <Label fx:id="lblStartPeriod"      text="" style="-fx-font-size: 12px;" />
-               <Label fx:id="lblEndPeriod"         text="" style="-fx-font-size: 12px;" />
-               <Label fx:id="lblActiveCampaigns"   text="" style="-fx-font-size: 12px;" />
-               <Label fx:id="lblGenerated"         text="" style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+               <HBox>
+                  <VBox spacing="2" HBox.hgrow="ALWAYS">
+                     <Label fx:id="lblStartPeriod"     text="" style="-fx-font-size: 12px;" />
+                     <Label fx:id="lblEndPeriod"       text="" style="-fx-font-size: 12px;" />
+                     <Label fx:id="lblActiveCampaigns" text="" style="-fx-font-size: 12px;" />
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" style="-fx-font-size: 12px;">
+                     <Label text="Cosymed Ltd.," />
+                     <Label text="27 Sainsbury Close," />
+                     <Label text="3, High Level Drive," />
+                     <Label text="Sydenham," />
+                     <Label text="SE26 3ET" />
+                     <Label text="Phone: 0208 778 0124" />
+                     <Label text="Fax: 0208 778 0125" />
+                  </VBox>
+               </HBox>
+               <Label fx:id="lblGenerated" text="" style="-fx-font-size: 11px; -fx-text-fill: #555;" />
             </VBox>
 
             <TableView fx:id="campaignsTable" prefHeight="400.0" prefWidth="1052.0" style="-fx-font-size: 13px;">

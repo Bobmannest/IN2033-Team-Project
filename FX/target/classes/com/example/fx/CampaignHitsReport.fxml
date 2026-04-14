@@ -64,14 +64,8 @@
             </items>
          </ToolBar>
 
-         <VBox fx:id="printableArea" prefWidth="900.0" spacing="12">
-            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="16.0" /></padding>
-
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  style="-fx-font-weight: bold;" text="CAMPAIGN HITS REPORT">
-               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
-            </Text>
-            <Line endX="840.0" startX="-100.0" />
+         <VBox spacing="12">
+            <padding><Insets bottom="0.0" left="24.0" right="24.0" top="16.0" /></padding>
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                <ComboBox fx:id="campaignCombo" prefWidth="400.0" promptText="Select a campaign…" />
@@ -85,11 +79,35 @@
 
             <Line endX="840.0" startX="-100.0" />
 
+         </VBox>
+
+         <VBox fx:id="printableArea" prefWidth="900.0" spacing="12">
+            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="8.0" /></padding>
+
+            <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                  style="-fx-font-weight: bold; -fx-font-style: italic;" text="Customer Campaign Engagement Report">
+               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
+            </Text>
+            <Line endX="840.0" startX="-100.0" />
+
             <VBox fx:id="headerBox" spacing="4" visible="false" managed="false">
-               <Label fx:id="lblCampaignId"   text="" style="-fx-font-weight: bold; -fx-font-size: 13px;" />
-               <Label fx:id="lblCampaignDesc" text="" style="-fx-font-size: 12px;" />
-               <Label fx:id="lblStartDate"    text="" style="-fx-font-size: 12px;" />
-               <Label fx:id="lblEndDate"      text="" style="-fx-font-size: 12px;" />
+               <HBox>
+                  <VBox spacing="4" HBox.hgrow="ALWAYS">
+                     <Label fx:id="lblCampaignId"   text="" style="-fx-font-weight: bold; -fx-font-size: 13px;" />
+                     <Label fx:id="lblCampaignDesc" text="" style="-fx-font-size: 12px;" />
+                     <Label fx:id="lblStartDate"    text="" style="-fx-font-size: 12px;" />
+                     <Label fx:id="lblEndDate"      text="" style="-fx-font-size: 12px;" />
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" style="-fx-font-size: 12px;">
+                     <Label text="Cosymed Ltd.," />
+                     <Label text="27 Sainsbury Close," />
+                     <Label text="3, High Level Drive," />
+                     <Label text="Sydenham," />
+                     <Label text="SE26 3ET" />
+                     <Label text="Phone: 0208 778 0124" />
+                     <Label text="Fax: 0208 778 0125" />
+                  </VBox>
+               </HBox>
                <Label fx:id="lblGeneratedDate" text="" style="-fx-font-size: 11px; -fx-text-fill: #666;" />
             </VBox>
 

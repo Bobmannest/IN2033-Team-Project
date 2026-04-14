@@ -1,7 +1,10 @@
 package com.example.promotion;
 
-import com.example.catalogue.CatalogueItem;
+import com.example.fx.DatabaseConnection;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 
 public class PromotionSampleDataLoader {
@@ -14,41 +17,41 @@ public class PromotionSampleDataLoader {
                 PromotionCampaign marchPromotion = new PromotionCampaign(
                         "CAMP0001",
                         "March Promotion",
-                        "Aspirin 5%, Analgin 10%, Celebrex 100mg 10%, Retin-A Tretin 30g 20%",
-                        LocalDateTime.of(2026, 4, 12, 0, 0),
+                        "Paracetamol 5%, Aspirin 10%, Analgin 10%, Celebrex caps 100mg 20%",
+                        LocalDateTime.of(2026, 3, 13, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",
                         null,
-                        null
+                        "manager"
                 );
                 service.createCampaign(marchPromotion);
                 System.out.println("Created CAMP0001");
             }
 
-            addIfItemExists(service, "CAMP0001", 1, 5.0);
-            addIfItemExists(service, "CAMP0001", 2, 10.0);
-            addIfItemExists(service, "CAMP0001", 3, 10.0);
-            addIfItemExists(service, "CAMP0001", 4, 20.0);
+            addIfProductExists("CAMP0001", "100 0001", 5.0);
+            addIfProductExists("CAMP0001", "100 0002", 10.0);
+            addIfProductExists("CAMP0001", "100 0003", 10.0);
+            addIfProductExists("CAMP0001", "100 0004", 20.0);
 
             if (PromotionDAO.getCampaignById("CAMP0002") == null) {
                 PromotionCampaign aprilPromotion = new PromotionCampaign(
                         "CAMP0002",
                         "April Promotion",
-                        "Ospen 20%, Vitamin C 10%",
-                        LocalDateTime.of(2026, 4, 12, 0, 0),
+                        "Paracetamol 20%, Aspirin 10%",
+                        LocalDateTime.of(2026, 4, 5, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",
                         null,
-                        null
+                        "manager"
                 );
                 service.createCampaign(aprilPromotion);
                 System.out.println("Created CAMP0002");
             }
 
-            addIfItemExists(service, "CAMP0002", 3, 20.0);
-            addIfItemExists(service, "CAMP0002", 4, 10.0);
+            addIfProductExists("CAMP0002", "100 0001", 20.0);
+            addIfProductExists("CAMP0002", "100 0002", 10.0);
 
             System.out.println("Promotion sample data load finished.");
 
@@ -57,19 +60,53 @@ public class PromotionSampleDataLoader {
         }
     }
 
-    private static void addIfItemExists(PromotionService service, String campaignId, int itemId, Double discount) {
+    private static void addIfProductExists(String campaignId, String itemId, Double discount) {
         try {
-            CatalogueItem item = service.findCatalogueItemById(itemId);
-
-            if (item != null) {
-                service.addItemToCampaign(campaignId, itemId, discount);
-                System.out.println("Added item " + itemId + " to " + campaignId);
-            } else {
-                System.out.println("Skipped missing catalogue item " + itemId + " for " + campaignId);
+            if (!productExists(itemId)) {
+                System.out.println("Skipped missing product " + itemId + " for " + campaignId);
+                return;
             }
+
+            if (campaignItemAlreadyExists(campaignId, itemId)) {
+                System.out.println("Campaign item already exists: " + campaignId + " / " + itemId);
+                return;
+            }
+
+            PromotionDAO.addItemToCampaign(campaignId, itemId, discount);
+            System.out.println("Added item " + itemId + " to " + campaignId);
+
         } catch (Exception e) {
             System.out.println("Failed adding item " + itemId + " to " + campaignId);
             e.printStackTrace();
+        }
+    }
+
+    private static boolean productExists(String itemId) throws Exception {
+        String sql = "SELECT 1 FROM Product WHERE item_id = ? LIMIT 1";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, itemId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    private static boolean campaignItemAlreadyExists(String campaignId, String itemId) throws Exception {
+        String sql = "SELECT 1 FROM PromotionCampaignItem WHERE campaign_id = ? AND item_id = ? LIMIT 1";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, campaignId);
+            ps.setString(2, itemId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 }
