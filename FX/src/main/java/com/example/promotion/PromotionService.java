@@ -147,6 +147,14 @@ public class PromotionService {
         return null;
     }
 
+    public void reactivateCampaign(String campaignId) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        PromotionDAO.updateCampaignStatus(campaignId, "active");
+    }
+
     private void validateCampaign(PromotionCampaign campaign) {
         if (campaign == null) {
             throw new IllegalArgumentException("Campaign cannot be null.");

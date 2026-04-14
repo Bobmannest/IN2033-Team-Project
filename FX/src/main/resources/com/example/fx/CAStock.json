@@ -1,6 +1,6 @@
 [
   {
-    "item_id": "100 0001",
+    "item_id": "100 00001",
     "description": "Paracetamol",
     "package_type": "Box",
     "unit": "Caps",
@@ -12,7 +12,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": "100 0002",
+    "item_id": "100 00002",
     "description": "Aspirin",
     "package_type": "Box",
     "unit": "Caps",
@@ -24,7 +24,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": "100 0003",
+    "item_id": "100 00003",
     "description": "Analgin",
     "package_type": "Box",
     "unit": "Caps",
@@ -36,7 +36,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": "100 0004",
+    "item_id": "100 00004",
     "description": "Celebrex caps 100mg",
     "package_type": "Box",
     "unit": "Caps",
@@ -48,7 +48,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 5,
+    "item_id": "100 00005",
     "description": "Celebrex caps 200mg",
     "package_type": "Box",
     "unit": "Caps",
@@ -60,7 +60,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 6,
+    "item_id": "100 00006",
     "description": "Retin-A Tretin 30g",
     "package_type": "Box",
     "unit": "Caps",
@@ -72,7 +72,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 7,
+    "item_id": "100 00007",
     "description": "Lipitor TB 20mg",
     "package_type": "Box",
     "unit": "Caps",
@@ -84,7 +84,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 8,
+    "item_id": "100 00008",
     "description": "Claritin CR 60g",
     "package_type": "Box",
     "unit": "Caps",
@@ -96,7 +96,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 9,
+    "item_id": "200 00004",
     "description": "Iodine Tincture",
     "package_type": "Bottle",
     "unit": "ml",
@@ -108,7 +108,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 10,
+    "item_id": "200 00005",
     "description": "Rhynol",
     "package_type": "Bottle",
     "unit": "ml",
@@ -120,7 +120,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 11,
+    "item_id": "300 00001",
     "description": "Ospen",
     "package_type": "Box",
     "unit": "Caps",
@@ -132,7 +132,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 12,
+    "item_id": "300 00002",
     "description": "Amopen",
     "package_type": "Box",
     "unit": "Caps",
@@ -144,7 +144,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 13,
+    "item_id": "400 00001",
     "description": "Vitamin C",
     "package_type": "Box",
     "unit": "Caps",
@@ -156,7 +156,7 @@
     "order_percentage": 0.00
   },
   {
-    "item_id": 14,
+    "item_id": "400 00002",
     "description": "Vitamin B12",
     "package_type": "Box",
     "unit": "Caps",

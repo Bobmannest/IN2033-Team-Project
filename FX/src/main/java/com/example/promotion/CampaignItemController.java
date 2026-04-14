@@ -222,6 +222,33 @@ public class CampaignItemController {
         }
     }
 
+    @FXML
+    private void handleReactivateCampaign() {
+        PromotionCampaign selected = campaignListView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            statusLabel.setText("Please select a campaign first.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
+        try {
+            String campaignId = selected.getCampaignId();
+
+            PromotionService promotionService = new PromotionService();
+            promotionService.reactivateCampaign(campaignId);
+
+            statusLabel.setText("Campaign reactivated successfully.");
+            statusLabel.setStyle("-fx-text-fill: green;");
+
+            handleRefreshCampaigns();
+
+        } catch (Exception e) {
+            statusLabel.setText("Error cancelling campaign: " + e.getMessage());
+            statusLabel.setStyle("-fx-text-fill: red;");
+        }
+    }
+
     private void loadCampaigns() {
         try {
             List<PromotionCampaign> campaigns = PromotionDAO.getAllCampaigns();

@@ -18,7 +18,7 @@ public class PromotionSampleDataLoader {
                         "CAMP0001",
                         "March Promotion",
                         "Paracetamol 5%, Aspirin 10%, Analgin 10%, Celebrex caps 100mg 20%",
-                        LocalDateTime.of(2026, 3, 13, 0, 0),
+                        LocalDateTime.of(2026, 4, 15, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",
@@ -29,16 +29,16 @@ public class PromotionSampleDataLoader {
                 System.out.println("Created CAMP0001");
             }
 
-            addIfProductExists("CAMP0001", "100 0001", 5.0);
-            addIfProductExists("CAMP0001", "100 0002", 10.0);
-            addIfProductExists("CAMP0001", "100 0003", 10.0);
-            addIfProductExists("CAMP0001", "100 0004", 20.0);
+            addIfProductExists("CAMP0001", "100 00001", 5.0);
+            addIfProductExists("CAMP0001", "100 00002", 10.0);
+            addIfProductExists("CAMP0001", "100 00003", 10.0);
+            addIfProductExists("CAMP0001", "100 00004", 20.0);
 
             if (PromotionDAO.getCampaignById("CAMP0002") == null) {
                 PromotionCampaign aprilPromotion = new PromotionCampaign(
                         "CAMP0002",
                         "April Promotion",
-                        "Paracetamol 20%, Aspirin 10%",
+                        "Ospen 20% , Vitamin C 10%",
                         LocalDateTime.of(2026, 4, 5, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
@@ -50,8 +50,8 @@ public class PromotionSampleDataLoader {
                 System.out.println("Created CAMP0002");
             }
 
-            addIfProductExists("CAMP0002", "100 0001", 20.0);
-            addIfProductExists("CAMP0002", "100 0002", 10.0);
+            addIfProductExists("CAMP0002", "300 00001", 20.0);
+            addIfProductExists("CAMP0002", "400 00001", 10.0);
 
             System.out.println("Promotion sample data load finished.");
 
