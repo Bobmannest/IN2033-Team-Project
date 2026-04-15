@@ -13,166 +13,192 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.Font?>
-<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.PromotionController" style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF;">
+<?import javafx.scene.text.Text?>
 
-    <top>
-        <VBox>
-            <children>
-                <ToolBar prefHeight="40.0" prefWidth="900.0">
-                    <items>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.PromotionController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="800.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="900.0" style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
+         <top>
+            <VBox>
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="900.0" styleClass="topToolbar">
+                     <items>
                         <ImageView fitHeight="33.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/curatech.png"/>
-                            </image>
+                           <image>
+                              <Image url="@../../../images/curatech.png" />
+                           </image>
                         </ImageView>
-
                         <Pane HBox.hgrow="ALWAYS" />
-
-                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0">
-                                    <image>
-                                        <Image url="@../../../images/cart.png"/>
-                                    </image>
-                                </ImageView>
-                            </graphic>
+                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../../images/cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                    </items>
-                </ToolBar>
-
-                <ToolBar prefHeight="40.0" prefWidth="900.0">
-                    <items>
-                        <Button mnemonicParsing="false" onAction="#handleHome">
-                            <graphic>
-                                <ImageView fitHeight="25.0" fitWidth="25.0">
-                                    <image>
-                                        <Image url="@../../../images/home.png"/>
-                                    </image>
-                                </ImageView>
-                            </graphic>
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="900.0" styleClass="bottomToolbar">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../../images/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
-                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
-                        <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
-                        <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
-                    </items>
-                </ToolBar>
-
-                <HBox spacing="15.0" style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;" alignment="CENTER_LEFT">
-                    <padding>
-                        <Insets top="15.0" right="20.0" bottom="15.0" left="20.0"/>
-                    </padding>
-
-                    <VBox spacing="4.0">
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                              style="-fx-font-weight: bold;" text="CREATE PROMOTION">
-                            <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
-                        </Text>
-                    </VBox>
-                </HBox>
-            </children>
-        </VBox>
-    </top>
-
-    <center>
-        <VBox spacing="18.0" alignment="TOP_LEFT" style="-fx-background-color: #f8fafc;">
-            <padding>
-                <Insets top="25.0" right="30.0" bottom="25.0" left="30.0"/>
-            </padding>
-
-            <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;">
-                <padding>
-                    <Insets top="22.0" right="22.0" bottom="22.0" left="22.0"/>
-                </padding>
-
-                <Label text="Create Campaign" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
-
-                <HBox spacing="15.0">
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Campaign ID"/>
-                        <TextField fx:id="campaignIdField" promptText="e.g. CAMP0001"/>
-                    </VBox>
-
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Campaign Name"/>
-                        <TextField fx:id="campaignNameField" promptText="e.g. Spring Offer"/>
-                    </VBox>
-                </HBox>
-
-                <VBox spacing="6.0">
-                    <Label text="Description"/>
-                    <TextArea fx:id="campaignDescriptionArea" promptText="Enter campaign description..." prefRowCount="3" wrapText="true"/>
-                </VBox>
-
-                <HBox spacing="15.0">
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Start Date"/>
-                        <DatePicker fx:id="startDatePicker"/>
-                    </VBox>
-
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Start Time"/>
-                        <TextField fx:id="startTimeField" promptText="HH:mm"/>
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="15.0">
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="End Date"/>
-                        <DatePicker fx:id="endDatePicker"/>
-                    </VBox>
-
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="End Time"/>
-                        <TextField fx:id="endTimeField" promptText="HH:mm"/>
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="15.0">
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Status"/>
-
-                        <ComboBox fx:id="statusComboBox" prefWidth="200.0"/>
-                    </VBox>
-
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Discount Mode"/>
-                        <ComboBox fx:id="discountModeComboBox" prefWidth="200.0"/>
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="15.0">
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Default Discount (%)"/>
-                        <TextField fx:id="defaultDiscountField" promptText="e.g. 10"/>
-                    </VBox>
-
-                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                        <Label text="Created By (Account No)"/>
-                        <TextField fx:id="createdByField" promptText="Auto-filled" editable="false"/>
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="12.0" alignment="CENTER_LEFT">
-                    <Button text="Create Campaign"
-                            onAction="#handleCreateCampaign"
-                            style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
-                    <Button text="Clear"
-                            onAction="#clearForm"
-                            style="-fx-background-color: #e5e7eb; -fx-text-fill: #111827; -fx-font-weight: bold; -fx-background-radius: 8;"/>
-                </HBox>
-
-                <Label fx:id="statusLabel" text="" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" styleClass="topButton" text="Create Promotion" />
+                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" styleClass="topButton" text="Reports" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
+                     </items>
+                  </ToolBar>
+                  <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;">
+                     <padding>
+                        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CREATE PROMOTION">
+                                 <font>
+                                    <Font name="Microsoft Sans Serif" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-        </VBox>
-    </center>
-</BorderPane>
+         </top>
+         <center>
+            <VBox alignment="TOP_LEFT" spacing="18.0" style="-fx-background-color: #f8fafc; -fx-background-radius: 12;">
+               <padding>
+                  <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+               </padding>
+               <children>
+                  <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;">
+                     <padding>
+                        <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+                     </padding>
+                     <children>
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Create Campaign" />
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Campaign ID" />
+                                    <TextField fx:id="campaignIdField" promptText="e.g. CAMP0001" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Campaign Name" />
+                                    <TextField fx:id="campaignNameField" promptText="e.g. Spring Offer" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox spacing="6.0">
+                           <children>
+                              <Label text="Description" />
+                              <TextArea fx:id="campaignDescriptionArea" prefRowCount="3" promptText="Enter campaign description..." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Start Date" />
+                                    <DatePicker fx:id="startDatePicker" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Start Time" />
+                                    <TextField fx:id="startTimeField" promptText="HH:mm" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="End Date" />
+                                    <DatePicker fx:id="endDatePicker" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="End Time" />
+                                    <TextField fx:id="endTimeField" promptText="HH:mm" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Status" />
+                                    <ComboBox fx:id="statusComboBox" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Discount Mode" />
+                                    <ComboBox fx:id="discountModeComboBox" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Default Discount (%)" />
+                                    <TextField fx:id="defaultDiscountField" promptText="e.g. 10" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Created By (Account No)" />
+                                    <TextField fx:id="createdByField" editable="false" promptText="Auto-filled" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                           <children>
+                              <Button onAction="#handleCreateCampaign" style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Create Campaign" />
+                              <Button onAction="#clearForm" style="-fx-background-color: #e5e7eb; -fx-text-fill: #111827; -fx-font-weight: bold; -fx-background-radius: 8;" text="Clear" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="statusLabel" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
