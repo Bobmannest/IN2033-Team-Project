@@ -20,33 +20,45 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.checkout.CheckoutController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="850.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.checkout.CheckoutController">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/background.png" />
          </image>
       </ImageView>
-      <BorderPane fx:id="checkoutPane" maxHeight="900.0" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css">
+      <BorderPane fx:id="checkoutPane" maxHeight="900.0" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
          <effect>
             <Blend />
          </effect>
          <center>
-            <VBox prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 20; -fx-border-radius: 20;" BorderPane.alignment="CENTER">
                <children>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                  <ToolBar prefHeight="40.0" prefWidth="850.0" styleClass="topToolbar">
                      <items>
                         <ImageView fitHeight="33.0" fitWidth="199.0">
                            <image>
                               <Image url="@../../../images/curatech.png" />
                            </image>
                         </ImageView>
-                        <Pane prefHeight="38.0" prefWidth="488.0" />
+                        <Pane prefHeight="42.0" prefWidth="290.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
+                           <font>
+                              <Font name="MS Reference Sans Serif" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../../images/cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </items>
                   </ToolBar>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
                      <items>
-                        <Button mnemonicParsing="false" onAction="#handleHome">
+                        <Button mnemonicParsing="false" onAction="#handleHome" prefWidth="45.0" styleClass="topButton">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0">
                                  <image>
@@ -55,15 +67,15 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
-                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" text="Active Promotions" />
-                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
-                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" text="Login" />
-                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" text="Logout" />
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" styleClass="topButton" text="Reports" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
                      </items>
                   </ToolBar>
                   <VBox prefHeight="489.0" prefWidth="698.0" VBox.vgrow="ALWAYS">
@@ -76,20 +88,6 @@
                                  </font>
                               </Text>
                            </left>
-                           <right>
-                              <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket" BorderPane.alignment="BOTTOM_RIGHT">
-                                 <font>
-                                    <Font name="MS Reference Sans Serif" size="12.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0">
-                                       <image>
-                                          <Image url="@../../../images/cart.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </right>
                            <VBox.margin>
                               <Insets bottom="10.0" left="26.0" right="26.0" />
                            </VBox.margin>
@@ -132,7 +130,7 @@
                                                       <Insets bottom="3.0" />
                                                    </VBox.margin>
                                                 </Text>
-                                                <TextField fx:id="nameField" promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                <TextField fx:id="nameField" promptText="John Doe" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
@@ -142,7 +140,7 @@
                                                       <Font name="MS Reference Sans Serif" size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <TextField fx:id="emailField" promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                <TextField fx:id="emailField" promptText="john.doe@example.com" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
@@ -152,7 +150,7 @@
                                                       <Font name="MS Reference Sans Serif" size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <TextField fx:id="addressField" promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                <TextField fx:id="addressField" promptText="123 Pharmacy Lane" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
@@ -194,7 +192,7 @@
                                                                   <Insets bottom="3.0" />
                                                                </VBox.margin>
                                                             </Text>
-                                                            <ComboBox fx:id="cardTypeBox" prefHeight="25.0" prefWidth="111.0" value="Visa">
+                                                            <ComboBox fx:id="cardTypeBox" prefHeight="25.0" prefWidth="111.0" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-background-radius: 5; -fx-border-radius: 5;" value="Visa">
                                                                <items>
                                                                   <FXCollections fx:factory="observableArrayList">
                                                                      <String fx:value="Visa" />
@@ -211,7 +209,7 @@
                                                                   <Insets bottom="3.0" top="10.0" />
                                                                </VBox.margin>
                                                             </Text>
-                                                            <TextField fx:id="cardNumField" promptText="XXXX XXXX XXXX XXXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;">
+                                                            <TextField fx:id="cardNumField" promptText="XXXX XXXX XXXX XXXX" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;">
                                                                <VBox.margin>
                                                                   <Insets />
                                                                </VBox.margin>
@@ -225,7 +223,7 @@
                                                                               <Font name="MS Reference Sans Serif" size="14.0" />
                                                                            </font>
                                                                         </Text>
-                                                                        <TextField fx:id="expiryField" promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                        <TextField fx:id="expiryField" promptText="MM/YY" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;" />
                                                                      </children>
                                                                      <HBox.margin>
                                                                         <Insets right="10.0" />
@@ -238,7 +236,7 @@
                                                                               <Font name="MS Reference Sans Serif" size="14.0" />
                                                                            </font>
                                                                         </Text>
-                                                                        <TextField fx:id="cvvField" promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                                                        <TextField fx:id="cvvField" promptText="XXX" style="-fx-border-color: #e3e3e3; -fx-background-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -265,11 +263,7 @@
                                           <Font name="MS Reference Sans Serif" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleCheckoutValidation" prefHeight="35.0" prefWidth="482.0" style="-fx-background-radius: 20;" styleClass="checkout" text="Place Order">
-                                       <font>
-                                          <Font name="MS Reference Sans Serif" size="16.0" />
-                                       </font>
-                                    </Button>
+                                    <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleCheckoutValidation" prefHeight="42.0" prefWidth="360.0" style="-fx-background-color: #003087; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'System'; -fx-cursor: hand;" text="Place Order" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="405.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
@@ -286,7 +280,7 @@
                                                       <Font name="MS Reference Sans Serif" size="18.0" />
                                                    </font>
                                                    <VBox.margin>
-                                                      <Insets bottom="15.0" />
+                                                      <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Text>
                                                 <VBox fx:id="basketVBox" prefHeight="0.0" prefWidth="237.0">

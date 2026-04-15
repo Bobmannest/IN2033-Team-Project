@@ -11,89 +11,94 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0"
-            style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/21.0.2"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.members.OrderHistory"
-            stylesheets="@style.css">
 
-   <top>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-
-            <ToolBar prefHeight="40.0" prefWidth="800.0">
-               <items>
-                  <ImageView fitHeight="33.0" fitWidth="199.0">
-                     <image><Image url="@../../../images/curatech.png" /></image>
-                  </ImageView>
-                  <Pane prefHeight="38.0" prefWidth="488.0" />
-                  <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0">
-                           <image><Image url="@../../../images/cart.png" /></image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </items>
-            </ToolBar>
-
-            <ToolBar prefHeight="40.0" prefWidth="800.0">
-               <items>
-                  <Button mnemonicParsing="false" onAction="#handleHome">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0">
-                           <image><Image url="@../../../images/home.png" /></image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
-                  <Button fx:id="btnCreatePromotion" mnemonicParsing="false" prefHeight="33.0" text="Create Promotion" onAction="#handleCreatePromotion" />
-                  <Button fx:id="btnManagePromotions" mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-                  <Button fx:id="btnOrders" mnemonicParsing="false" prefHeight="33.0" text="Orders" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
-                  <Button fx:id="btnAccount" mnemonicParsing="false" prefHeight="33.0" text="Account" onAction="#handleAccount" />
-                  <Button fx:id="btnReports" mnemonicParsing="false" prefHeight="33.0" text="Reports" onAction="#handleReports" />
-                  <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
-                  <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
-               </items>
-            </ToolBar>
-
-            <VBox prefWidth="800.0" spacing="16">
-               <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.members.OrderHistory">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="700.0" maxWidth="1100.0" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
+         <top>
+            <VBox BorderPane.alignment="CENTER">
                <children>
-
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                        style="-fx-font-weight: bold;" text="ORDER HISTORY">
-                     <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
-                  </Text>
-                  <Line endX="740.0" startX="-100.0" />
-
-                  <TableView fx:id="ordersTable" prefHeight="420.0" prefWidth="760.0" style="-fx-font-size: 13px;">
-                     <columns>
-                        <TableColumn fx:id="colRowNum" text="#" prefWidth="45" />
-                        <TableColumn fx:id="colOrderId" text="Order ID" prefWidth="120" />
-                        <TableColumn fx:id="colDate" text="Date &amp; Time" prefWidth="185" />
-                        <TableColumn fx:id="colAmount" text="Total (£)" prefWidth="100" />
-                        <TableColumn fx:id="colAddress" text="Delivery Address" prefWidth="305" />
-                     </columns>
-                     <placeholder>
-                        <Label text="No orders found." />
-                     </placeholder>
-                  </TableView>
-
-                  <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
-
+                  <ToolBar prefHeight="40.0" prefWidth="800.0" styleClass="topToolbar">
+                     <items>
+                        <ImageView fitHeight="33.0" fitWidth="199.0">
+                           <image>
+                              <Image url="@../../../images/curatech.png" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="38.0" prefWidth="488.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../../images/cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="800.0" styleClass="bottomToolbar">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../../images/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" prefHeight="33.0" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" styleClass="topButton" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" styleClass="topButton" text="Reports" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
+                     </items>
+                  </ToolBar>
+                  <VBox prefWidth="800.0" spacing="16">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="ORDER HISTORY">
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="24.0" />
+                           </font>
+                        </Text>
+                        <Line endX="740.0" startX="-100.0" />
+                        <TableView fx:id="ordersTable" prefHeight="420.0" prefWidth="760.0" style="-fx-font-size: 13px;">
+                           <columns>
+                              <TableColumn fx:id="colRowNum" prefWidth="45" text="#" />
+                              <TableColumn fx:id="colOrderId" prefWidth="120" text="Order ID" />
+                              <TableColumn fx:id="colDate" prefWidth="185" text="Date &amp; Time" />
+                              <TableColumn fx:id="colAmount" prefWidth="100" text="Total (£)" />
+                              <TableColumn fx:id="colAddress" prefWidth="305" text="Delivery Address" />
+                           </columns>
+                           <placeholder>
+                              <Label text="No orders found." />
+                           </placeholder>
+                        </TableView>
+                        <Label fx:id="errorLabel" style="-fx-text-fill: red;" text="" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
-
-         </children>
-      </VBox>
-   </top>
-
-</BorderPane>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>
