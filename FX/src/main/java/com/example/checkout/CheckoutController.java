@@ -281,6 +281,10 @@ public class CheckoutController {
     private void handleOrderConfirmation(String name, String email, String address, double totalCost, Member member) {
         String trackId = UUID.randomUUID().toString();
 
+        name = name.trim().replace(" ", "");
+        email = email.trim().replace(" ", "");
+        address = address.trim().replace(" ", "");
+
         try {
             String url = "http://localhost:8080/api/emails/sendPurchase"
                     + "?recipientName=" + name

@@ -6,14 +6,16 @@ import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 import java.util.Properties;
 
 @Service
 public class EmailService {
-    final String username = "ipospu33@gmail.com";
-    final String password = "ljom jqat cjay eeqd";
+    @Value("${spring.mail.username}")
+    private String username;
+    @Value("${spring.mail.password}")
+    private String password;
 
     public void sendPurchaseEmail(
             String recipientName,
@@ -21,6 +23,7 @@ public class EmailService {
             String recipientAddress,
             String track_id)
     {
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
