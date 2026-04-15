@@ -22,6 +22,7 @@ public class Login extends Application {
         stage.setMinWidth(870);
         stage.setMinHeight(560);
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

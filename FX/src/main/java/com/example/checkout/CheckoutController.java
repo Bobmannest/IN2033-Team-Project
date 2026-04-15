@@ -22,16 +22,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javafx.scene.control.Button;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.sql.Timestamp;
-
 
 
 public class CheckoutController {
@@ -263,9 +258,9 @@ public class CheckoutController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) checkoutPane.getScene().getWindow();
-            stage.setWidth(1000);
-            stage.setHeight(620);
+            boolean wasMaximized = stage.isMaximized();
             stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -283,7 +278,7 @@ public class CheckoutController {
 
         name = name.trim().replace(" ", "");
         email = email.trim().replace(" ", "");
-        address = address.trim().replace(" ", "");
+        address = address.trim();
 
         try {
             String url = "http://localhost:8080/api/emails/sendPurchase"
@@ -306,6 +301,9 @@ public class CheckoutController {
         if (member != null) {
             member.setOrderCount(member.getOrderCount() + 1);
         }
+
+        // saves the order into the database
+        saveOrderToDatabase(address, totalCost, member);
 
         //Makes a copy of basket_items to send to controller to display items ordered
         List<CatalogueItem> orderConfirmationItems = new ArrayList<>(BasketList.getBasketItems());
@@ -362,5 +360,68 @@ public class CheckoutController {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
+    // saves the orders into the database
+    private void saveOrderToDatabase(String address, double totalCost, Member member) {
+        if (member == null) return;
+
+        double subtotal = 0;
+        for (CatalogueItem item : BasketList.getBasketItems()) {
+            subtotal += item.getPackage_cost();
+        }
+        double discountTotal = subtotal - totalCost;
+
+        String insertOrder = """
+        INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
+            subtotal, discount_total, total_amount, delivery_address)
+        VALUES (?, NULL, 'paid', ?, ?, ?, ?)
+        """;
+
+        String insertItem = """
+        INSERT INTO OnlineOrderItem (order_id, item_id, campaign_id, quantity,
+            unit_price, discount_pct_applied, final_unit_price, line_total)
+        VALUES (?, ?, ?, 1, ?, 0.00, ?, ?)
+        """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement psOrder = conn.prepareStatement(insertOrder,
+                     java.sql.Statement.RETURN_GENERATED_KEYS)) {
+
+            psOrder.setString(1, member.getAccountNo());
+            psOrder.setDouble(2, subtotal);
+            psOrder.setDouble(3, discountTotal);
+            psOrder.setDouble(4, totalCost);
+            psOrder.setString(5, address);
+            psOrder.executeUpdate();
+
+            ResultSet keys = psOrder.getGeneratedKeys();
+            if (keys.next()) {
+                long orderId = keys.getLong(1);
+                try (PreparedStatement psItem = conn.prepareStatement(insertItem)) {
+                    for (CatalogueItem item : BasketList.getBasketItems()) {
+                        double price = item.getPackage_cost();
+                        psItem.setLong(1, orderId);
+                        psItem.setString(2, item.getItem_id());
+                        psItem.setString(3, item.getCampaignId());
+                        psItem.setDouble(4, price);
+                        psItem.setDouble(5, price);
+                        psItem.setDouble(6, price);
+                        psItem.addBatch();
+
+                        if (item.getCampaignId() != null) {
+                            try {
+                                new com.example.promotion.PromotionService()
+                                        .recordPurchased(item.getCampaignId(), item.getItem_id(), 1);
+                            } catch (Exception e) {
+                                System.out.println("Failed to record purchase metric: " + e.getMessage());
+                            }
+                        }
+                    }
+                    psItem.executeBatch();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to save order: " + e.getMessage());
+        }
+    }
 
 }

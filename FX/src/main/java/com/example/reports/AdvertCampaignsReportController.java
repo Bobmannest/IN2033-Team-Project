@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.print.PrinterJob;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -243,23 +242,25 @@ public class AdvertCampaignsReportController {
         });
     }
 
-    @FXML private void handleBackToReports()    { navigate("/com/example/fx/Reports.fxml", 1000, 620); }
-    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml", 800, 600); }
-    @FXML private void handleLogout()           { navigate("/com/example/fx/Login.fxml", 800, 600); }
-    @FXML private void handleHome()             { navigate("/com/example/fx/Home.fxml", 800, 600); }
-    @FXML private void handleCatalogue()        { navigate("/com/example/fx/Catalogue.fxml", 800, 600); }
-    @FXML private void handleOrders()           { navigate("/com/example/fx/OrderHistory.fxml", 800, 600); }
-    @FXML private void handleAccount()          { navigate("/com/example/fx/Account.fxml", 800, 600); }
-    @FXML private void handleBasket()           { navigate("/com/example/fx/Basket.fxml", 820, 633); }
-    @FXML private void handleCreatePromotion()  { navigate("/com/example/fx/Promotion.fxml", 900, 650); }
-    @FXML private void handleManagePromotions() { navigate("/com/example/fx/CampaignItem.fxml", 900, 650); }
+    @FXML private void handleBackToReports()    { navigate("/com/example/fx/Reports.fxml"); }
+    @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+    @FXML private void handleLogout()           { navigate("/com/example/fx/Login.fxml"); }
+    @FXML private void handleHome()             { navigate("/com/example/fx/Home.fxml"); }
+    @FXML private void handleCatalogue()        { navigate("/com/example/fx/Catalogue.fxml"); }
+    @FXML private void handleOrders()           { navigate("/com/example/fx/OrderHistory.fxml"); }
+    @FXML private void handleAccount()          { navigate("/com/example/fx/Account.fxml"); }
+    @FXML private void handleBasket()           { navigate("/com/example/fx/Basket.fxml"); }
+    @FXML private void handleCreatePromotion()  { navigate("/com/example/fx/Promotion.fxml"); }
+    @FXML private void handleManagePromotions() { navigate("/com/example/fx/CampaignItem.fxml"); }
 
-    private void navigate(String fxml, int w, int h) {
+    private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Scene scene = new Scene(loader.load(), w, h);
+            javafx.scene.Parent root = loader.load();
             Stage stage = (Stage) campaignsTable.getScene().getWindow();
-            stage.setScene(scene);
+            boolean wasMaximized = stage.isMaximized();
+            stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             errorLabel.setText("Navigation error: " + e.getMessage());
         }

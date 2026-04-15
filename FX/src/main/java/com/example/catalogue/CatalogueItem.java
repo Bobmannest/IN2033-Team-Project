@@ -23,6 +23,8 @@ public class CatalogueItem {
     private String status;
     @JsonProperty("order_percentage")
     private double order_percentage;
+    @JsonProperty("campaign_id")
+    private String campaignId;
 
     public CatalogueItem() {}
 
@@ -37,6 +39,7 @@ public class CatalogueItem {
     public int getStock_limit() {return stock_limit;}
     public String getStatus() {return status;}
     public double getOrder_percentage() {return order_percentage;}
+    public String getCampaignId() { return campaignId; }
 
     // Setters
     public void setItem_id(String item_id) {this.item_id = item_id;}
@@ -49,4 +52,5 @@ public class CatalogueItem {
     public void setStock_limit(int stock_limit) {this.stock_limit = stock_limit;}
     public void setStatus(String status) {this.status = status;}
     public void setOrder_percentage(double order_percentage) {this.order_percentage = order_percentage;}
+    public void setCampaignId(String campaignId) { this.campaignId = campaignId; }
 }
