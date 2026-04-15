@@ -12,123 +12,138 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="700.0" prefWidth="1100.0"
-            style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/21.0.2"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.reports.SalesReportController"
-            stylesheets="@../fx/style.css">
 
-   <top>
-      <VBox BorderPane.alignment="CENTER">
-
-         <ToolBar prefHeight="40.0" prefWidth="1100.0">
-            <items>
-               <ImageView fitHeight="33.0" fitWidth="199.0">
-                  <image><Image url="@../../../images/curatech.png" /></image>
-               </ImageView>
-               <Pane prefHeight="38.0" prefWidth="760.0" />
-               <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
-                  <graphic>
-                     <ImageView fitHeight="30.0" fitWidth="30.0">
-                        <image><Image url="@../../../images/cart.png" /></image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-            </items>
-         </ToolBar>
-
-         <ToolBar prefHeight="40.0" prefWidth="1100.0">
-            <items>
-               <Button mnemonicParsing="false" onAction="#handleHome">
-                  <graphic>
-                     <ImageView fitHeight="25.0" fitWidth="25.0">
-                        <image><Image url="@../../../images/home.png" /></image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue"         onAction="#handleCatalogue" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion"  onAction="#handleCreatePromotion" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Orders"            onAction="#handleOrders" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Account"           onAction="#handleAccount" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Reports"           onAction="#handleBackToReports"
-                       style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Logout"            onAction="#handleLogout" />
-            </items>
-         </ToolBar>
-
-         <VBox spacing="12">
-            <padding><Insets bottom="0.0" left="24.0" right="24.0" top="16.0" /></padding>
-
-            <HBox spacing="10" alignment="CENTER_LEFT">
-               <Label text="From:" />
-               <DatePicker fx:id="dateFrom" prefWidth="160" />
-               <Label text="To:" />
-               <DatePicker fx:id="dateTo" prefWidth="160" />
-               <Button text="Generate Report" onAction="#handleGenerateReport"
-                       style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
-               <Button text="🖨 Print" onAction="#handlePrint"
-                       style="-fx-background-color: #2c5f8a; -fx-text-fill: white; -fx-font-weight: bold;" />
-               <Button text="← Back to Reports" onAction="#handleBackToReports"
-                       style="-fx-background-color: #888888; -fx-text-fill: white; -fx-font-weight: bold;" />
-            </HBox>
-
-            <Line endX="1040.0" startX="-100.0" />
-
-         </VBox>
-
-         <VBox fx:id="printableArea" prefWidth="1100.0" spacing="12">
-            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="8.0" /></padding>
-
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Sales Report">
-               <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
-            </Text>
-            <Line endX="1040.0" startX="-100.0" />
-
-            <VBox fx:id="headerBox" spacing="2" visible="false" managed="false">
-               <HBox>
-                  <VBox spacing="2" HBox.hgrow="ALWAYS">
-                     <Label fx:id="lblStartPeriod" text="" style="-fx-font-size: 12px;" />
-                     <Label fx:id="lblEndPeriod"   text="" style="-fx-font-size: 12px;" />
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reports.SalesReportController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="650.0" maxWidth="1200.0" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;" stylesheets="@../fx/style.css">
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="1100.0" styleClass="topToolbar">
+                     <items>
+                        <ImageView fitHeight="33.0" fitWidth="199.0">
+                           <image>
+                              <Image url="@../../../images/curatech.png" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="38.0" prefWidth="760.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../../images/cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="1100.0" styleClass="bottomToolbar">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../../images/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                        <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                        <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                        <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                        <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                        <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                        <Button mnemonicParsing="false" onAction="#handleBackToReports" prefHeight="33.0" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" styleClass="topButton" text="Reports" />
+                        <Button mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
+                     </items>
+                  </ToolBar>
+                  <VBox spacing="12">
+                     <padding>
+                        <Insets bottom="0.0" left="24.0" right="24.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <children>
+                              <Label text="From:" />
+                              <DatePicker fx:id="dateFrom" prefWidth="160" />
+                              <Label text="To:" />
+                              <DatePicker fx:id="dateTo" prefWidth="160" />
+                              <Button onAction="#handleGenerateReport" style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" text="Generate Report" />
+                              <Button onAction="#handlePrint" style="-fx-background-color: #2c5f8a; -fx-text-fill: white; -fx-font-weight: bold;" text="🖨 Print" />
+                              <Button onAction="#handleBackToReports" style="-fx-background-color: #888888; -fx-text-fill: white; -fx-font-weight: bold;" text="← Back to Reports" />
+                           </children>
+                        </HBox>
+                        <Line endX="1040.0" startX="-100.0" />
+                     </children>
                   </VBox>
-                  <VBox alignment="TOP_RIGHT" style="-fx-font-size: 12px;">
-                     <Label text="Cosymed Ltd.," />
-                     <Label text="27 Sainsbury Close," />
-                     <Label text="3, High Level Drive," />
-                     <Label text="Sydenham," />
-                     <Label text="SE26 3ET" />
-                     <Label text="Phone: 0208 778 0124" />
-                     <Label text="Fax: 0208 778 0125" />
+                  <VBox fx:id="printableArea" prefWidth="1100.0" spacing="12">
+                     <padding>
+                        <Insets bottom="20.0" left="24.0" right="24.0" top="8.0" />
+                     </padding>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Sales Report">
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="1040.0" startX="-100.0" />
+                        <VBox fx:id="headerBox" managed="false" spacing="2" visible="false">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="lblStartPeriod" style="-fx-font-size: 12px;" text="" />
+                                          <Label fx:id="lblEndPeriod" style="-fx-font-size: 12px;" text="" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_RIGHT" style="-fx-font-size: 12px;">
+                                       <children>
+                                          <Label text="Cosymed Ltd.," />
+                                          <Label text="27 Sainsbury Close," />
+                                          <Label text="3, High Level Drive," />
+                                          <Label text="Sydenham," />
+                                          <Label text="SE26 3ET" />
+                                          <Label text="Phone: 0208 778 0124" />
+                                          <Label text="Fax: 0208 778 0125" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="lblGenerated" style="-fx-font-size: 11px; -fx-text-fill: #555;" text="" />
+                           </children>
+                        </VBox>
+                        <TableView fx:id="salesTable" prefHeight="400.0" prefWidth="1052.0" style="-fx-font-size: 13px;">
+                           <columns>
+                              <TableColumn fx:id="colItemId" prefWidth="120" text="Item ID" />
+                              <TableColumn fx:id="colDescription" prefWidth="300" text="Description" />
+                              <TableColumn fx:id="colSoldPacks" prefWidth="120" text="Sold, packs" />
+                              <TableColumn fx:id="colUnitPrice" prefWidth="150" text="Unit price, £" />
+                              <TableColumn fx:id="colTotal" prefWidth="150" text="Total, £" />
+                           </columns>
+                           <placeholder>
+                              <Label text="Select a date range and click Generate Report." />
+                           </placeholder>
+                        </TableView>
+                        <Label fx:id="errorLabel" style="-fx-text-fill: red;" text="" />
+                     </children>
                   </VBox>
-               </HBox>
-               <Label fx:id="lblGenerated" text="" style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+               </children>
             </VBox>
-
-            <TableView fx:id="salesTable" prefHeight="400.0" prefWidth="1052.0" style="-fx-font-size: 13px;">
-               <columns>
-                  <TableColumn fx:id="colItemId"      text="Item ID"      prefWidth="120" />
-                  <TableColumn fx:id="colDescription" text="Description"  prefWidth="300" />
-                  <TableColumn fx:id="colSoldPacks"   text="Sold, packs"  prefWidth="120" />
-                  <TableColumn fx:id="colUnitPrice"   text="Unit price, £" prefWidth="150" />
-                  <TableColumn fx:id="colTotal"       text="Total, £"     prefWidth="150" />
-               </columns>
-               <placeholder>
-                  <Label text="Select a date range and click Generate Report." />
-               </placeholder>
-            </TableView>
-
-            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
-
-         </VBox>
-      </VBox>
-   </top>
-
-</BorderPane>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>

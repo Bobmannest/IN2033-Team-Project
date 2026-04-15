@@ -10,86 +10,98 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basket.BasketController">
-<effect>
-    <Blend />
-</effect>
-   <top>
-      <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
-              <items>
-                  <ImageView fitHeight="33.0" fitWidth="199.0">
-                     <image>
-                        <Image url="@../../../images/curatech.png" />
-                     </image>
-                  </ImageView>
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
-              <items>
-                <Button mnemonicParsing="false" onAction="#handleCatalogue" styleClass="BasketButton" text="Return to Catalogue">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0">
-                           <image>
-                              <Image url="@../../../images/return.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Pane prefHeight="37.0" prefWidth="502.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#handleCheckout" prefHeight="33.0" styleClass="BasketButton" text="Checkout">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="32.0">
-                           <image>
-                              <Image url="@../../../images/checkout.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-              </items>
-            </ToolBar>
-            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basket.BasketController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="700.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;" stylesheets="@style.css">
+         <effect>
+            <Blend />
+         </effect>
+         <top>
+            <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Basket">
-                     <font>
-                        <Font name="Microsoft Sans Serif" size="24.0" />
-                     </font>
-                  </Text>
-                  <Line endX="678.0" startX="-100.0" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
+                     <items>
+                        <ImageView fitHeight="33.0" fitWidth="199.0">
+                           <image>
+                              <Image url="@../../../images/curatech.png" />
+                           </image>
+                        </ImageView>
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" styleClass="BasketButton" text="Return to Catalogue">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../../images/return.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="37.0" prefWidth="502.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleCheckout" prefHeight="33.0" styleClass="BasketButton" text="Checkout">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="32.0">
+                                 <image>
+                                    <Image url="@../../../images/checkout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                  </ToolBar>
+                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <center>
-                               <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
-                                   <content>
-                                       <VBox fx:id="basketVBox" fillWidth="true" maxWidth="Infinity" spacing="5">
-                                           <padding>
-                                               <Insets bottom="10" left="10" right="10" top="10" />
-                                           </padding>
-                                       </VBox>
-                                   </content>
-                               </ScrollPane>
-                           </center>
-                        </BorderPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Basket">
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="24.0" />
+                           </font>
+                        </Text>
+                        <Line endX="678.0" startX="-100.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <center>
+                                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <content>
+                                          <VBox fx:id="basketVBox" fillWidth="true" maxWidth="Infinity" spacing="5">
+                                             <padding>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
+                                             </padding>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </HBox>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
             </VBox>
-         </children>
-      </VBox>
-   </top>
-</BorderPane>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>

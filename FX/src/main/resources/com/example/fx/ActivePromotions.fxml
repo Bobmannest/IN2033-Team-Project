@@ -11,97 +11,109 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="ActivePromotionsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.active_promotions.ActivePromotionsController">
-    <effect>
-        <Blend />
-    </effect>
-    <top>
-        <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-            <children>
-                <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
-                    <items>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.active_promotions.ActivePromotionsController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/background.png" />
+         </image>
+      </ImageView>
+      <BorderPane fx:id="ActivePromotionsPane" maxHeight="683.0" maxWidth="955.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;" stylesheets="@style.css">
+         <effect>
+            <Blend />
+         </effect>
+         <top>
+            <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
+                     <items>
                         <ImageView fitHeight="33.0" fitWidth="199.0">
-                            <image>
-                                <Image url="@../../../images/curatech.png" />
-                            </image>
+                           <image>
+                              <Image url="@../../../images/curatech.png" />
+                           </image>
                         </ImageView>
                         <Pane HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleBasket" styleClass="BasketButton" text="Basket">
-                            <font>
-                                <Font name="MS Reference Sans Serif" size="12.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0">
-                                    <image>
-                                        <Image url="@../../../images/cart.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic></Button>
-                    </items>
-                </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
-
-               <items>
-                  <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0">
-                           <image>
-                              <Image url="@../../../images/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                   <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
-                   <Button mnemonicParsing="false" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
-                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
-                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
-                   <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
-                   <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
-                   <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
-                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
-               </items>
-            </ToolBar>
-                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                    <children>
+                           <font>
+                              <Font name="MS Reference Sans Serif" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../../images/cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </items>
+                  </ToolBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
+                     <items>
+                        <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../../images/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                        <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                        <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                        <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                        <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
+                     </items>
+                  </ToolBar>
+                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Active Promotions">
-                            <font>
-                                <Font name="Microsoft Sans Serif" size="24.0" />
-                            </font>
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="24.0" />
+                           </font>
                         </Text>
                         <Line endX="784.0" startX="-100.0" />
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                            <children>
-                                <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <center>
-                                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
-                                 <content>
-                                    <FlowPane fx:id="ActivePromotionsFlowPane" hgap="10.0" prefHeight="189.0" prefWidth="868.0" vgap="10.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding></FlowPane>
-                                 </content>
-                                        </ScrollPane>
-                                    </center>
-                                </BorderPane>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <center>
+                                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <content>
+                                          <FlowPane fx:id="ActivePromotionsFlowPane" hgap="10.0" prefHeight="189.0" prefWidth="868.0" vgap="10.0">
+                                             <padding>
+                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                             </padding>
+                                          </FlowPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
-                    </children>
-                    <VBox.margin>
+                     </children>
+                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </VBox>
-            </children>
-        </VBox>
-    </top>
-</BorderPane>
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>
