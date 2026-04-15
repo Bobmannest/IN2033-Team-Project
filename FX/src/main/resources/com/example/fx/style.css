@@ -9,6 +9,42 @@
     -fx-font-weight:bold;
 }
 
+/* Top Buttons */
+.topButton{
+    -fx-background-color: #ceffe6;
+    -fx-border-color: #57ab81;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 6;
+}
+
+.topButton:hover{
+
+}
+
+.topButton:pressed{
+
+}
+
+/* Basket Button */
+.BasketButton{
+    -fx-background-color: #ceffe6;
+    -fx-border-color: #57ab81;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+/* Top toolbar */
+.topToolbar{
+    -fx-background-color: #3d8963;
+    -fx-background-radius: 10 10 0 0;
+}
+
+/* Bottom toolbar */
+.bottomToolbar {
+    -fx-background-color: #c3ffe0;
+}
 /* Checkout Page */
 .checkout{
     -fx-background-color: #beffd9;

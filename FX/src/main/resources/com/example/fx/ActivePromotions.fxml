@@ -16,14 +16,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="ActivePromotionsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.active_promotions.ActivePromotionsController">
+<BorderPane fx:id="ActivePromotionsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="905.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.active_promotions.ActivePromotionsController">
     <effect>
         <Blend />
     </effect>
     <top>
         <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <children>
-                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
                     <items>
                         <ImageView fitHeight="33.0" fitWidth="199.0">
                             <image>
@@ -31,7 +31,7 @@
                             </image>
                         </ImageView>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket">
+                        <Button mnemonicParsing="false" onAction="#handleBasket" styleClass="BasketButton" text="Basket">
                             <font>
                                 <Font name="MS Reference Sans Serif" size="12.0" />
                             </font>
@@ -44,10 +44,10 @@
                             </graphic></Button>
                     </items>
                 </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
 
                <items>
-                  <Button mnemonicParsing="false" onAction="#handleHome">
+                  <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0">
                            <image>
@@ -56,14 +56,14 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                   <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" onAction="#handleCatalogue" />
-                   <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" />
-                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-                   <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                   <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                   <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="33.0" text="Login" onAction="#handleLogin" />
-                   <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" text="Logout" onAction="#handleLogout" />
+                   <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                   <Button mnemonicParsing="false" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                   <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                   <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                   <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                   <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                   <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
                </items>
             </ToolBar>
                 <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">

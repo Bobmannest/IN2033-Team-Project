@@ -17,23 +17,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="700.0" prefWidth="1100.0"
-            style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/21.0.2"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.reports.AdvertCampaignsReportController"
-            stylesheets="@../fx/style.css">
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../fx/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reports.AdvertCampaignsReportController">
 
    <top>
       <VBox BorderPane.alignment="CENTER">
 
-         <ToolBar prefHeight="40.0" prefWidth="1100.0">
+         <ToolBar prefHeight="40.0" prefWidth="1100.0" styleClass="topToolbar">
             <items>
                <ImageView fitHeight="33.0" fitWidth="199.0">
                   <image><Image url="@../../../images/curatech.png" /></image>
                </ImageView>
-               <Pane prefHeight="38.0" prefWidth="760.0" />
-               <Button mnemonicParsing="false" style="-fx-font-weight: bold;" text="Basket" onAction="#handleBasket">
+               <Pane prefHeight="38.0" prefWidth="760.0" HBox.hgrow="ALWAYS" />
+               <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
                   <graphic>
                      <ImageView fitHeight="30.0" fitWidth="30.0">
                         <image><Image url="@../../../images/cart.png" /></image>
@@ -43,41 +38,37 @@
             </items>
          </ToolBar>
 
-         <ToolBar prefHeight="40.0" prefWidth="1100.0">
+         <ToolBar prefHeight="40.0" prefWidth="1100.0" styleClass="bottomToolbar">
             <items>
-               <Button mnemonicParsing="false" onAction="#handleHome">
+               <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
                   <graphic>
                      <ImageView fitHeight="25.0" fitWidth="25.0">
                         <image><Image url="@../../../images/home.png" /></image>
                      </ImageView>
                   </graphic>
                </Button>
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue"         onAction="#handleCatalogue" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Active Promotions" onAction="#handleActivePromotions" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Create Promotion"  onAction="#handleCreatePromotion" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Manage Promotions" onAction="#handleManagePromotions" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Orders"            onAction="#handleOrders" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Account"           onAction="#handleAccount" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Reports"           onAction="#handleBackToReports"
-                       style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" />
-               <Button mnemonicParsing="false" prefHeight="33.0" text="Logout"            onAction="#handleLogout" />
+               <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+               <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+               <Button mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+               <Button mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+               <Button mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+               <Button mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+               <Button mnemonicParsing="false" onAction="#handleBackToReports" prefHeight="33.0" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" styleClass="topButton" text="Reports" />
+               <Button mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
             </items>
          </ToolBar>
 
          <VBox spacing="12">
             <padding><Insets bottom="0.0" left="24.0" right="24.0" top="16.0" /></padding>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="10">
                <Label text="From:" />
                <DatePicker fx:id="dateFrom" prefWidth="160" />
                <Label text="To:" />
                <DatePicker fx:id="dateTo" prefWidth="160" />
-               <Button text="Generate Report" onAction="#handleGenerateReport"
-                       style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" />
-               <Button text="🖨 Print" onAction="#handlePrint"
-                       style="-fx-background-color: #2c5f8a; -fx-text-fill: white; -fx-font-weight: bold;" />
-               <Button text="← Back to Reports" onAction="#handleBackToReports"
-                       style="-fx-background-color: #888888; -fx-text-fill: white; -fx-font-weight: bold;" />
+               <Button onAction="#handleGenerateReport" style="-fx-background-color: #1a7a4a; -fx-text-fill: white; -fx-font-weight: bold;" text="Generate Report" />
+               <Button onAction="#handlePrint" style="-fx-background-color: #2c5f8a; -fx-text-fill: white; -fx-font-weight: bold;" text="🖨 Print" />
+               <Button onAction="#handleBackToReports" style="-fx-background-color: #888888; -fx-text-fill: white; -fx-font-weight: bold;" text="← Back to Reports" />
             </HBox>
 
             <Line endX="1040.0" startX="-100.0" />
@@ -87,18 +78,17 @@
          <VBox fx:id="printableArea" prefWidth="1100.0" spacing="12">
             <padding><Insets bottom="20.0" left="24.0" right="24.0" top="8.0" /></padding>
 
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Advert Campaigns Report">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-style: italic;" text="IPOS-PU Advert Campaigns Report">
                <font><Font name="Microsoft Sans Serif" size="22.0" /></font>
             </Text>
             <Line endX="1040.0" startX="-100.0" />
 
-            <VBox fx:id="headerBox" spacing="2" visible="false" managed="false">
+            <VBox fx:id="headerBox" managed="false" spacing="2" visible="false">
                <HBox>
                   <VBox spacing="2" HBox.hgrow="ALWAYS">
-                     <Label fx:id="lblStartPeriod"     text="" style="-fx-font-size: 12px;" />
-                     <Label fx:id="lblEndPeriod"       text="" style="-fx-font-size: 12px;" />
-                     <Label fx:id="lblActiveCampaigns" text="" style="-fx-font-size: 12px;" />
+                     <Label fx:id="lblStartPeriod" style="-fx-font-size: 12px;" text="" />
+                     <Label fx:id="lblEndPeriod" style="-fx-font-size: 12px;" text="" />
+                     <Label fx:id="lblActiveCampaigns" style="-fx-font-size: 12px;" text="" />
                   </VBox>
                   <VBox alignment="TOP_RIGHT" style="-fx-font-size: 12px;">
                      <Label text="Cosymed Ltd.," />
@@ -110,26 +100,26 @@
                      <Label text="Fax: 0208 778 0125" />
                   </VBox>
                </HBox>
-               <Label fx:id="lblGenerated" text="" style="-fx-font-size: 11px; -fx-text-fill: #555;" />
+               <Label fx:id="lblGenerated" style="-fx-font-size: 11px; -fx-text-fill: #555;" text="" />
             </VBox>
 
             <TableView fx:id="campaignsTable" prefHeight="400.0" prefWidth="1052.0" style="-fx-font-size: 13px;">
                <columns>
-                  <TableColumn fx:id="colCampaignId"    text="Campaign ID"     prefWidth="120" />
-                  <TableColumn fx:id="colStartDate"     text="Start Date"      prefWidth="110" />
-                  <TableColumn fx:id="colEndDate"       text="End Date"        prefWidth="110" />
-                  <TableColumn fx:id="colItemsIncluded" text="Items Included"  prefWidth="100" />
-                  <TableColumn fx:id="colDiscount"      text="Discount, %"     prefWidth="110" />
-                  <TableColumn fx:id="colDescription"   text="Description"     prefWidth="200" />
-                  <TableColumn fx:id="colItemsSold"     text="Items Sold"      prefWidth="100" />
-                  <TableColumn fx:id="colTotalSales"    text="Total Sales, £"  prefWidth="120" />
+                  <TableColumn fx:id="colCampaignId" prefWidth="120" text="Campaign ID" />
+                  <TableColumn fx:id="colStartDate" prefWidth="110" text="Start Date" />
+                  <TableColumn fx:id="colEndDate" prefWidth="110" text="End Date" />
+                  <TableColumn fx:id="colItemsIncluded" prefWidth="100" text="Items Included" />
+                  <TableColumn fx:id="colDiscount" prefWidth="110" text="Discount, %" />
+                  <TableColumn fx:id="colDescription" prefWidth="200" text="Description" />
+                  <TableColumn fx:id="colItemsSold" prefWidth="100" text="Items Sold" />
+                  <TableColumn fx:id="colTotalSales" prefWidth="120" text="Total Sales, £" />
                </columns>
                <placeholder>
                   <Label text="Select a date range and click Generate Report." />
                </placeholder>
             </TableView>
 
-            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+            <Label fx:id="errorLabel" style="-fx-text-fill: red;" text="" />
 
          </VBox>
       </VBox>

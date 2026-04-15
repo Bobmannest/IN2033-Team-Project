@@ -26,7 +26,7 @@
    <center>
       <VBox prefHeight="650.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="topToolbar">
               <items>
                   <ImageView fitHeight="33.0" fitWidth="199.0">
                      <image>
@@ -34,26 +34,38 @@
                      </image>
                   </ImageView>
                   <Pane prefHeight="38.0" prefWidth="590.0" />
+                <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
+                     <font>
+                        <Font name="MS Reference Sans Serif" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../../../images/cart.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
               </items>
             </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="bottomToolbar">
               <items>
-                  <Button mnemonicParsing="false" onAction="#handleHome">
+                  <Button mnemonicParsing="false" onAction="#handleHome" styleClass="topButton">
                       <graphic>
                           <ImageView fitHeight="25.0" fitWidth="25.0">
                               <image><Image url="@../../../images/home.png" /></image>
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="33.0" text="Catalogue" />
-                  <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" text="Active Promotions" />
-                  <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                  <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" text="Manage Promotions" />
-                  <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
-                  <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
-                  <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" text="Login" />
-                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" text="Logout" />
+                  <Button mnemonicParsing="false" prefHeight="33.0" styleClass="topButton" text="Catalogue" />
+                  <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" styleClass="topButton" text="Active Promotions" />
+                  <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" styleClass="topButton" text="Create Promotion" />
+                  <Button fx:id="btnManagePromotions" mnemonicParsing="false" onAction="#handleManagePromotions" prefHeight="33.0" styleClass="topButton" text="Manage Promotions" />
+                  <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" styleClass="topButton" text="Orders" />
+                  <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" styleClass="topButton" text="Account" />
+                  <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" styleClass="topButton" text="Reports" />
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" styleClass="topButton" text="Login" />
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" styleClass="topButton" text="Logout" />
               </items>
             </ToolBar>
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
@@ -65,7 +77,7 @@
                               <Font name="Microsoft Sans Serif" size="24.0" />
                            </font>
                         </Text>
-                        <Label fx:id="insufficientStockErrorLabel" alignment="CENTER" prefHeight="2.0" prefWidth="604.0" textFill="RED">
+                        <Label fx:id="insufficientStockErrorLabel" alignment="CENTER" prefHeight="15.0" prefWidth="737.0" textFill="RED">
                            <font>
                               <Font name="MS Reference Sans Serif" size="12.0" />
                            </font>
@@ -73,21 +85,6 @@
                               <Insets left="15.0" right="25.0" />
                            </HBox.margin>
                         </Label>
-                      <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" text="Basket" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="MS Reference Sans Serif" size="12.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0">
-                                 <image>
-                                    <Image url="@../../../images/cart.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Button>
                      </children>
                   </HBox>
                   <Line endX="784.0" startX="-100.0" />
