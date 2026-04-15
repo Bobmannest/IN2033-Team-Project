@@ -120,6 +120,9 @@ public class CatalogueController {
                 HBox itemCard = loader.load();
 
                 CatalogueItemController itemCtrl = loader.getController();
+                if (currentCampaignFilter != null) {
+                    item.setCampaignId(currentCampaignFilter);
+                }
                 itemCtrl.setItem(item);
 
                 catalogueVBox.getChildren().add(itemCard);
@@ -214,9 +217,9 @@ public class CatalogueController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) catalogueVBox.getScene().getWindow();
-            stage.setWidth(1000);
-            stage.setHeight(620);
+            boolean wasMaximized = stage.isMaximized();
             stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

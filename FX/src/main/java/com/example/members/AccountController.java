@@ -65,9 +65,11 @@ public class AccountController {
 
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Login.fxml"));
-            Scene scene = new Scene(loader.load());
+            javafx.scene.Parent root = loader.load();
             Stage stage = (Stage) accountNoLabel.getScene().getWindow();
-            stage.setScene(scene);
+            boolean wasMaximized = stage.isMaximized();
+            stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,9 +123,11 @@ public class AccountController {
     private void handleReports() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 620);
+            javafx.scene.Parent root = loader.load();
             Stage stage = (Stage) accountNoLabel.getScene().getWindow();
-            stage.setScene(scene);
+            boolean wasMaximized = stage.isMaximized();
+            stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

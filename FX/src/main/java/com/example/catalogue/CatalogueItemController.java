@@ -44,6 +44,15 @@ public class CatalogueItemController {
                 currentItem.setAvailability(currentItem.getAvailability() - 1);
             }
             availabilityLabel.setText("Available - " + currentItem.getAvailability());
+
+            if (currentItem.getCampaignId() != null) {
+                try {
+                    new com.example.promotion.PromotionService()
+                            .recordIncludedInOrder(currentItem.getCampaignId(), currentItem.getItem_id(), quantity);
+                } catch (Exception e) {
+                    System.out.println("Failed to record campaign item metric: " + e.getMessage());
+                }
+            }
         } else {
             CatalogueController.stockErrorLabel.setText("Insufficient Stock Available");
         }

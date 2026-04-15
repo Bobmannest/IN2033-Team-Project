@@ -72,9 +72,11 @@ public class RegisterController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/example/fx/Login.fxml"));
-            Scene scene = new Scene(loader.load());
+            javafx.scene.Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(scene);
+            boolean wasMaximized = stage.isMaximized();
+            stage.getScene().setRoot(root);
+            if (wasMaximized) stage.setMaximized(true);
         } catch (IOException e) {
             showStatus("Could not return to sign in screen.", false);
         }
