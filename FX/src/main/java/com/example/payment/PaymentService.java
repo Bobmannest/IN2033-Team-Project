@@ -2,6 +2,8 @@ package com.example.payment;
 
 import org.springframework.stereotype.Service;
 
+import java.time.YearMonth;
+
 @Service
 public class PaymentService {
     public void printPayment(Payment payment) {
@@ -28,13 +30,28 @@ public class PaymentService {
         }
 
         System.out.println("Processing" + cardType + "Payment...");
-        if (!isCardValid(cardNum, cardType) || !expiry.matches("\\d{2}/\\d{2}") || !cvv.matches(cvvPattern)) {
+        if (!isCardValid(cardNum, cardType) || !isExpiryValid(expiry) || !cvv.matches(cvvPattern)) {
             System.out.println("Invalid payment details.");
             return false;
         }
 
         System.out.println("Payment is valid");
         return true;
+    }
+
+    private boolean isExpiryValid(String expiry) {
+        if (!expiry.matches("\\d{2}/\\d{2}")) {return false;};
+
+        String[] parts = expiry.split("/");
+        int month = Integer.parseInt(parts[0]);
+        int year = Integer.parseInt(parts[1]) + 2000;
+
+        if (month < 1 || month > 12) return false;
+
+        YearMonth cardExpiry = YearMonth.of(year, month);
+        YearMonth now = YearMonth.now();
+
+        return !cardExpiry.isBefore(now);
     }
 
     // Checks format and Luhn's algorithm
