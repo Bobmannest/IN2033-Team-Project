@@ -18,7 +18,7 @@ public class PromotionSampleDataLoader {
                         "CAMP0001",
                         "March Promotion",
                         "Paracetamol 5%, Aspirin 10%, Analgin 10%, Celebrex caps 100mg 20%",
-                        LocalDateTime.of(2026, 4, 15, 0, 0),
+                        LocalDateTime.of(2026, 4, 5, 0, 0),
                         LocalDateTime.of(2026, 4, 20, 23, 59),
                         "active",
                         "variable",

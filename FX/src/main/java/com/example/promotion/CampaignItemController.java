@@ -6,18 +6,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.example.members.Member;
 import com.example.members.Session;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class CampaignItemController {
@@ -34,6 +32,11 @@ public class CampaignItemController {
     @FXML private Button btnReports;
     @FXML private Button btnLogin;
     @FXML private Button btnLogout;
+    @FXML private TextArea editDescriptionArea;
+    @FXML private DatePicker editStartDatePicker;
+    @FXML private TextField editStartTimeField;
+    @FXML private DatePicker editEndDatePicker;
+    @FXML private TextField editEndTimeField;
 
     private final PromotionService promotionService = new PromotionService();
 
@@ -43,13 +46,13 @@ public class CampaignItemController {
         configureItemComboBox();
         loadCampaigns();
 
-        campaignListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                selectedCampaignLabel.setText("Selected: " + newVal.getCampaignId() + " - " + newVal.getCampaignName());
-                loadCampaignItems(newVal.getCampaignId());
-            } else {
-                selectedCampaignLabel.setText("No campaign selected");
-                campaignItemsListView.getItems().clear();
+        campaignListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, selectedCampaign) -> {
+            if (selectedCampaign != null) {
+                selectedCampaignLabel.setText(
+                        "Selected: " + selectedCampaign.getCampaignId() + " - " + selectedCampaign.getCampaignName()
+                );
+                loadCampaignItems(selectedCampaign.getCampaignId());
+                populateEditFields(selectedCampaign);
             }
         });
         setupNavBar();
@@ -126,7 +129,7 @@ public class CampaignItemController {
                 }
             }
 
-            promotionService.addItemToCampaign(
+            String warning = promotionService.addItemToCampaign(
                     selectedCampaign.getCampaignId(),
                     selectedItem.getItem_id(),
                     itemDiscount
@@ -136,7 +139,12 @@ public class CampaignItemController {
             itemDiscountField.clear();
             itemComboBox.setValue(null);
 
-            showStatus("Item added successfully.", true);
+            if (warning != null) {
+                statusLabel.setText("Item added. " + warning);
+                statusLabel.setStyle("-fx-text-fill: orange;");
+            } else {
+                showStatus("Item added successfully.", true);
+            }
 
         } catch (IllegalArgumentException e) {
             showStatus(e.getMessage(), false);
@@ -249,6 +257,33 @@ public class CampaignItemController {
         }
     }
 
+    private void populateEditFields(PromotionCampaign campaign) {
+        if (campaign == null) {
+            return;
+        }
+        editDescriptionArea.setText(
+                campaign.getCampaignDescription() != null ? campaign.getCampaignDescription() : ""
+        );
+        if (campaign.getStartDateTime() != null) {
+            editStartDatePicker.setValue(campaign.getStartDateTime().toLocalDate());
+            editStartTimeField.setText(
+                    campaign.getStartDateTime().toLocalTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))
+            );
+        } else {
+            editStartDatePicker.setValue(null);
+            editStartTimeField.clear();
+        }
+        if (campaign.getEndDateTime() != null) {
+            editEndDatePicker.setValue(campaign.getEndDateTime().toLocalDate());
+            editEndTimeField.setText(
+                    campaign.getEndDateTime().toLocalTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))
+            );
+        } else {
+            editEndDatePicker.setValue(null);
+            editEndTimeField.clear();
+        }
+    }
+
     private void loadCampaigns() {
         try {
             List<PromotionCampaign> campaigns = PromotionDAO.getAllCampaigns();
@@ -351,6 +386,50 @@ public class CampaignItemController {
     }
 
     @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
+    private void handleSaveCampaignChanges() {
+        try {
+            PromotionCampaign selectedCampaign = campaignListView.getSelectionModel().getSelectedItem();
+            if (selectedCampaign == null) {
+                throw new IllegalArgumentException("Please select a campaign first.");
+            }
+
+            LocalDate startDate = editStartDatePicker.getValue();
+            LocalDate endDate = editEndDatePicker.getValue();
+
+            if (startDate == null || endDate == null) {
+                throw new IllegalArgumentException("Please select both start and end dates.");
+            }
+
+            LocalTime startTime = LocalTime.parse(editStartTimeField.getText().trim());
+            LocalTime endTime = LocalTime.parse(editEndTimeField.getText().trim());
+
+            String description = editDescriptionArea.getText().trim();
+
+            LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+
+            if (!endDateTime.isAfter(startDateTime)) {
+                throw new IllegalArgumentException("End date/time must be after start date/time.");
+            }
+
+            promotionService.updateCampaignDetails(
+                    selectedCampaign.getCampaignId(),
+                    description,
+                    startDateTime,
+                    endDateTime
+            );
+
+            showStatus("Campaign updated successfully.", true);
+            handleRefreshCampaigns();
+
+        } catch (IllegalArgumentException e) {
+            showStatus(e.getMessage(), false);
+        } catch (Exception e) {
+            showStatus("Error updating campaign: " + e.getMessage(), false);
+        }
+    }
 
     @FXML
     private void handleReports() {

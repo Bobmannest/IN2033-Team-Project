@@ -5,6 +5,7 @@ import com.example.catalogue.CatalogueItem;
 import com.example.fx.DatabaseConnection;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,6 +150,35 @@ public class PromotionDAO {
         return campaigns;
     }
 
+    public static List<PromotionCampaign> getActiveCampaignsForItem(String itemId) throws SQLException {
+        String sql = """
+            SELECT DISTINCT pc.*
+            FROM PromotionCampaign pc
+            JOIN PromotionCampaignItem pci
+              ON pc.campaign_id = pci.campaign_id
+            WHERE pci.item_id = ?
+              AND pc.status = 'active'
+              AND pc.start_datetime <= NOW()
+              AND pc.end_datetime >= NOW()
+            ORDER BY pc.start_datetime ASC
+            """;
+
+        List<PromotionCampaign> campaigns = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, itemId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    campaigns.add(mapCampaign(rs));
+                }
+            }
+        }
+        return campaigns;
+    }
+
     public static List<CatalogueItem> getCampaignCatalogueItems(String campaignId) throws SQLException {
         String sql = "SELECT item_id FROM PromotionCampaignItem WHERE campaign_id = ?";
         List<String> campaignItemIds = new ArrayList<>();
@@ -175,6 +205,30 @@ public class PromotionDAO {
         }
 
         return result;
+    }
+
+    public static void updateCampaignDetails(
+            String campaignId,
+            String description,
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime
+    ) throws SQLException {
+        String sql = """
+            UPDATE PromotionCampaign
+            SET campaign_description = ?, start_datetime = ?, end_datetime = ?
+            WHERE campaign_id = ?
+            """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, description);
+            ps.setTimestamp(2, Timestamp.valueOf(startDateTime));
+            ps.setTimestamp(3, Timestamp.valueOf(endDateTime));
+            ps.setString(4, campaignId);
+
+            ps.executeUpdate();
+        }
     }
 
     public static Double getDiscountForItem(String campaignId, String itemId) throws SQLException {
@@ -378,6 +432,65 @@ public class PromotionDAO {
 
     private static void ensureCampaignItemMetricsRowExists(String campaignId, String itemId) throws SQLException {
         createCampaignItemMetricsRow(campaignId, itemId);
+    }
+
+    public static List<PromotionCampaign> findOverlappingCampaignsForItem(
+            String itemId,
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime,
+            String excludeCampaignId
+    ) throws SQLException {
+
+        String sql = """
+            SELECT DISTINCT pc.*
+            FROM PromotionCampaign pc
+            JOIN PromotionCampaignItem pci
+              ON pc.campaign_id = pci.campaign_id
+            WHERE pci.item_id = ?
+              AND pc.campaign_id <> ?
+              AND pc.status IN ('scheduled', 'active')
+              AND pc.start_datetime <= ?
+              AND pc.end_datetime >= ?
+            """;
+
+        List<PromotionCampaign> overlaps = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, itemId);
+            ps.setString(2, excludeCampaignId);
+            ps.setTimestamp(3, Timestamp.valueOf(endDateTime));
+            ps.setTimestamp(4, Timestamp.valueOf(startDateTime));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    overlaps.add(mapCampaign(rs));
+                }
+            }
+        }
+
+        return overlaps;
+    }
+
+    public static boolean campaignItemExists(String campaignId, String itemId) throws SQLException {
+        String sql = """
+            SELECT 1
+            FROM PromotionCampaignItem
+            WHERE campaign_id = ? AND item_id = ?
+            LIMIT 1
+            """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, campaignId);
+            ps.setString(2, itemId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
     }
 
     private static PromotionCampaign mapCampaign(ResultSet rs) throws SQLException {

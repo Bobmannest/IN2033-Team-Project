@@ -15,9 +15,13 @@ public class PromotionService {
         PromotionDAO.createCampaign(campaign);
     }
 
-    public void addItemToCampaign(String campaignId, String itemId, Double itemDiscountPct) throws SQLException {
+    public String addItemToCampaign(String campaignId, String itemId, Double itemDiscountPct) throws SQLException {
         if (campaignId == null || campaignId.isBlank()) {
             throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        if (itemId == null || itemId.isBlank()) {
+            throw new IllegalArgumentException("Item ID cannot be empty.");
         }
 
         CatalogueItem item = findCatalogueItemById(itemId);
@@ -29,7 +33,43 @@ public class PromotionService {
             throw new IllegalArgumentException("Discount must be between 0 and 100.");
         }
 
+        if (PromotionDAO.campaignItemExists(campaignId, itemId)) {
+            throw new IllegalArgumentException("This item is already in the selected campaign.");
+        }
+
+        PromotionCampaign campaign = PromotionDAO.getCampaignById(campaignId);
+        if (campaign == null) {
+            throw new IllegalArgumentException("Campaign does not exist.");
+        }
+
+        List<PromotionCampaign> overlaps = PromotionDAO.findOverlappingCampaignsForItem(
+                itemId,
+                campaign.getStartDateTime(),
+                campaign.getEndDateTime(),
+                campaignId
+        );
+
         PromotionDAO.addItemToCampaign(campaignId, itemId, itemDiscountPct);
+
+        if (overlaps.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder warning = new StringBuilder();
+        warning.append("Overlapping campaign detected for item ")
+                .append(itemId)
+                .append(". Highest discount will be applied. Conflicts with: ");
+        for (int i = 0; i < overlaps.size(); i++) {
+            PromotionCampaign c = overlaps.get(i);
+            warning.append(c.getCampaignId())
+                    .append(" (")
+                    .append(c.getCampaignName())
+                    .append(")");
+            if (i < overlaps.size() - 1) {
+                warning.append(", ");
+            }
+        }
+        return warning.toString();
     }
 
     public List<PromotionCampaign> getAllCampaigns() throws SQLException {
@@ -72,8 +112,68 @@ public class PromotionService {
         return PromotionDAO.getDiscountForItem(campaignId, itemId);
     }
 
-    public double getDiscountedPrice(String campaignId, String itemId, double originalPrice) throws SQLException {
-        Double discountPct = getDiscountForItem(campaignId, itemId);
+    public Double getEffectiveDiscountForItem(String itemId) throws SQLException {
+        if (itemId == null || itemId.isBlank()) {
+            throw new IllegalArgumentException("Item ID cannot be empty.");
+        }
+
+        List<PromotionCampaign> activeCampaigns = PromotionDAO.getActiveCampaignsForItem(itemId);
+        double highestDiscount = 0.0;
+        for (PromotionCampaign campaign : activeCampaigns) {
+            Double discount = PromotionDAO.getDiscountForItem(campaign.getCampaignId(), itemId);
+
+            if (discount != null && discount > highestDiscount) {
+                highestDiscount = discount;
+            }
+        }
+        return highestDiscount;
+    }
+
+    public PromotionCampaign getWinningCampaignForItem(String itemId) throws SQLException {
+        if (itemId == null || itemId.isBlank()) {
+            throw new IllegalArgumentException("Item ID cannot be empty.");
+        }
+
+        List<PromotionCampaign> activeCampaigns = PromotionDAO.getActiveCampaignsForItem(itemId);
+
+        PromotionCampaign winningCampaign = null;
+        double highestDiscount = 0.0;
+
+        for (PromotionCampaign campaign : activeCampaigns) {
+            Double discount = PromotionDAO.getDiscountForItem(campaign.getCampaignId(), itemId);
+
+            if (discount != null && discount > highestDiscount) {
+                highestDiscount = discount;
+                winningCampaign = campaign;
+            }
+        }
+
+        return winningCampaign;
+    }
+
+    public void updateCampaignDetails(
+            String campaignId,
+            String description,
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime
+    ) throws SQLException {
+        if (campaignId == null || campaignId.isBlank()) {
+            throw new IllegalArgumentException("Campaign ID cannot be empty.");
+        }
+
+        if (startDateTime == null || endDateTime == null) {
+            throw new IllegalArgumentException("Start and end date/time are required.");
+        }
+
+        if (!endDateTime.isAfter(startDateTime)) {
+            throw new IllegalArgumentException("End date/time must be after start date/time.");
+        }
+
+        PromotionDAO.updateCampaignDetails(campaignId, description, startDateTime, endDateTime);
+    }
+
+    public double getDiscountedPrice(String itemId, double originalPrice) throws SQLException {
+        Double discountPct = getEffectiveDiscountForItem(itemId);
 
         if (discountPct == null || discountPct <= 0) {
             return originalPrice;

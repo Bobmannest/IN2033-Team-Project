@@ -6,7 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="650.0" prefWidth="1000.0" style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.promotion.CampaignItemController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0"
+            style="-fx-font-family: 'Microsoft Sans Serif'; -fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.promotion.CampaignItemController">
 
     <top>
         <VBox>
@@ -48,7 +52,9 @@
                         <Button mnemonicParsing="false" onAction="#handleCatalogue" prefHeight="33.0" text="Catalogue" />
                         <Button mnemonicParsing="false" onAction="#handleActivePromotions" prefHeight="33.0" text="Active Promotions" />
                         <Button fx:id="btnCreatePromotion" mnemonicParsing="false" onAction="#handleCreatePromotion" prefHeight="33.0" text="Create Promotion" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;" text="Manage Promotions" />
+                        <Button mnemonicParsing="false" prefHeight="33.0"
+                                style="-fx-font-weight: bold; -fx-border-color: #1a7a4a; -fx-border-radius: 3; -fx-background-color: #c0ffc0;"
+                                text="Manage Promotions" />
                         <Button fx:id="btnOrders" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" text="Orders" />
                         <Button fx:id="btnAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="33.0" text="Account" />
                         <Button fx:id="btnReports" mnemonicParsing="false" onAction="#handleReports" prefHeight="33.0" text="Reports" />
@@ -57,14 +63,19 @@
                     </items>
                 </ToolBar>
 
-                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_LEFT" spacing="15.0"
+                      style="-fx-background-color: white; -fx-border-color: #d9d9d9; -fx-border-width: 0 0 1 0;">
                     <padding>
                         <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                     </padding>
 
                     <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="MANAGE PROMOTIONS">
-                            <font><Font name="Microsoft Sans Serif" size="24.0" /></font>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              style="-fx-font-weight: bold;"
+                              text="MANAGE PROMOTIONS">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="24.0" />
+                            </font>
                         </Text>
                     </VBox>
                 </HBox>
@@ -73,70 +84,144 @@
     </top>
 
     <center>
-        <HBox spacing="20.0" style="-fx-background-color: #f8fafc;">
-            <padding>
-                <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
-            </padding>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="AS_NEEDED"
+                    pannable="true"
+                    style="-fx-background: #f8fafc; -fx-background-color: #f8fafc;">
+            <content>
+                <HBox spacing="20.0" style="-fx-background-color: #f8fafc;">
+                    <padding>
+                        <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+                    </padding>
 
-            <!-- Left side: campaign list -->
-            <VBox prefWidth="320.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;">
-                <padding>
-                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                </padding>
+                    <VBox prefWidth="320.0"
+                          minWidth="320.0"
+                          maxWidth="320.0"
+                          spacing="12.0"
+                          style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;">
+                        <padding>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
 
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Campaigns" />
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Campaigns" />
 
-                <ListView fx:id="campaignListView" prefHeight="400.0" />
+                        <ListView fx:id="campaignListView" prefHeight="520.0" VBox.vgrow="ALWAYS" />
 
-                <HBox spacing="10.0">
-                    <Button onAction="#handleRefreshCampaigns" style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Refresh" />
-                    <Button onAction="#handleDeleteCampaign" style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Delete Campaign" />
+                        <HBox spacing="10.0">
+                            <Button onAction="#handleRefreshCampaigns"
+                                    style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                    text="Refresh" />
+                            <Button onAction="#handleDeleteCampaign"
+                                    style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                    text="Delete Campaign" />
+                        </HBox>
+                    </VBox>
 
+                    <VBox spacing="16.0"
+                          style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;"
+                          HBox.hgrow="ALWAYS"
+                          maxWidth="1.7976931348623157E308">
+                        <padding>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
+
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Campaign Details" />
+
+                        <Label fx:id="selectedCampaignLabel"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #374151;"
+                               text="No campaign selected" />
+
+                        <Label text="Edit Campaign"
+                               style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+
+                        <VBox spacing="6.0">
+                            <Label text="Description" />
+                            <TextArea fx:id="editDescriptionArea"
+                                      prefRowCount="3"
+                                      wrapText="true"
+                                      promptText="Edit campaign description"
+                                      maxWidth="1.7976931348623157E308" />
+                        </VBox>
+
+                        <HBox spacing="15.0">
+                            <VBox spacing="6.0">
+                                <Label text="Start Date" />
+                                <DatePicker fx:id="editStartDatePicker" prefWidth="230.0" />
+                            </VBox>
+
+                            <VBox spacing="6.0">
+                                <Label text="Start Time" />
+                                <TextField fx:id="editStartTimeField" promptText="HH:mm" prefWidth="160.0" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="15.0">
+                            <VBox spacing="6.0">
+                                <Label text="End Date" />
+                                <DatePicker fx:id="editEndDatePicker" prefWidth="230.0" />
+                            </VBox>
+
+                            <VBox spacing="6.0">
+                                <Label text="End Time" />
+                                <TextField fx:id="editEndTimeField" promptText="HH:mm" prefWidth="160.0" />
+                            </VBox>
+                        </HBox>
+
+                        <Button text="Save Campaign Changes"
+                                onAction="#handleSaveCampaignChanges"
+                                style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" />
+
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;"
+                               text="Items in Selected Campaign" />
+
+                        <ListView fx:id="campaignItemsListView"
+                                  prefHeight="140.0"
+                                  maxWidth="1.7976931348623157E308" />
+
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                            <Button onAction="#handleDeleteSelectedItem"
+                                    style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                    text="Delete Selected Item" />
+
+                            <Button onAction="#handleCancelCampaign"
+                                    style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                    text="Cancel Campaign" />
+
+                            <Button onAction="#handleReactivateCampaign"
+                                    style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                    text="Reactivate Campaign" />
+                        </HBox>
+
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;"
+                               text="Add Item to Selected Campaign" />
+
+                        <VBox spacing="6.0">
+                            <Label text="Select Catalogue Item" />
+                            <ComboBox fx:id="itemComboBox"
+                                      prefWidth="420.0"
+                                      maxWidth="1.7976931348623157E308" />
+                        </VBox>
+
+                        <VBox spacing="6.0">
+                            <Label text="Item Discount (%)" />
+                            <TextField fx:id="itemDiscountField"
+                                       promptText="Leave blank to use campaign default"
+                                       maxWidth="1.7976931348623157E308" />
+                        </VBox>
+
+                        <Button onAction="#handleAddItemToSelectedCampaign"
+                                style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                text="Add Item" />
+
+                        <Label fx:id="statusLabel"
+                               style="-fx-font-size: 13px; -fx-font-weight: bold;"
+                               wrapText="true"
+                               maxWidth="1.7976931348623157E308"
+                               text="" />
+                    </VBox>
                 </HBox>
-            </VBox>
-
-            <VBox spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e5e7eb; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                </padding>
-
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Campaign Details" />
-
-                <Label fx:id="selectedCampaignLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="No campaign selected" />
-
-                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Items in Selected Campaign" />
-                <ListView fx:id="campaignItemsListView" prefHeight="89.0" prefWidth="600.0" />
-
-                <HBox spacing="10.0">
-                    <Button onAction="#handleDeleteSelectedItem"
-                            style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
-                            text="Delete Selected Item" />
-
-                    <Button onAction="#handleCancelCampaign"
-                            style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
-                            text="Cancel Campaign" />
-
-                    <Button onAction="#handleReactivateCampaign"
-                            style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"
-                            text="Reactivate Campaign" />
-                </HBox>
-
-                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Add Item to Selected Campaign" />
-
-                <VBox spacing="6.0">
-                    <Label text="Select Catalogue Item" />
-                    <ComboBox fx:id="itemComboBox" prefWidth="420.0" />
-                </VBox>
-
-                <VBox spacing="6.0">
-                    <Label text="Item Discount (%)" />
-                    <TextField fx:id="itemDiscountField" promptText="Leave blank to use campaign default" />
-                </VBox>
-
-                <Button onAction="#handleAddItemToSelectedCampaign" style="-fx-background-color: #0bb401; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Add Item" />
-
-                <Label fx:id="statusLabel" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="" />
-            </VBox>
-        </HBox>
+            </content>
+        </ScrollPane>
     </center>
 </BorderPane>
