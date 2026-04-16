@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -140,8 +141,7 @@ public class Controller {
                 final String password = newPassword;
                 showSuccessMessage("Sending new password to your email...");
                 new Thread(() -> {
-                    new com.example.email.EmailService().sendPasswordResetEmail(email, password);
-                    javafx.application.Platform.runLater(() ->
+                    new com.example.email.EmailService().sendPasswordResetEmail(email, password);                    javafx.application.Platform.runLater(() ->
                             showSuccessMessage("A new password has been sent to your email.")
                     );
                 }).start();

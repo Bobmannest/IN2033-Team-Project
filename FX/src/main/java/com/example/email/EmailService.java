@@ -12,10 +12,8 @@ import java.util.Properties;
 
 @Service
 public class EmailService {
-    @Value("${spring.mail.username}")
-    private String username;
-    @Value("${spring.mail.password}")
-    private String password;
+    private String username = "curatecht33@gmail.com";
+    private String password = "wavpynjnixzmtlrb";
 
     public void sendPurchaseEmail(
             String recipientName,
