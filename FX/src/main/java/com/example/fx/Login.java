@@ -13,7 +13,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Login extends Application {
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));

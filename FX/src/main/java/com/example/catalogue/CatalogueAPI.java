@@ -19,7 +19,7 @@ public class CatalogueAPI {
             CatalogueSyncDAO.syncCatalogueToProductTable(catalogue);
             PromotionSampleDataLoader.loadSampleData();
             CatalogueService.printDatabase();
-            return ResponseEntity.ok("Catalogue Database Accepted");
+            return ResponseEntity.ok("Catalogue Database Accepted from CA");
         } catch (SQLException e) {
             return ResponseEntity.internalServerError()
                     .body("Failed to sync catalogue to Product table: " + e.getMessage());

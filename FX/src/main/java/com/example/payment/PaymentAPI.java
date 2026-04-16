@@ -16,12 +16,14 @@ public class PaymentAPI {
     @PostMapping("/accept")
     public ResponseEntity<String> acceptPayment(@RequestBody Payment payment) {
         paymentService.printPayment(payment);
+        System.out.println("Payment Accepted");
         return ResponseEntity.ok("Payment Accepted");
     }
 
     @PostMapping("/process")
     public ResponseEntity<String> processPayment(@RequestBody PaymentDetails paymentDetails) {
         boolean valid = paymentService.processPayment(paymentDetails);
+        System.out.println("Payment Processed");
         if (valid) {
             return ResponseEntity.ok("Payment Details Accepted");
         } else {

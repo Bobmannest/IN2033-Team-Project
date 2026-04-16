@@ -20,6 +20,7 @@ public class EmailAPI {
             @RequestParam String trackId)
     {
         emailService.sendPurchaseEmail(recipientName, recipientEmail, recipientAddress, trackId);
+        System.out.println("Purchase Email sent to " + recipientEmail);
         return "Purchase Email sent to " + recipientEmail;
     }
 
@@ -33,6 +34,7 @@ public class EmailAPI {
     public String sendRegistrationEmail(@RequestParam String recipient_email,
                                         @RequestParam String generated_password) {
         emailService.sendRegistrationEmail(recipient_email, generated_password);
+        System.out.println("Registration Email sent to " + recipient_email);
         return "Registration email sent to " + recipient_email;
     }
 
@@ -40,6 +42,7 @@ public class EmailAPI {
     public String sendPasswordResetEmail(@RequestParam String recipient_email,
                                         @RequestParam String tempPass) {
         emailService.sendPasswordResetEmail(recipient_email, tempPass);
+        System.out.println("Password Reset Email sent to " + recipient_email);
         return "Registration email sent to " + recipient_email;
     }
 }

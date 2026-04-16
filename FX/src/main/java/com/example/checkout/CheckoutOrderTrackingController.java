@@ -28,8 +28,7 @@ public class CheckoutOrderTrackingController {
 
             if (rs.next()) {
                 String status = rs.getString("order_status");
-
-                //AI was used for this because we needed a html page to display order status
+                System.out.println("Tracking Order:");
                 return """
                     <html>
                     <head><title>Order Tracking</title></head>
