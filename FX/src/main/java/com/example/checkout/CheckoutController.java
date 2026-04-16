@@ -305,7 +305,7 @@ public class CheckoutController {
         }
 
         // saves the order into the database
-        saveOrderToDatabase(address, totalCost, member);
+        saveOrderToDatabase(address, totalCost, member, trackId);
 
         //Makes a copy of basket_items to send to controller to display items ordered
         List<CatalogueItem> orderConfirmationItems = new ArrayList<>(BasketList.getBasketItems());
@@ -363,7 +363,7 @@ public class CheckoutController {
     }
 
     // saves the orders into the database
-    private void saveOrderToDatabase(String address, double totalCost, Member member) {
+    private void saveOrderToDatabase(String address, double totalCost, Member member, String trackId) {
         if (member == null) return;
 
         double subtotal = 0;
@@ -374,8 +374,8 @@ public class CheckoutController {
 
         String insertOrder = """
         INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
-            subtotal, discount_total, total_amount, delivery_address)
-        VALUES (?, NULL, 'paid', ?, ?, ?, ?)
+            subtotal, discount_total, total_amount, delivery_address, track_id)
+        VALUES (?, NULL, 'paid', ?, ?, ?, ?, ?)
         """;
 
         String insertItem = """
@@ -393,6 +393,7 @@ public class CheckoutController {
             psOrder.setDouble(3, discountTotal);
             psOrder.setDouble(4, totalCost);
             psOrder.setString(5, address);
+            psOrder.setString(6, trackId);
             psOrder.executeUpdate();
 
 
