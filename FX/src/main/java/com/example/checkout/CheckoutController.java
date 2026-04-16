@@ -219,44 +219,28 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleOrders() {
-        navigate("/com/example/fx/OrderHistory.fxml");
-    }
+    private void handleOrders() { navigate("/com/example/fx/OrderHistory.fxml"); }
 
     @FXML
-    private void handleCatalogue() {
-        navigate("/com/example/fx/Catalogue.fxml");
-    }
+    private void handleCatalogue() { navigate("/com/example/fx/Catalogue.fxml"); }
 
     @FXML
-    private void handleAccount() {
-        navigate("/com/example/fx/Account.fxml");
-    }
+    private void handleAccount() { navigate("/com/example/fx/Account.fxml"); }
 
     @FXML
-    private void handleBasket() {
-        navigate("/com/example/fx/Basket.fxml");
-    }
+    private void handleBasket() { navigate("/com/example/fx/Basket.fxml"); }
 
     @FXML
-    private void handleHome() {
-        navigate("/com/example/fx/Home.fxml");
-    }
+    private void handleHome() { navigate("/com/example/fx/Home.fxml"); }
 
     @FXML
-    private void handleCreatePromotion() {
-        navigate("/com/example/fx/Promotion.fxml");
-    }
+    private void handleCreatePromotion() { navigate("/com/example/fx/Promotion.fxml"); }
 
     @FXML
-    private void handleManagePromotions() {
-        navigate("/com/example/fx/CampaignItem.fxml");
-    }
+    private void handleManagePromotions() { navigate("/com/example/fx/CampaignItem.fxml"); }
 
     @FXML
-    private void handleActivePromotions() {
-        navigate("/com/example/fx/ActivePromotions.fxml");
-    }
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
 
     @FXML
     private void handleReports() {
@@ -273,15 +257,10 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleLogin() {
-        navigate("/com/example/fx/Login.fxml");
-    }
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
 
     @FXML
-    private void handleLogout() {
-        Session.setMember(null);
-        navigate("/com/example/fx/Login.fxml");
-    }
+    private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 
     @FXML
     private void handleOrderConfirmation(String name, String email, String address, double totalCost, Member member) {
@@ -366,7 +345,7 @@ public class CheckoutController {
     }
 
     private void saveOrderToDatabase(String address, double totalCost, Member member, String trackId) {
-        if (member == null) return;
+        String accountNo = (member != null) ? member.getAccountNo() : "guest";
 
         double subtotal = 0;
         double discountedTotal = 0;
@@ -381,7 +360,7 @@ public class CheckoutController {
         String insertOrder = """
         INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
             subtotal, discount_total, total_amount, delivery_address, track_id)
-        VALUES (?, NULL, 'paid', ?, ?, ?, ?, ?)
+        VALUES (?, NULL, 'received', ?, ?, ?, ?, ?)
         """;
 
         String insertItem = """
@@ -394,7 +373,7 @@ public class CheckoutController {
              PreparedStatement psOrder = conn.prepareStatement(insertOrder,
                      java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
-            psOrder.setString(1, member.getAccountNo());
+            psOrder.setString(1, accountNo);
             psOrder.setDouble(2, subtotal);
             psOrder.setDouble(3, discountTotal);
             psOrder.setDouble(4, totalCost);
@@ -402,10 +381,12 @@ public class CheckoutController {
             psOrder.setString(6, trackId);
             psOrder.executeUpdate();
 
-            String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
-            try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
-                psCount.setString(1, member.getAccountNo());
-                psCount.executeUpdate();
+            if (member != null) {
+                String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
+                try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
+                    psCount.setString(1, accountNo);
+                    psCount.executeUpdate();
+                }
             }
 
             ResultSet keys = psOrder.getGeneratedKeys();

@@ -23,6 +23,7 @@ public class HomeController {
     @FXML private Button btnHomeOrders;
     @FXML private Button btnHomeAccount;
 
+
     @FXML
     public void initialize() {
         setupNavBar();
