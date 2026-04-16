@@ -66,9 +66,10 @@ public class EmailService {
     private String getPurchasedItems() {
         StringBuilder itemString = new StringBuilder();
         for (CatalogueItem item : BasketList.getBasketItems()) {
-            itemString.append("\n- ").append(item.getItem_id())
+            String roundedPrice = String.format("%.2f", item.getPackage_cost());
+            itemString.append("\n- ").append(item.getDescription())
                     .append(" | ").append(item.getPackage_type())
-                    .append(" | £").append(item.getPackage_cost());
+                    .append(" | £").append(roundedPrice);
         }
         return itemString.toString();
     }

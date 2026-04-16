@@ -19,9 +19,11 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -282,10 +284,10 @@ public class CheckoutController {
 
         try {
             String url = "http://localhost:8080/api/emails/sendPurchase"
-                    + "?recipientName=" + name
-                    + "&recipientEmail=" + email
-                    + "&recipientAddress=" + address
-                    + "&trackId=" + trackId;
+                    + "?recipientName=" + URLEncoder.encode(name, StandardCharsets.UTF_8)
+                    + "&recipientEmail=" + URLEncoder.encode(email, StandardCharsets.UTF_8)
+                    + "&recipientAddress=" + URLEncoder.encode(address, StandardCharsets.UTF_8)
+                    + "&trackId=" + URLEncoder.encode(trackId, StandardCharsets.UTF_8);
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))

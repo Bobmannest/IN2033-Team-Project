@@ -358,8 +358,6 @@ public class CampaignItemController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) statusLabel.getScene().getWindow();
-            stage.setWidth(1000);
-            stage.setHeight(620);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             showStatus("Navigation error: " + e.getMessage(), false);

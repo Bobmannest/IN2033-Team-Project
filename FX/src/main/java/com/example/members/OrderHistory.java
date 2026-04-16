@@ -120,8 +120,6 @@ public class OrderHistory {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ordersTable.getScene().getWindow();
-            stage.setWidth(1000);
-            stage.setHeight(620);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

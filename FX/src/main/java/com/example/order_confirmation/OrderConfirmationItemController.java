@@ -14,7 +14,9 @@ public class OrderConfirmationItemController {
 
     public void setItem(CatalogueItem item) {
         this.currentItem = item;
-        idLabel.setText("#" + item.getItem_id());
-        packageCostLabel.setText("£" + item.getPackage_cost());
+        String roundedPrice = String.format("%.2f", item.getPackage_cost());
+
+        idLabel.setText(item.getDescription());
+        packageCostLabel.setText("£" + roundedPrice);
     }
 }

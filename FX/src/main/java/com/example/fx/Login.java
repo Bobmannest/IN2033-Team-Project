@@ -23,6 +23,7 @@ public class Login extends Application {
         stage.setMinHeight(560);
         stage.setScene(scene);
         stage.setMaximized(true);
+        stage.setOnCloseRequest(event -> System.exit(0));
         stage.show();
     }
 
