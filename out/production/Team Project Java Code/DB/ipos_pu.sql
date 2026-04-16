@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Member (
 INSERT INTO Member (account_no, email, password, member_type, is_first_login, order_count) VALUES
     ('sysdba',  'curatecht33+sysdba@gmail.com',  'masterkey',     'admin',          FALSE, 0),
     ('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
-    ('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 0),
+    ('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 8),
     ('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
     ('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
 
@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS OnlineOrder (
     subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     discount_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     total_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    delivery_address VARCHAR(255) DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_online_order_member

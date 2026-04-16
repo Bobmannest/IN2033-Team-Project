@@ -15,8 +15,10 @@ public class CheckoutItemController {
 
     public void setItem(CatalogueItem item) {
         this.currentItem = item;
+        String roundedPrice = String.format("%.2f", item.getPackage_cost());
 
-        idLabel.setText("#" + item.getItem_id());
-        packageCostLabel.setText("£" + item.getPackage_cost());
+
+        idLabel.setText("#" + item.getDescription());
+        packageCostLabel.setText("£" + roundedPrice);
     }
 }

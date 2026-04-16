@@ -8,14 +8,19 @@ public class BasketItemController {
     private CatalogueItem currentItem;
 
     @FXML private Label idLabel;
+    @FXML private Label nameLabel;
     @FXML private Label packageCostLabel;
     @FXML private Label packageTypeLabel;
     @FXML private Label statusLabel;
 
     public void setItem(CatalogueItem item) {
         this.currentItem = item;
+        String roundedPrice = String.format("%.2f", item.getPackage_cost());
+
+
         idLabel.setText("#" + item.getItem_id());
-        packageCostLabel.setText("Price - £" + item.getPackage_cost());
+        nameLabel.setText(item.getDescription());
+        packageCostLabel.setText("Price - £" + roundedPrice);
         packageTypeLabel.setText(item.getPackage_type());
         statusLabel.setText("[" + item.getStatus() + "]");
     }

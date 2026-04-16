@@ -9,15 +9,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basket.BasketItemController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="839.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basket.BasketItemController">
    <children>
-      <Label fx:id="idLabel" prefHeight="18.0" prefWidth="50.0" text="ID">
+      <Label fx:id="idLabel" prefHeight="18.0" prefWidth="97.0" text="ID">
          <font>
             <Font name="MS Reference Sans Serif" size="14.0" />
          </font>
          <HBox.margin>
             <Insets left="5.0" />
          </HBox.margin>
+      </Label>
+      <Pane prefHeight="33.0" prefWidth="36.0" />
+      <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="154.0" text="Name">
+         <font>
+            <Font name="MS Reference Sans Serif" size="14.0" />
+         </font>
       </Label>
       <Pane prefHeight="33.0" prefWidth="16.0" />
       <Label fx:id="packageCostLabel" prefHeight="19.0" prefWidth="113.0" text="Price  - £XX:XX">
