@@ -19,6 +19,7 @@
 }
 
 .topButton:hover{
+    -fx-background-color: #57ab81;
 
 }
 

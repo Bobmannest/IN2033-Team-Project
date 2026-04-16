@@ -79,22 +79,29 @@ public class CheckoutController {
     public void initialize() {
         displayItems();
 
-        //Calculates total
-        double totalCost = 0;
+        double subtotal = 0;
+        double finalTotal = 0;
+
         for (CatalogueItem item : BasketList.getBasketItems()) {
-            totalCost += item.getPackage_cost();
+            subtotal += item.getPackage_cost();
+            finalTotal += BasketList.getFinalPrice(item);
         }
 
-        //Calculates discounts and displays text
-        subtotalLabel.setText("£" + String.format("%.2f", totalCost));
+        subtotalLabel.setText("£" + String.format("%.2f", subtotal));
+
+        double discountAmount = subtotal - finalTotal;
+
         Member member = Session.getMember();
         if (member != null && member.getOrderCount() % 10 == 9) {
-            discountLabel.setText("-10%");
-            totalCost *= 0.9;
+            discountAmount += finalTotal * 0.10;
+            finalTotal *= 0.9;
+            discountLabel.setText(String.format("-£%.2f (incl. loyalty)", discountAmount));
+        } else {
+            discountLabel.setText(String.format("-£%.2f", discountAmount));
         }
-        totalLabel.setText("£" + String.format("%.2f", totalCost));
 
-        //Card type listener
+        totalLabel.setText("£" + String.format("%.2f", finalTotal));
+
         cardTypeBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal == null) return;
             switch (newVal) {
@@ -153,13 +160,11 @@ public class CheckoutController {
             String expiry = expiryField.getText().trim();
             String cvv = cvvField.getText().trim();
 
-            //Calculates total
             double totalCost = 0;
             for (CatalogueItem item : BasketList.getBasketItems()) {
-                totalCost += item.getPackage_cost();
+                totalCost += BasketList.getFinalPrice(item);
             }
 
-            //Calculates discounts
             Member member = Session.getMember();
             if (member != null && member.getOrderCount() % 10 == 9) {
                 totalCost *= 0.9;
@@ -177,8 +182,8 @@ public class CheckoutController {
                 handleOrderConfirmation(name, email, address, totalCost, member);
 
                 String first4Digits = cardNum.substring(0, 4);
-                String last4Digits = cardNum.substring(cardNum.length() - 1);
-                recordPayment(cardType, first4Digits, last4Digits, cardType, expiry, totalCost);
+                String last4Digits = cardNum.substring(cardNum.length() - 4);
+                recordPayment(name, first4Digits, last4Digits, cardType, expiry, totalCost);
             } else if (!correctCustomerInfo && !correctPaymentInfo) {
                 checkoutErrorLabel.setText("At least one of the entered customer and payment info is incorrect");
             } else if (!correctCustomerInfo) {
@@ -367,10 +372,14 @@ public class CheckoutController {
         String accountNo = (member != null) ? member.getAccountNo() : "guest";
 
         double subtotal = 0;
+        double discountedTotal = 0;
+
         for (CatalogueItem item : BasketList.getBasketItems()) {
             subtotal += item.getPackage_cost();
+            discountedTotal += BasketList.getFinalPrice(item);
         }
-        double discountTotal = subtotal - totalCost;
+
+        double discountTotal = subtotal - discountedTotal;
 
         String insertOrder = """
         INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
@@ -381,7 +390,7 @@ public class CheckoutController {
         String insertItem = """
         INSERT INTO OnlineOrderItem (order_id, item_id, campaign_id, quantity,
             unit_price, discount_pct_applied, final_unit_price, line_total)
-        VALUES (?, ?, ?, 1, ?, 0.00, ?, ?)
+        VALUES (?, ?, ?, 1, ?, ?, ?, ?)
         """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -396,6 +405,7 @@ public class CheckoutController {
             psOrder.setString(6, trackId);
             psOrder.executeUpdate();
 
+<<<<<<< Updated upstream
 
             if (member != null) {
                 String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
@@ -403,6 +413,12 @@ public class CheckoutController {
                     psCount.setString(1, accountNo);
                     psCount.executeUpdate();
                 }
+=======
+            String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
+            try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
+                psCount.setString(1, member.getAccountNo());
+                psCount.executeUpdate();
+>>>>>>> Stashed changes
             }
 
             ResultSet keys = psOrder.getGeneratedKeys();
@@ -410,19 +426,24 @@ public class CheckoutController {
                 long orderId = keys.getLong(1);
                 try (PreparedStatement psItem = conn.prepareStatement(insertItem)) {
                     for (CatalogueItem item : BasketList.getBasketItems()) {
-                        double price = item.getPackage_cost();
+                        double originalPrice = item.getPackage_cost();
+                        double finalPrice = BasketList.getFinalPrice(item);
+                        double discountPct = BasketList.getDiscountPct(item);
+                        String campaignId = BasketList.getCampaignId(item);
+
                         psItem.setLong(1, orderId);
                         psItem.setString(2, item.getItem_id());
-                        psItem.setString(3, item.getCampaignId());
-                        psItem.setDouble(4, price);
-                        psItem.setDouble(5, price);
-                        psItem.setDouble(6, price);
+                        psItem.setString(3, campaignId);
+                        psItem.setDouble(4, originalPrice);
+                        psItem.setDouble(5, discountPct);
+                        psItem.setDouble(6, finalPrice);
+                        psItem.setDouble(7, finalPrice);
                         psItem.addBatch();
 
-                        if (item.getCampaignId() != null) {
+                        if (campaignId != null) {
                             try {
                                 new com.example.promotion.PromotionService()
-                                        .recordPurchased(item.getCampaignId(), item.getItem_id(), 1);
+                                        .recordPurchased(campaignId, item.getItem_id(), 1);
                             } catch (Exception e) {
                                 System.out.println("Failed to record purchase metric: " + e.getMessage());
                             }
