@@ -27,7 +27,9 @@ INSERT INTO Member (account_no, email, password, member_type, is_first_login, or
     ('manager', 'curatecht33+manager@gmail.com', 'GetPU_it_done', 'admin',          FALSE, 0),
     ('PU0001',  'curatecht33+pu0001@gmail.com',  '12ss_56_SS',    'non_commercial', FALSE, 8),
     ('PU0002',  'curatecht33+pu0002@gmail.com',  '34pp_78_LL',    'non_commercial', FALSE, 0),
-    ('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0);
+    ('PU0003',  'curatecht33+pu0003@gmail.com',  'changeme',      'commercial',     TRUE, 0),
+    ('guest',   'guest@curatech.com',            'guest',         'non_commercial', FALSE, 0);
+
 
 CREATE TABLE IF NOT EXISTS Product (
     item_id VARCHAR(10) PRIMARY KEY,
@@ -79,7 +81,7 @@ CREATE TABLE IF NOT EXISTS OnlineOrder (
     order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     member_account_no VARCHAR(10) NOT NULL,
     campaign_id VARCHAR(10) DEFAULT NULL,
-    order_status ENUM('pending', 'paid', 'cancelled', 'dispatched', 'delivered') NOT NULL DEFAULT 'pending',
+    order_status ENUM('received', 'dispatched', 'delivered', 'cancelled') NOT NULL DEFAULT 'received',
     subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     discount_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     total_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,

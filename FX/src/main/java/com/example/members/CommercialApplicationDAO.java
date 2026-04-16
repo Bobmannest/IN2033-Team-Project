@@ -25,29 +25,33 @@ public class CommercialApplicationDAO {
         sendToSA(app);
     }
 
-    // send to sa mock integration
+    // mock integration
     private static void sendToSA(CommercialApplication app) {
         try {
             String json = String.format("""
+                [
                 {
-                  "application_id": "%s",
                   "company_name": "%s",
-                  "companies_house_no": "%s",
-                  "director_name": "%s",
-                  "business_type": "%s",
-                  "address": "%s",
+                  "reg_num": "%s",
                   "email": "%s",
-                  "status": "pending"
+                  "phone": "12345678",
+                  "address": "%s",
+                  "director": "%s"
                 }
+                ]
                 """,
-                    app.getApplicationId(), app.getCompanyName(),
-                    app.getCompaniesHouseNo(), app.getDirectorName(),
-                    app.getBusinessType(), app.getAddress(), app.getEmail()
+                    app.getCompanyName(),
+                    app.getCompaniesHouseNo(),
+                    app.getEmail(),
+                    app.getAddress(),
+                    app.getDirectorName()
             );
+
+            System.out.println(json);
 
             java.net.http.HttpClient client = java.net.http.HttpClient.newHttpClient();
             java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
-                    .uri(java.net.URI.create("http://SA_TEAM_IP:PORT/api/applications")) // dummy endpoint
+                    .uri(java.net.URI.create("http://localhost:3001/apply"))
                     .header("Content-Type", "application/json")
                     .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                     .build();

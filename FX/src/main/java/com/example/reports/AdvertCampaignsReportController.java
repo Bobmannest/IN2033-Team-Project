@@ -38,6 +38,7 @@ public class AdvertCampaignsReportController {
     @FXML private Label errorLabel;
     @FXML private VBox printableArea;
 
+
     @FXML
     public void initialize() {
         dateFrom.setValue(LocalDate.now().minusMonths(3));
@@ -86,7 +87,7 @@ public class AdvertCampaignsReportController {
                             JOIN OnlineOrder o ON o.order_id = oi.order_id
                             WHERE oi.campaign_id = pci.campaign_id
                               AND oi.item_id = pci.item_id
-                              AND o.order_status = 'paid'), 0) AS total_sales
+                              AND o.order_status = 'processing'), 0) AS total_sales
                 FROM PromotionCampaignItem pci
                 JOIN Product p ON p.item_id = pci.item_id
                 LEFT JOIN CampaignItemMetrics cim ON cim.campaign_id = pci.campaign_id AND cim.item_id = pci.item_id
@@ -135,7 +136,7 @@ public class AdvertCampaignsReportController {
                                 ? String.format("%.0f%%", defDisc)
                                 : String.format("%.0f%%", itemDisc);
 
-                        rows.add(new CampaignRow("", "", "", "", "", name, String.valueOf(sold), String.format("£%.2f", salesTotal)));
+                        rows.add(new CampaignRow("", "", "", "", discDisplay, name, String.valueOf(sold), String.format("£%.2f", salesTotal)));
                     }
 
                     rows.add(new CampaignRow("Total Sales in campaign:", "", "", "", "", "", "", String.format("£%.2f", campTotal)));

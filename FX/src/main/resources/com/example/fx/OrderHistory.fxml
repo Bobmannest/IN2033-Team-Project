@@ -87,7 +87,8 @@
                               <TableColumn fx:id="colOrderId" prefWidth="120" text="Order ID" />
                               <TableColumn fx:id="colDate" prefWidth="185" text="Date &amp; Time" />
                               <TableColumn fx:id="colAmount" prefWidth="100" text="Total (£)" />
-                              <TableColumn fx:id="colAddress" prefWidth="305" text="Delivery Address" />
+                              <TableColumn fx:id="colAddress" prefWidth="250" text="Delivery Address" />
+                              <TableColumn fx:id="colStatus" prefWidth="120" text="Status" />
                            </columns>
                            <placeholder>
                               <Label text="No orders found." />

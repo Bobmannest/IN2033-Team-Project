@@ -25,6 +25,7 @@ public class OrderHistory {
     @FXML private TableColumn<Order, LocalDateTime> colDate;
     @FXML private TableColumn<Order, Double> colAmount;
     @FXML private TableColumn<Order, String> colAddress;
+    @FXML private TableColumn<Order, String> colStatus;
     @FXML private Label errorLabel;
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
@@ -36,6 +37,7 @@ public class OrderHistory {
 
     @FXML
     public void initialize() {
+
         colRowNum.setCellFactory(col -> new TableCell<>() {
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -64,6 +66,7 @@ public class OrderHistory {
         });
 
         colAddress.setCellValueFactory(new PropertyValueFactory<>("deliveryAddress"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         Member member = Session.getMember();
         if (member == null) return;
@@ -130,7 +133,7 @@ public class OrderHistory {
     private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
 
     @FXML
-    private void handleLogout() {Session.setMember(null); navigate("/com/example/fx/Login.fxml");}
+    private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 
     private void setupNavBar() {
         Member member = Session.getMember();
@@ -153,7 +156,6 @@ public class OrderHistory {
     private void show(Button... buttons) {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
-
 
     private void navigate(String fxml) {
         try {
