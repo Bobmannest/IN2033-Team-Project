@@ -24,7 +24,7 @@
             <Image url="@../../../images/background.png" />
          </image>
       </ImageView>
-      <BorderPane fx:id="orderConfirmationPane" maxHeight="750.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
+      <BorderPane fx:id="orderConfirmationPane" maxHeight="750.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12; -fx-border-radius: 12;" stylesheets="@style.css">
          <effect>
             <Blend />
          </effect>
@@ -38,7 +38,7 @@
                               <Image url="@../../../images/curatech.png" />
                            </image>
                         </ImageView>
-                        <Pane prefHeight="38.0" prefWidth="488.0" />
+                        <Pane prefHeight="38.0" prefWidth="488.0" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleBasket" style="-fx-font-weight: bold;" styleClass="BasketButton" text="Basket">
                            <font>
                               <Font name="MS Reference Sans Serif" size="12.0" />
