@@ -1,6 +1,5 @@
 package com.example.checkout;
 
-
 import com.example.basket.BasketList;
 import com.example.catalogue.CatalogueItem;
 import com.example.fx.DatabaseConnection;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javafx.scene.control.Button;
-
 
 public class CheckoutController {
     @FXML private BorderPane checkoutPane;
@@ -220,7 +218,6 @@ public class CheckoutController {
         System.out.println("Payment Successfully Recorded");
     }
 
-
     @FXML
     private void handleOrders() {
         navigate("/com/example/fx/OrderHistory.fxml");
@@ -257,7 +254,9 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+    private void handleActivePromotions() {
+        navigate("/com/example/fx/ActivePromotions.fxml");
+    }
 
     @FXML
     private void handleReports() {
@@ -274,10 +273,15 @@ public class CheckoutController {
     }
 
     @FXML
-    private void handleLogin() {navigate("/com/example/fx/Login.fxml"); }
+    private void handleLogin() {
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     @FXML
-    private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
+    private void handleLogout() {
+        Session.setMember(null);
+        navigate("/com/example/fx/Login.fxml");
+    }
 
     @FXML
     private void handleOrderConfirmation(String name, String email, String address, double totalCost, Member member) {
@@ -304,19 +308,15 @@ public class CheckoutController {
             e.printStackTrace();
         }
 
-        //Increments current member order count by 1
         if (member != null) {
             member.setOrderCount(member.getOrderCount() + 1);
         }
 
-        // saves the order into the database
         saveOrderToDatabase(address, totalCost, member, trackId);
 
-        //Makes a copy of basket_items to send to controller to display items ordered
         List<CatalogueItem> orderConfirmationItems = new ArrayList<>(BasketList.getBasketItems());
         BasketList.clear();
 
-        //Load OrderConfirmation
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/OrderConfirmation.fxml"));
             Parent root = loader.load();
@@ -330,7 +330,6 @@ public class CheckoutController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void navigate(String fxml) {
@@ -344,7 +343,6 @@ public class CheckoutController {
         }
     }
 
-    // Hides/Shows nav buttons depending on the user's role
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
@@ -367,9 +365,8 @@ public class CheckoutController {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
-    // saves the orders into the database
     private void saveOrderToDatabase(String address, double totalCost, Member member, String trackId) {
-        String accountNo = (member != null) ? member.getAccountNo() : "guest";
+        if (member == null) return;
 
         double subtotal = 0;
         double discountedTotal = 0;
@@ -384,7 +381,7 @@ public class CheckoutController {
         String insertOrder = """
         INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
             subtotal, discount_total, total_amount, delivery_address, track_id)
-        VALUES (?, NULL, 'received', ?, ?, ?, ?, ?)
+        VALUES (?, NULL, 'paid', ?, ?, ?, ?, ?)
         """;
 
         String insertItem = """
@@ -397,7 +394,7 @@ public class CheckoutController {
              PreparedStatement psOrder = conn.prepareStatement(insertOrder,
                      java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
-            psOrder.setString(1, accountNo);
+            psOrder.setString(1, member.getAccountNo());
             psOrder.setDouble(2, subtotal);
             psOrder.setDouble(3, discountTotal);
             psOrder.setDouble(4, totalCost);
@@ -405,20 +402,10 @@ public class CheckoutController {
             psOrder.setString(6, trackId);
             psOrder.executeUpdate();
 
-<<<<<<< Updated upstream
-
-            if (member != null) {
-                String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
-                try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
-                    psCount.setString(1, accountNo);
-                    psCount.executeUpdate();
-                }
-=======
             String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
             try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
                 psCount.setString(1, member.getAccountNo());
                 psCount.executeUpdate();
->>>>>>> Stashed changes
             }
 
             ResultSet keys = psOrder.getGeneratedKeys();
@@ -456,5 +443,4 @@ public class CheckoutController {
             System.out.println("Failed to save order: " + e.getMessage());
         }
     }
-
 }
