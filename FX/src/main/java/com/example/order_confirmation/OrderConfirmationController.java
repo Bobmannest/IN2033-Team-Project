@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.control.Button;
 
 public class OrderConfirmationController {
     @FXML private BorderPane orderConfirmationPane;
@@ -23,6 +24,13 @@ public class OrderConfirmationController {
     @FXML private Label totalLabel;
     @FXML private Label emailLabel;
     @FXML private Label addressLabel;
+    @FXML private Button btnCreatePromotion;
+    @FXML private Button btnManagePromotions;
+    @FXML private Button btnReports;
+    @FXML private Button btnLogin;
+    @FXML private Button btnLogout;
+    @FXML private Button btnOrders;
+    @FXML private Button btnAccount;
 
     public void displayItems(List<CatalogueItem> items) {
         orderItemsVBox.getChildren().clear();
@@ -97,5 +105,47 @@ public class OrderConfirmationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void initialize() {
+        setupNavBar();
+    }
+
+    private void setupNavBar() {
+        com.example.members.Member member = com.example.members.Session.getMember();
+        if (member == null) {
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnLogin);
+        } else if (member.getMemberType().equals("admin")) {
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnLogin);
+        } else {
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnAccount, btnLogout);
+        }
+    }
+
+    private void hide(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(false); b.setManaged(false); }
+    }
+
+    private void show(Button... buttons) {
+        for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
+    }
+
+    @FXML
+    private void handleReports() { navigate("/com/example/fx/Reports.fxml"); }
+
+    @FXML
+    private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
+
+    @FXML
+    private void handleLogout() {
+        com.example.members.Session.setMember(null);
+        navigate("/com/example/fx/Login.fxml");
     }
 }

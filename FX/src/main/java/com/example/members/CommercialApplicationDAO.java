@@ -22,6 +22,41 @@ public class CommercialApplicationDAO {
         ps.setString(6, app.getAddress());
         ps.setString(7, app.getEmail());
         ps.executeUpdate();
+        sendToSA(app);
+    }
+
+    // send to sa mock integration
+    private static void sendToSA(CommercialApplication app) {
+        try {
+            String json = String.format("""
+                {
+                  "application_id": "%s",
+                  "company_name": "%s",
+                  "companies_house_no": "%s",
+                  "director_name": "%s",
+                  "business_type": "%s",
+                  "address": "%s",
+                  "email": "%s",
+                  "status": "pending"
+                }
+                """,
+                    app.getApplicationId(), app.getCompanyName(),
+                    app.getCompaniesHouseNo(), app.getDirectorName(),
+                    app.getBusinessType(), app.getAddress(), app.getEmail()
+            );
+
+            java.net.http.HttpClient client = java.net.http.HttpClient.newHttpClient();
+            java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                    .uri(java.net.URI.create("http://SA_TEAM_IP:PORT/api/applications")) // dummy endpoint
+                    .header("Content-Type", "application/json")
+                    .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            client.send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+            System.out.println("Application sent to SA successfully.");
+        } catch (Exception e) {
+            System.out.println("Could not send to SA (non-critical): " + e.getMessage());
+        }
     }
 
     public static boolean emailExists(String email) throws SQLException {

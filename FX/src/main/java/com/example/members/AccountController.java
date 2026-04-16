@@ -22,6 +22,8 @@ public class AccountController {
     @FXML private Button btnManagePromotions;
     @FXML private Button btnOrders;
     @FXML private Button btnReports;
+    @FXML private Button btnLogout;
+    @FXML private Button btnLogin;
 
     @FXML
     public void initialize() {
@@ -41,12 +43,14 @@ public class AccountController {
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
-            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports);
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports, btnLogout);
+            show(btnLogin);
         } else if (member.getMemberType().equals("admin")) {
-            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports);
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports, btnLogout);
+            hide(btnLogin);
         } else {
-            hide(btnCreatePromotion, btnManagePromotions, btnReports);
-            show(btnOrders);
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
+            show(btnOrders, btnLogout);
         }
     }
 
@@ -107,6 +111,9 @@ public class AccountController {
 
     @FXML
     private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
+
+    @FXML
+    private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
     
     private void navigate(String fxml) {
         try {

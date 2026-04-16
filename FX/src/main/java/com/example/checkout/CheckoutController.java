@@ -393,6 +393,13 @@ public class CheckoutController {
             psOrder.setString(5, address);
             psOrder.executeUpdate();
 
+
+            String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
+            try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
+                psCount.setString(1, member.getAccountNo());
+                psCount.executeUpdate();
+            }
+
             ResultSet keys = psOrder.getGeneratedKeys();
             if (keys.next()) {
                 long orderId = keys.getLong(1);
