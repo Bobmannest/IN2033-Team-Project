@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 @Controller
 @RequestMapping("/api/orders")
 
-//Ai was used for this API call because we needed a html page to display order status
 public class CheckoutOrderTrackingController {
     @GetMapping("/track")
     @ResponseBody
@@ -30,6 +29,7 @@ public class CheckoutOrderTrackingController {
             if (rs.next()) {
                 String status = rs.getString("order_status");
 
+                //AI was used for this because we needed a html page to display order status
                 return """
                     <html>
                     <head><title>Order Tracking</title></head>

@@ -70,8 +70,29 @@ public class CatalogueController {
         filterErrorLabel.setText("");
         filterErrorLabel.setManaged(false);
 
-
         List<CatalogueItem> items;
+
+        //Applies discounts
+        try {
+            if (currentCampaignFilter != null) {
+                items = PromotionDAO.getCampaignCatalogueItems(currentCampaignFilter);
+            } else {
+                items = CatalogueDatabase.getCatalogueItems();
+            }
+
+            for (CatalogueItem item : items) {
+                Double pct = PromotionDAO.getDiscountForItem(
+                        currentCampaignFilter != null ? currentCampaignFilter : item.getCampaignId(),
+                        item.getItem_id()
+                );
+                if (pct != null && pct > 0) {
+                    item.setPackage_cost(item.getPackage_cost() - (item.getPackage_cost() * (pct / 100.0)));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         try {
             if (currentCampaignFilter != null) {
