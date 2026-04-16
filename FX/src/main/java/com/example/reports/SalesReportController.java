@@ -76,8 +76,7 @@ public class SalesReportController {
                 FROM OnlineOrderItem oi
                 JOIN Product p ON p.item_id = oi.item_id
                 JOIN OnlineOrder o ON o.order_id = oi.order_id
-                WHERE o.order_status = 'paid'
-                  AND DATE(o.created_at) BETWEEN ? AND ?
+               WHERE DATE(o.created_at) BETWEEN ? AND ?
                 GROUP BY oi.item_id, p.product_name, oi.unit_price
                 ORDER BY oi.item_id
                 """;

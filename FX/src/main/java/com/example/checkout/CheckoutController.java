@@ -364,7 +364,7 @@ public class CheckoutController {
 
     // saves the orders into the database
     private void saveOrderToDatabase(String address, double totalCost, Member member, String trackId) {
-        if (member == null) return;
+        String accountNo = (member != null) ? member.getAccountNo() : "guest";
 
         double subtotal = 0;
         for (CatalogueItem item : BasketList.getBasketItems()) {
@@ -375,7 +375,7 @@ public class CheckoutController {
         String insertOrder = """
         INSERT INTO OnlineOrder (member_account_no, campaign_id, order_status,
             subtotal, discount_total, total_amount, delivery_address, track_id)
-        VALUES (?, NULL, 'paid', ?, ?, ?, ?, ?)
+        VALUES (?, NULL, 'received', ?, ?, ?, ?, ?)
         """;
 
         String insertItem = """
@@ -388,7 +388,7 @@ public class CheckoutController {
              PreparedStatement psOrder = conn.prepareStatement(insertOrder,
                      java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
-            psOrder.setString(1, member.getAccountNo());
+            psOrder.setString(1, accountNo);
             psOrder.setDouble(2, subtotal);
             psOrder.setDouble(3, discountTotal);
             psOrder.setDouble(4, totalCost);
@@ -397,10 +397,12 @@ public class CheckoutController {
             psOrder.executeUpdate();
 
 
-            String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
-            try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
-                psCount.setString(1, member.getAccountNo());
-                psCount.executeUpdate();
+            if (member != null) {
+                String updateCount = "UPDATE Member SET order_count = order_count + 1 WHERE account_no = ?";
+                try (PreparedStatement psCount = conn.prepareStatement(updateCount)) {
+                    psCount.setString(1, accountNo);
+                    psCount.executeUpdate();
+                }
             }
 
             ResultSet keys = psOrder.getGeneratedKeys();

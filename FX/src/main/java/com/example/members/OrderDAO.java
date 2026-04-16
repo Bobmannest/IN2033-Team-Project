@@ -10,7 +10,7 @@ public class OrderDAO {
 
     public static List<Order> getOrdersForMember(String accountNo) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT order_id, member_account_no, created_at, total_amount, delivery_address FROM OnlineOrder WHERE member_account_no = ? ORDER BY created_at DESC";
+        String sql = "SELECT order_id, member_account_no, created_at, total_amount, delivery_address, order_status FROM OnlineOrder WHERE member_account_no = ? ORDER BY created_at DESC";
 
         Connection conn = DatabaseConnection.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -23,7 +23,8 @@ public class OrderDAO {
                     rs.getString("member_account_no"),
                     rs.getTimestamp("created_at").toLocalDateTime(),
                     rs.getDouble("total_amount"),
-                    rs.getString("delivery_address") != null ? rs.getString("delivery_address") : ""
+                    rs.getString("delivery_address") != null ? rs.getString("delivery_address") : "",
+                    rs.getString("order_status") != null ? rs.getString("order_status") : "pending"
             ));
         }
 

@@ -26,6 +26,7 @@ public class ActivePromotionsController {
     @FXML private Button btnAccount;
     @FXML private Button btnLogin;
     @FXML private Button btnLogout;
+    @FXML private Button btnReports;
 
     private final PromotionService promotionService = new PromotionService();
 
@@ -109,6 +110,18 @@ public class ActivePromotionsController {
         navigate("/com/example/fx/Login.fxml");
     }
 
+    @FXML
+    private void handleReports() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fx/Reports.fxml"));
+            javafx.scene.Parent root = loader.load();
+            Stage stage = (Stage) ActivePromotionsPane.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -124,13 +137,13 @@ public class ActivePromotionsController {
         Member member = Session.getMember();
 
         if (member == null) {
-            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
+            hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
             show(btnLogin);
         } else if ("admin".equalsIgnoreCase(member.getMemberType())) {
-            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnLogout);
+            show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
             hide(btnLogin);
         } else {
-            hide(btnCreatePromotion, btnManagePromotions, btnLogin);
+            hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
             show(btnOrders, btnAccount, btnLogout);
         }
     }

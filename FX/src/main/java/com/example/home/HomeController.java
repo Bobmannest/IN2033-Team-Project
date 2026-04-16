@@ -20,6 +20,8 @@ public class HomeController {
     @FXML private Button btnReports;
     @FXML private Button btnLogin;
     @FXML private Button btnLogout;
+    @FXML private Button btnHomeOrders;
+    @FXML private Button btnHomeAccount;
 
     @FXML
     public void initialize() {
@@ -29,14 +31,18 @@ public class HomeController {
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
+            // guest
             hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            hide(btnHomeOrders, btnHomeAccount);
             show(btnLogin);
         } else if (member.getMemberType().equals("admin")) {
             show(btnCreatePromotion, btnManagePromotions, btnOrders, btnAccount, btnReports, btnLogout);
+            show(btnHomeOrders, btnHomeAccount);
             hide(btnLogin);
         } else {
             hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
             show(btnOrders, btnAccount, btnLogout);
+            show(btnHomeOrders, btnHomeAccount);
         }
     }
 

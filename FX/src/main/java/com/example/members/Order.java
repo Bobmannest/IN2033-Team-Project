@@ -8,14 +8,16 @@ public class Order {
     private LocalDateTime orderDate;
     private double totalAmount;
     private String deliveryAddress;
+    private String status;
 
     public Order(String orderId, String accountNo, LocalDateTime orderDate,
-                 double totalAmount, String deliveryAddress) {
+                 double totalAmount, String deliveryAddress, String status) {
         this.orderId = orderId;
         this.accountNo = accountNo;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.deliveryAddress = deliveryAddress;
+        this.status = status;
     }
 
     public String getOrderId() { return orderId; }
@@ -23,4 +25,5 @@ public class Order {
     public LocalDateTime getOrderDate() { return orderDate; }
     public double getTotalAmount() { return totalAmount; }
     public String getDeliveryAddress() { return deliveryAddress; }
+    public String getStatus() { return status; }
 }

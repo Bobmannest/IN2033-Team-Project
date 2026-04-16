@@ -98,7 +98,7 @@
                                     <Insets right="25.0" />
                                  </HBox.margin>
                                  <children>
-                                    <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="248.0" prefWidth="399.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" text="Account Details" onAction="#handleAccount" VBox.vgrow="ALWAYS">
+                                    <Button fx:id="btnHomeAccount" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="248.0" prefWidth="399.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" text="Account Details" onAction="#handleAccount" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets bottom="15.0" />
                                        </VBox.margin>
@@ -121,7 +121,7 @@
                               </VBox>
                               <VBox prefHeight="405.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="248.0" prefWidth="399.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" text="Order History" onAction="#handleOrders" VBox.vgrow="ALWAYS">
+                                    <Button fx:id="btnHomeOrders" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="248.0" prefWidth="399.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e3e3e3; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" text="Order History" onAction="#handleOrders" VBox.vgrow="ALWAYS">
                                        <padding>
                                           <Insets left="20.0" top="20.0" />
                                        </padding>
