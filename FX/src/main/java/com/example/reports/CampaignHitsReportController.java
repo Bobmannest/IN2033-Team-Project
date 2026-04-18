@@ -39,12 +39,14 @@ public class CampaignHitsReportController {
 
     private final List<String[]> campaignList = new ArrayList<>();
 
+    // Sets up table columns and populates the campaign dropdown on load
     @FXML
     public void initialize() {
         setupColumns();
         loadCampaignCombo();
     }
 
+    // Binds each table column to the corresponding field in HitsRow
     private void setupColumns() {
         colCounterId  .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().counterId()));
         colDescription.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().description()));
@@ -53,6 +55,7 @@ public class CampaignHitsReportController {
         colConversion .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().conversionRate()));
     }
 
+    // Loads all promotion campaigns from the DB into the dropdown, most recent first
     private void loadCampaignCombo() {
         String sql = "SELECT campaign_id, campaign_name FROM PromotionCampaign ORDER BY start_datetime DESC";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -74,6 +77,7 @@ public class CampaignHitsReportController {
         }
     }
 
+    // Validates selection and triggers report generation for the chosen campaign
     @FXML
     private void handleGenerateReport() {
         int selectedIdx = campaignCombo.getSelectionModel().getSelectedIndex();
@@ -85,6 +89,7 @@ public class CampaignHitsReportController {
         loadReport(campaignList.get(selectedIdx)[0]);
     }
 
+    // Loads campaign header info, overall hit count, and per-item metrics from the DB
     private void loadReport(String campaignId) {
 
         headerBox.setVisible(true);
@@ -173,6 +178,7 @@ public class CampaignHitsReportController {
         hitsTable.setItems(rows);
     }
 
+    // Generates an HTML version of the report and sends it to the printer via WebView
     @FXML
     private void handlePrint() {
         if (hitsTable.getItems().isEmpty()) {
@@ -264,6 +270,7 @@ public class CampaignHitsReportController {
     @FXML private void handleReports()          { navigate("/com/example/fx/Reports.fxml"); }
     @FXML private void handleLogout()           { navigate("/com/example/fx/Login.fxml"); }
 
+    // Generic nav helper — preserves maximised window state
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

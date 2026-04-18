@@ -20,6 +20,7 @@ public class Order {
         this.status = status;
     }
 
+    // getters
     public String getOrderId() { return orderId; }
     public String getAccountNo() { return accountNo; }
     public LocalDateTime getOrderDate() { return orderDate; }

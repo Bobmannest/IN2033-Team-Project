@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class CommercialApplicationDAO {
 
+    //  Inserts a new commercial application into the local DB and forwards it to the SA subsystem
     public static void submitApplication(CommercialApplication app) throws SQLException {
         String sql = "INSERT INTO CommercialApplication (application_id, company_name, companies_house_no, " +
                 "director_name, business_type, address, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -26,6 +27,7 @@ public class CommercialApplicationDAO {
     }
 
     // mock integration
+    // sends the application to SA subsystem through HTTP POST
     private static void sendToSA(CommercialApplication app) {
         try {
             String json = String.format("""
@@ -63,6 +65,7 @@ public class CommercialApplicationDAO {
         }
     }
 
+    // Checks if an email address is already associated with an existing application
     public static boolean emailExists(String email) throws SQLException {
         String sql = "SELECT 1 FROM CommercialApplication WHERE email = ?";
         Connection conn = DatabaseConnection.getConnection();
@@ -72,6 +75,7 @@ public class CommercialApplicationDAO {
         return rs.next();
     }
 
+    // Checks if a Companies House registration number is already in use
     public static boolean companiesHouseNoExists(String companiesHouseNo) throws SQLException {
         String sql = "SELECT 1 FROM CommercialApplication WHERE companies_house_no = ?";
         Connection conn = DatabaseConnection.getConnection();
@@ -81,6 +85,7 @@ public class CommercialApplicationDAO {
         return rs.next();
     }
 
+    // Generates the next sequential application ID
     public static String generateNextApplicationId() throws SQLException {
         String sql = "SELECT application_id FROM CommercialApplication WHERE application_id LIKE 'CA%' " +
                 "ORDER BY application_id DESC LIMIT 1";

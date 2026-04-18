@@ -39,6 +39,7 @@ public class AdvertCampaignsReportController {
     @FXML private VBox printableArea;
 
 
+    // Sets default date range to last 3 months and binds column cell factories
     @FXML
     public void initialize() {
         dateFrom.setValue(LocalDate.now().minusMonths(3));
@@ -54,6 +55,7 @@ public class AdvertCampaignsReportController {
         colTotalSales   .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().totalSales()));
     }
 
+    // Validates date inputs before loading the report
     @FXML
     private void handleGenerateReport() {
         if (dateFrom.getValue() == null || dateTo.getValue() == null) {
@@ -158,6 +160,7 @@ public class AdvertCampaignsReportController {
         campaignsTable.setItems(rows);
     }
 
+    // Generates an HTML version of the report and sends it to the printer via WebView
     @FXML
     private void handlePrint() {
         if (campaignsTable.getItems().isEmpty()) {
@@ -254,6 +257,7 @@ public class AdvertCampaignsReportController {
     @FXML private void handleCreatePromotion()  { navigate("/com/example/fx/Promotion.fxml"); }
     @FXML private void handleManagePromotions() { navigate("/com/example/fx/CampaignItem.fxml"); }
 
+    // Generic nav helper - preserves maximised window state
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

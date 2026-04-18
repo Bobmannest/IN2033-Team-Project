@@ -26,6 +26,7 @@ public class ReportsHubController {
         setupNavBar();
     }
 
+    // Shows/hides navbar buttons depending on the logged in user's role
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
@@ -63,6 +64,7 @@ public class ReportsHubController {
     @FXML private void handleLogin()            { navigate("/com/example/fx/Login.fxml"); }
     @FXML private void handleLogout()           { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 
+    // Generic nav helper - preserves maximised window state
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

@@ -12,12 +12,15 @@ import java.io.IOException;
 
 public class AccountController {
 
+    // labels to display account info on the account page
     @FXML private Label accountNoLabel;
     @FXML private Label emailLabel;
     @FXML private Label memberTypeLabel;
     @FXML private Label orderCountLabel;
     @FXML private Label accountNoLabel2;
     @FXML private Label memberTypeLabel2;
+
+    // navbar buttons which are shown/hidden based on the user role
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
     @FXML private Button btnOrders;
@@ -29,6 +32,7 @@ public class AccountController {
     public void initialize() {
         Member member = Session.getMember();
 
+        // populate account details if a member is logged in
         if (member != null) {
             accountNoLabel.setText(member.getAccountNo());
             emailLabel.setText(member.getEmail());
@@ -40,15 +44,19 @@ public class AccountController {
         setupNavBar();
     }
 
+    // method to show / hide navbar buttons depending on the logged in users role
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
+            // if its a guest - only show the login button
             hide(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports, btnLogout);
             show(btnLogin);
         } else if (member.getMemberType().equals("admin")) {
+            // admin - shows all buttons
             show(btnCreatePromotion, btnManagePromotions, btnOrders, btnReports, btnLogout);
             hide(btnLogin);
         } else {
+            // regular member - hides admin buttons
             hide(btnCreatePromotion, btnManagePromotions, btnReports, btnLogin);
             show(btnOrders, btnLogout);
         }
@@ -62,6 +70,7 @@ public class AccountController {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
+    // logs out the current member and redirects to the login screen
     @FXML
     private void handleLogout() {
         try {
@@ -114,7 +123,8 @@ public class AccountController {
 
     @FXML
     private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
-    
+
+    // Generic nav helper - loads the given FXML and sets it as the scene root
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -126,6 +136,7 @@ public class AccountController {
         }
     }
 
+    // Navigates to the reports hub, preserving maximized window state
     @FXML
     private void handleReports() {
         try {

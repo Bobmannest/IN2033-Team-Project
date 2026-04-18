@@ -19,6 +19,7 @@ import java.util.List;
 
 public class OrderHistory {
 
+    // Table and columns for displaying order history
     @FXML private TableView<Order> ordersTable;
     @FXML private TableColumn<Order, Void> colRowNum;
     @FXML private TableColumn<Order, String> colOrderId;
@@ -26,6 +27,7 @@ public class OrderHistory {
     @FXML private TableColumn<Order, Double> colAmount;
     @FXML private TableColumn<Order, String> colAddress;
     @FXML private TableColumn<Order, String> colStatus;
+
     @FXML private Label errorLabel;
     @FXML private Button btnCreatePromotion;
     @FXML private Button btnManagePromotions;
@@ -117,6 +119,7 @@ public class OrderHistory {
     @FXML
     private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
 
+    // Navigates to the reports hub
     @FXML
     private void handleReports() {
         try {
@@ -129,12 +132,14 @@ public class OrderHistory {
         }
     }
 
+    // Logs out the current member and redirects to login
     @FXML
     private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
 
     @FXML
     private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }
 
+    // Shows/hides navbar buttons depending on the logged-in user's role
     private void setupNavBar() {
         Member member = Session.getMember();
         if (member == null) {
@@ -157,6 +162,7 @@ public class OrderHistory {
         for (Button b : buttons) { b.setVisible(true); b.setManaged(true); }
     }
 
+    // Generic nav helper - loads the given FXML and sets it as the scene root
     private void navigate(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

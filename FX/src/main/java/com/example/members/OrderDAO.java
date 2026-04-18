@@ -8,6 +8,7 @@ import java.util.List;
 
 public class OrderDAO {
 
+    // Retrieves all past orders for a given member, ordered by most recent first
     public static List<Order> getOrdersForMember(String accountNo) throws SQLException {
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT order_id, member_account_no, created_at, total_amount, delivery_address, order_status FROM OnlineOrder WHERE member_account_no = ? ORDER BY created_at DESC";
@@ -18,6 +19,7 @@ public class OrderDAO {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
+            // Build an Order object from each row, defaulting empty fields where necessary
             orders.add(new Order(
                     String.valueOf(rs.getLong("order_id")),
                     rs.getString("member_account_no"),

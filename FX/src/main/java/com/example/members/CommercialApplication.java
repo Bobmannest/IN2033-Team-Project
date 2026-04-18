@@ -27,6 +27,7 @@ public class CommercialApplication {
         this.status = status;
     }
 
+    // getters
     public String getApplicationId() { return applicationId; }
     public String getCompanyName() { return companyName; }
     public String getCompaniesHouseNo() { return companiesHouseNo; }
