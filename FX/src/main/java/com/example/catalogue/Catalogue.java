@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import com.example.SpringApp;
 import java.io.IOException;
 
+//Class used for testing catalogue
 public class Catalogue extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,8 +23,6 @@ public class Catalogue extends Application {
     }
 
     public static void main(String[] args) {
-        /* Launches SpringApp so will need to move this to Login screen later
-        because that will be the first thing that user will see */
         Thread springThread = new Thread(() -> {
             SpringApplication.run(SpringApp.class, args);
         });

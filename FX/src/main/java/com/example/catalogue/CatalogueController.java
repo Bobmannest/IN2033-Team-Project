@@ -91,6 +91,7 @@ public class CatalogueController {
             throw new RuntimeException(e);
         }
 
+        //Handles filter logic
         double minPrice = 0;
         double maxPrice = Double.MAX_VALUE;
         boolean inStockOnly = inStockCheckbox.isSelected();
@@ -111,6 +112,7 @@ public class CatalogueController {
         double finalMinPrice = minPrice;
         double finalMaxPrice = maxPrice;
 
+        //Filters list of items based on applied filters
         items = items.stream()
                 .filter(item -> item.getPackage_cost() >= finalMinPrice)
                 .filter(item -> item.getPackage_cost() <= finalMaxPrice)

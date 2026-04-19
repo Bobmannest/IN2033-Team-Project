@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+//Used for testing if payments get accepted by the API
 public class PaymentTester {
     public static void main(String[] args) throws Exception {
         InputStream inputStream = CatalogueTester.class.getResourceAsStream("/com/example/fx/test_payment.json");

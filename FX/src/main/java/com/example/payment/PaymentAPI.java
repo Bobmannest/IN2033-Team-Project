@@ -13,6 +13,7 @@ public class PaymentAPI {
         this.paymentService = paymentService;
     }
 
+    //Accepts Payment from other subsystems
     @PostMapping("/accept")
     public ResponseEntity<String> acceptPayment(@RequestBody Payment payment) {
         paymentService.printPayment(payment);
@@ -20,6 +21,7 @@ public class PaymentAPI {
         return ResponseEntity.ok("Payment Accepted");
     }
 
+    //Processes PaymentDetails sent by other subsystems
     @PostMapping("/process")
     public ResponseEntity<String> processPayment(@RequestBody PaymentDetails paymentDetails) {
         boolean valid = paymentService.processPayment(paymentDetails);

@@ -2,6 +2,7 @@ package com.example.email;
 
 import org.springframework.web.bind.annotation.*;
 
+//Email service API
 @RestController
 @RequestMapping("/api/emails")
 public class EmailAPI {

@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/catalogue")
 public class CatalogueAPI {
-
+    //API for accepting catalogue database as JSON from CA
     @PostMapping("/accept")
     public ResponseEntity<String> acceptCatalogueDatabase(@RequestBody List<CatalogueItem> catalogue) {
         try {

@@ -26,6 +26,7 @@ public class Login extends Application {
         stage.show();
     }
 
+    //Starts the program as well as springboot program
     public static void main(String[] args) {
         Thread springThread = new Thread(() -> SpringApplication.run(SpringApp.class, args));
         springThread.setDaemon(true);

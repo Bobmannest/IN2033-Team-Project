@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BasketList {
+    //Global list of all items in basket
     private static List<CatalogueItem> basket_items = new ArrayList<>();
     private static BasketController listener;
 

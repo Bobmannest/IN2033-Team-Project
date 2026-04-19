@@ -33,6 +33,7 @@ public class BasketItemController {
     }
 
     @FXML
+    //Handles removing items from basket and updates local stock
     private void handleRemoveFromBasket() {
         BasketList.removeItem(currentItem);
         currentItem.setAvailability(currentItem.getAvailability() + 1);

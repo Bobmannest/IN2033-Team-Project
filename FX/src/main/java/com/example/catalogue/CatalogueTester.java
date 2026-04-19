@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
+//Class used for testing loading catalogue database from JSON
 public class CatalogueTester {
     public static void loadSampleCatalogue() {
         try {

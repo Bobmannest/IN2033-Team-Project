@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 import java.util.Properties;
 
+//EmailService manages email format
 @Service
 public class EmailService {
     private String username = "curatecht33@gmail.com";

@@ -36,10 +36,12 @@ public class ActivePromotionsController {
         setupNavBar();
     }
 
+    //Displays campaigns to the Active Campaigns page
     private void displayActiveCampaigns() {
         ActivePromotionsFlowPane.getChildren().clear();
 
         try {
+            //Creates list of all active campaigns
             List<PromotionCampaign> campaigns = promotionService.getActiveCampaigns();
             System.out.println("Active campaigns found: " + campaigns.size());
 

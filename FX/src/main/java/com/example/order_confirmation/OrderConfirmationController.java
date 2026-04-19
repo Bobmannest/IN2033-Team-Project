@@ -32,6 +32,7 @@ public class OrderConfirmationController {
     @FXML private Button btnOrders;
     @FXML private Button btnAccount;
 
+    //Displays ordered items
     public void displayItems(List<CatalogueItem> items) {
         orderItemsVBox.getChildren().clear();
 

@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import java.util.ArrayList;
 import java.util.List;
 
+//Used for dynamic catalogue
 public class CatalogueDatabase {
     private static CatalogueController listener;
     private static List<CatalogueItem> catalogue_items = new ArrayList<>();

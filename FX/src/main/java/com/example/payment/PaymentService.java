@@ -15,7 +15,7 @@ public class PaymentService {
         );
     }
 
-
+    //Processes payment details sent by other subsystems as well as checkout page input
     public boolean processPayment(PaymentDetails paymentDetails) {
         String cardType = paymentDetails.getCardType();
         String cardNum = paymentDetails.getCardNumber();
@@ -39,6 +39,7 @@ public class PaymentService {
         return true;
     }
 
+    //Checks expiry date format
     private boolean isExpiryValid(String expiry) {
         if (!expiry.matches("\\d{2}/\\d{2}")) {return false;};
 
@@ -54,7 +55,7 @@ public class PaymentService {
         return !cardExpiry.isBefore(now);
     }
 
-    // Checks format and Luhn's algorithm
+    //Checks card format for Visa, MasterCard and AmEx
     private boolean isCardValid(String cardNum, String cardType) {
         if (cardNum == null) return false;
 
@@ -74,6 +75,7 @@ public class PaymentService {
         return Luhns(cardNum);
     }
 
+    //Luhn's algorithm for validating card numbers
     private boolean Luhns(String cardNum) {
         char[] cardDigits = cardNum.toCharArray();
         int sum = 0;

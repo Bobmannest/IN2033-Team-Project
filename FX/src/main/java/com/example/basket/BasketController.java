@@ -16,6 +16,7 @@ import java.util.List;
 public class BasketController {
     @FXML private VBox basketVBox;
 
+    //Displays items to basket
     public void displayItems() {
         basketVBox.getChildren().clear();
 

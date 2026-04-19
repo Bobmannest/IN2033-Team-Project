@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+//Unused
 public class ViewController implements Initializable {
     @FXML
     Label test;
