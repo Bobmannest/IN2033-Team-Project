@@ -5,7 +5,7 @@ Steps to run the program:
 1) Make sure you are using Java SDK 17
 2) Make sure you have JavaFX 21 installed (it will probably prompt you to auto-install anyways)
 3) For the JavaFX app, run login.java file (FX>src>main>java>com.example>fx>Login.java)
-4) For REST APIs, run the SpringApp file (FX>src>main>java>com.example>email>SpringApp.java) or Catalogue.java (it auto starts SpringApp) 
+4) For REST APIs, run the SpringApp file (FX>src>main>java>com.example>email>SpringApp.java) or Login.java (it auto starts SpringApp)
 
 Testing:
 - To test email service use in CMD: 
@@ -42,11 +42,3 @@ This project uses MySQL. Follow these steps to set up the database locally:
 | curatecht33+pu0001@gmail.com | 12ss_56_SS    | Non-commercial |
 | curatecht33+pu0002@gmail.com | 34pp_78_LL    | Non-commercial |
 | curatecht33+pu0003@gmail.com | changeme      | Commercial |
-
-Important notes:
-
-- **SpringApp must be running** before:
-  - Creating a new account (registration email won't send without it)
-  - Using the forgot password feature (reset email won't send without it)
-- Start SpringApp first: `FX > src > main > java > com.example > SpringApp.java`
-- Then run the JavaFX app via Login.java
