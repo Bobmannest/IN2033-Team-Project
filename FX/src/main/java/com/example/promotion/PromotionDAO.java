@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// DAO for all of promotions, handles all the SQL stuff, read/writes, campaigns, campaign items, metrics
+
 public class PromotionDAO {
+
+    // inserts campaigns
 
     public static void createCampaign(PromotionCampaign campaign) throws SQLException {
         String sql = """
@@ -48,6 +52,8 @@ public class PromotionDAO {
         createCampaignMetricsRow(campaign.getCampaignId());
     }
 
+    // generates the next campaign ID in the proper format
+
     public static String generateNextCampaignId() throws SQLException {
         String sql = "SELECT campaign_id FROM PromotionCampaign " +
                 "WHERE campaign_id LIKE 'CAMP%' " +
@@ -66,6 +72,8 @@ public class PromotionDAO {
             }
         }
     }
+
+    // for adding one item into a campaign
 
     public static void addItemToCampaign(String campaignId, String itemId, Double itemDiscountPct) throws SQLException {
         String sql = """
@@ -92,6 +100,8 @@ public class PromotionDAO {
         createCampaignItemMetricsRow(campaignId, itemId);
     }
 
+    // loads a single campaign by ID
+
     public static PromotionCampaign getCampaignById(String campaignId) throws SQLException {
         String sql = "SELECT * FROM PromotionCampaign WHERE campaign_id = ?";
 
@@ -110,6 +120,8 @@ public class PromotionDAO {
         return null;
     }
 
+    // returns all the campaigns, ordered by start time
+
     public static List<PromotionCampaign> getAllCampaigns() throws SQLException {
         List<PromotionCampaign> campaigns = new ArrayList<>();
         String sql = "SELECT * FROM PromotionCampaign ORDER BY start_datetime DESC";
@@ -125,6 +137,8 @@ public class PromotionDAO {
 
         return campaigns;
     }
+
+    // returns currently active campaigns
 
     public static List<PromotionCampaign> getActiveCampaigns() throws SQLException {
         List<PromotionCampaign> campaigns = new ArrayList<>();
@@ -150,9 +164,12 @@ public class PromotionDAO {
         return campaigns;
     }
 
+    // returns all the active campaigns that apply for an item
+
     public static List<PromotionCampaign> getActiveCampaignsForItem(String itemId) throws SQLException {
         String sql = """
-            SELECT DISTINCT pc.*
+            
+                SELECT DISTINCT pc.*
             FROM PromotionCampaign pc
             JOIN PromotionCampaignItem pci
               ON pc.campaign_id = pci.campaign_id
@@ -178,6 +195,8 @@ public class PromotionDAO {
         }
         return campaigns;
     }
+
+    // returns the catalogue items for one campaign
 
     public static List<CatalogueItem> getCampaignCatalogueItems(String campaignId) throws SQLException {
         String sql = "SELECT item_id FROM PromotionCampaignItem WHERE campaign_id = ?";
@@ -207,6 +226,8 @@ public class PromotionDAO {
         return result;
     }
 
+    // updates the campaign details the user can edit from manage promotions
+
     public static void updateCampaignDetails(
             String campaignId,
             String description,
@@ -230,6 +251,8 @@ public class PromotionDAO {
             ps.executeUpdate();
         }
     }
+
+    // returns item specific discounts, otherwise uses whatever is set as the campaign default
 
     public static Double getDiscountForItem(String campaignId, String itemId) throws SQLException {
         String sql = """
@@ -267,6 +290,8 @@ public class PromotionDAO {
         return 0.0;
     }
 
+    // increments the number of campaign clicks
+
     public static void incrementCampaignHits(String campaignId) throws SQLException {
         ensureCampaignMetricsRowExists(campaignId);
 
@@ -283,6 +308,8 @@ public class PromotionDAO {
             ps.executeUpdate();
         }
     }
+
+    // increments how many times an item was included in an order
 
     public static void incrementIncludedInOrder(String campaignId, String itemId, int quantity) throws SQLException {
         ensureCampaignItemMetricsRowExists(campaignId, itemId);
@@ -303,6 +330,8 @@ public class PromotionDAO {
         }
     }
 
+    // increments how many times an item was purchased
+
     public static void incrementPurchased(String campaignId, String itemId, int quantity) throws SQLException {
         ensureCampaignItemMetricsRowExists(campaignId, itemId);
 
@@ -322,6 +351,8 @@ public class PromotionDAO {
         }
     }
 
+    // updates the campaign status
+
     public static void updateCampaignStatus(String campaignId, String status) throws SQLException {
         String sql = "UPDATE PromotionCampaign SET status = ? WHERE campaign_id = ?";
 
@@ -334,6 +365,8 @@ public class PromotionDAO {
         }
     }
 
+    // deletes campaign
+
     public static void deleteCampaign(String campaignId) throws SQLException {
         String sql = "DELETE FROM PromotionCampaign WHERE campaign_id = ?";
 
@@ -344,6 +377,8 @@ public class PromotionDAO {
             ps.executeUpdate();
         }
     }
+
+    // deleting an item from a campaign
 
     public static void deleteItemFromCampaign(String campaignId, String itemId) throws SQLException {
         String sql = "DELETE FROM PromotionCampaignItem WHERE campaign_id = ? AND item_id = ?";
@@ -356,6 +391,8 @@ public class PromotionDAO {
             ps.executeUpdate();
         }
     }
+
+    // for creating campaign item lines for display on the manage promotions screen
 
     public static List<String> getCampaignItemLines(String campaignId) throws SQLException {
         String sql = """
@@ -396,6 +433,8 @@ public class PromotionDAO {
         return lines;
     }
 
+    // creating campaign metrics
+
     private static void createCampaignMetricsRow(String campaignId) throws SQLException {
         String sql = """
                 INSERT IGNORE INTO CampaignMetrics (campaign_id, campaign_hits)
@@ -409,6 +448,8 @@ public class PromotionDAO {
             ps.executeUpdate();
         }
     }
+
+    // creating metrics for individual items
 
     private static void createCampaignItemMetricsRow(String campaignId, String itemId) throws SQLException {
         String sql = """
@@ -433,6 +474,8 @@ public class PromotionDAO {
     private static void ensureCampaignItemMetricsRowExists(String campaignId, String itemId) throws SQLException {
         createCampaignItemMetricsRow(campaignId, itemId);
     }
+
+    // finds overlapping campaigns for an item, overlapping by date
 
     public static List<PromotionCampaign> findOverlappingCampaignsForItem(
             String itemId,
@@ -473,6 +516,8 @@ public class PromotionDAO {
         return overlaps;
     }
 
+    // checks if a campaign already has incouded an item
+
     public static boolean campaignItemExists(String campaignId, String itemId) throws SQLException {
         String sql = """
             SELECT 1
@@ -492,6 +537,8 @@ public class PromotionDAO {
             }
         }
     }
+
+    // for creating a PromotionCampaign object
 
     private static PromotionCampaign mapCampaign(ResultSet rs) throws SQLException {
         Timestamp startTs = rs.getTimestamp("start_datetime");

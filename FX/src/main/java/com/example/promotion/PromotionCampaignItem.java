@@ -1,5 +1,7 @@
 package com.example.promotion;
 
+// storing logic class for an individual item in a promotion/campaign
+
 public class PromotionCampaignItem {
     private long campaignItemId;
     private String campaignId;
@@ -15,6 +17,8 @@ public class PromotionCampaignItem {
         this.itemId = itemId;
         this.itemDiscountPct = itemDiscountPct;
     }
+
+    // getters
 
     public long getCampaignItemId() {
         return campaignItemId;

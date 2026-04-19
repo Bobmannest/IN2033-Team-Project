@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// small, now unused test UI for testing the promotion screen in early development, before we had the full application connected
+
 public class TestPromotionUI extends Application {
 
     @Override

@@ -2,6 +2,8 @@ package com.example.promotion;
 
 import java.time.LocalDateTime;
 
+// storing logic class for a promotion/campaign
+
 public class PromotionCampaign {
     private String campaignId;
     private String campaignName;
@@ -30,6 +32,8 @@ public class PromotionCampaign {
         this.defaultDiscountPct = defaultDiscountPct;
         this.createdBy = createdBy;
     }
+
+    // getters
 
     public String getCampaignId() {
         return campaignId;

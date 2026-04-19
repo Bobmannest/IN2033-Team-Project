@@ -7,7 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 
+// class for loading the sample data related to promotions/campaigns and their individual campaign items
+
 public class PromotionSampleDataLoader {
+
+    // creates the sample campaigns if they do not already exist, and then it adds the items for those campaigns
 
     public static void loadSampleData() {
         try {
@@ -59,6 +63,8 @@ public class PromotionSampleDataLoader {
             e.printStackTrace();
         }
     }
+
+    // adds an item to a campaign if the product exists and it isn't already added to it
 
     private static void addIfProductExists(String campaignId, String itemId, Double discount) {
         try {

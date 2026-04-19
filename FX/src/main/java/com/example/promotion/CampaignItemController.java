@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+// class for managing promotions/campaigns
+
 public class CampaignItemController {
 
     @FXML private ListView<PromotionCampaign> campaignListView;
@@ -40,6 +42,7 @@ public class CampaignItemController {
 
     private final PromotionService promotionService = new PromotionService();
 
+    // sets up the campaign list, item selector and selection listener when the screen opens
     @FXML
     public void initialize() {
         configureCampaignList();
@@ -58,6 +61,8 @@ public class CampaignItemController {
         setupNavBar();
     }
 
+    // how each campaign is shown inside the list view
+
     private void configureCampaignList() {
         campaignListView.setCellFactory(param -> new ListCell<>() {
             @Override
@@ -71,6 +76,8 @@ public class CampaignItemController {
             }
         });
     }
+
+    // loads catalogue items into the box
 
     private void configureItemComboBox() {
         itemComboBox.getItems().setAll(CatalogueDatabase.getCatalogueItems());
@@ -100,11 +107,15 @@ public class CampaignItemController {
         });
     }
 
+    // for reloading campaigns
+
     @FXML
     private void handleRefreshCampaigns() {
         loadCampaigns();
         showStatus("Campaign list refreshed.", true);
     }
+
+    // all the logic for adding a catalogue item into a campaign, accounting for overlaps
 
     @FXML
     private void handleAddItemToSelectedCampaign() {
@@ -153,6 +164,8 @@ public class CampaignItemController {
         }
     }
 
+    // for deleting whatever campaign is currently selected by the user
+
     @FXML
     private void handleDeleteCampaign() {
         try {
@@ -174,6 +187,8 @@ public class CampaignItemController {
             showStatus("Database error: " + e.getMessage(), false);
         }
     }
+
+    // for deleting the item currently selected by the user on any given campaign
 
     @FXML
     private void handleDeleteSelectedItem() {
@@ -203,6 +218,8 @@ public class CampaignItemController {
         }
     }
 
+    // cancelling campaign early, changes the flag from active to cancelled
+
     @FXML
     private void handleCancelCampaign() {
         PromotionCampaign selected = campaignListView.getSelectionModel().getSelectedItem();
@@ -229,6 +246,8 @@ public class CampaignItemController {
             statusLabel.setStyle("-fx-text-fill: red;");
         }
     }
+
+    // reactivates a campaign by setting its flag/status to active again
 
     @FXML
     private void handleReactivateCampaign() {
@@ -257,6 +276,8 @@ public class CampaignItemController {
         }
     }
 
+    // for quality of life, certain fields like the existing
+    // description, start date, end date, time are filled in automatically
     private void populateEditFields(PromotionCampaign campaign) {
         if (campaign == null) {
             return;
@@ -284,6 +305,8 @@ public class CampaignItemController {
         }
     }
 
+    // loads all the campaigns into the list shown on screen
+
     private void loadCampaigns() {
         try {
             List<PromotionCampaign> campaigns = PromotionDAO.getAllCampaigns();
@@ -292,6 +315,8 @@ public class CampaignItemController {
             showStatus("Could not load campaigns: " + e.getMessage(), false);
         }
     }
+
+    // loads all the items for each campaign
 
     private void loadCampaignItems(String campaignId) {
         try {
@@ -307,6 +332,8 @@ public class CampaignItemController {
         statusLabel.setText(message);
     }
 
+    // takes you to homescreen
+
     @FXML
     private void handleHome() {
         try {
@@ -319,6 +346,8 @@ public class CampaignItemController {
             showStatus("Could not open home.", false);
         }
     }
+
+    // takes you to catalogue
 
     @FXML
     private void handleCatalogue() {
@@ -333,6 +362,8 @@ public class CampaignItemController {
         }
     }
 
+    // takes you to create promotion screen
+
     @FXML
     private void handleCreatePromotion() {
         try {
@@ -345,6 +376,8 @@ public class CampaignItemController {
             showStatus("Could not open create promotion screen.", false);
         }
     }
+
+    // takes you to order screen
 
     @FXML
     private void handleOrders() {
@@ -359,6 +392,8 @@ public class CampaignItemController {
         };
     }
 
+    // takes you to account screen
+
     @FXML
     private void handleAccount() {
         try {
@@ -372,6 +407,8 @@ public class CampaignItemController {
         }
     }
 
+    // takes you to basket
+
     @FXML
     private void handleBasket() {
         try {
@@ -384,6 +421,8 @@ public class CampaignItemController {
             showStatus("Could not open basket screen.", false);
         }
     }
+
+    // saves edited description, time, date values on the selected campaign
 
     @FXML private void handleActivePromotions() { navigate("/com/example/fx/ActivePromotions.fxml"); }
 
@@ -431,6 +470,8 @@ public class CampaignItemController {
         }
     }
 
+    // takes you to reports screen
+
     @FXML
     private void handleReports() {
         try {
@@ -442,6 +483,8 @@ public class CampaignItemController {
             showStatus("Navigation error: " + e.getMessage(), false);
         }
     }
+
+    // login, logout, and navbar setup
 
     @FXML private void handleLogin() { navigate("/com/example/fx/Login.fxml"); }
     @FXML private void handleLogout() { Session.setMember(null); navigate("/com/example/fx/Login.fxml"); }

@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+// controller for promotion/campaign creation screen
+
 public class PromotionController {
 
     @FXML private TextField campaignIdField;
@@ -37,6 +39,8 @@ public class PromotionController {
 
     private final PromotionService promotionService = new PromotionService();
 
+    // initialises the different boxes used on the form
+
     @FXML
     public void initialize() {
         statusComboBox.getItems().addAll("scheduled", "active", "cancelled", "expired");
@@ -48,6 +52,8 @@ public class PromotionController {
         setCreatedByFromSession();
         setupNavBar();
     }
+
+    // reads the details entered on the create promotion/campaign form and saves a new campaign if valid
 
     @FXML
     private void handleCreateCampaign() {
@@ -64,6 +70,8 @@ public class PromotionController {
             showStatus("Error: " + e.getMessage(), false);
         }
     }
+
+    // generates the next campaign ID in the form so the user does not have to enter manually
 
     private void setNextCampaignId() {
         try {
@@ -87,6 +95,8 @@ public class PromotionController {
             createdByField.setText("");
         }
     }
+
+    // creates a PromotionCampaign object from what the user put in the form
 
     private PromotionCampaign buildCampaignFromForm() throws SQLException {
         String campaignId = PromotionDAO.generateNextCampaignId();
@@ -143,6 +153,8 @@ public class PromotionController {
         );
     }
 
+    // puts clears the form after the promotion/campaign is created or the user manually clears
+
     @FXML
     private void clearForm() {
         campaignNameField.clear();
@@ -163,6 +175,8 @@ public class PromotionController {
         statusLabel.setText(message);
     }
 
+    // takes you to home
+
     @FXML
     private void handleHome() {
         try {
@@ -175,6 +189,8 @@ public class PromotionController {
             showStatus("Could not open home.", false);
         }
     }
+
+    // takes you to catalogue
 
     @FXML
     private void handleCatalogue() {
@@ -189,6 +205,8 @@ public class PromotionController {
         }
     }
 
+    // takes you to manage promotions
+
     @FXML
     private void handleManagePromotions() {
         try {
@@ -201,6 +219,8 @@ public class PromotionController {
             showStatus("Could not open manage promotions screen.", false);
         }
     }
+
+    // takes you to orders
 
     @FXML
     private void handleOrders() {
@@ -215,6 +235,8 @@ public class PromotionController {
         }
     }
 
+    // takes you to account
+
     @FXML
     private void handleAccount() {
         try {
@@ -228,6 +250,8 @@ public class PromotionController {
         }
     }
 
+    // takes you to basket
+
     @FXML
     private void handleBasket() {
         try {
@@ -239,6 +263,8 @@ public class PromotionController {
             e.printStackTrace();
         }
     }
+
+    // navbar setup
 
     private void setupNavBar() {
         Member member = Session.getMember();
@@ -268,10 +294,14 @@ public class PromotionController {
         }
     }
 
+    // takes you to active promotions
+
     @FXML
     private void handleActivePromotions() {
         navigate("/com/example/fx/ActivePromotions.fxml");
     }
+
+    // takes you to reports
 
     @FXML
     private void handleReports() {
@@ -284,6 +314,8 @@ public class PromotionController {
             showStatus("Navigation error: " + e.getMessage(), false);
         }
     }
+
+    // login, logout screens
 
     @FXML
     private void handleLogin() {
